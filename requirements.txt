@@ -1,5 +1,2 @@
 flask
 python-dotenv
-"""
-para que se instalen hay que ejecutar desde la terminal 'pip3 install -r requirements.txt'
-"""
