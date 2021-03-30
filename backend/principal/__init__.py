@@ -9,7 +9,7 @@ api = Api()
 def create_app():
     app = Flask(__name__)
     load_dotenv()
-    api.add_resource(resources.Professors, '/professors')
-    api.add_resource(resources.Professors, '/professors/<id>')
+    api.add_resource()
+    api.add_resource()
     api.init__app(app)
     return app
