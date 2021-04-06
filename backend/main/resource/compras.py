@@ -13,7 +13,7 @@ class Compras(Resource):
 
     def post(self):
         compra = request.get_json()
-        id = int(max(COMPRAS.keys()))
+        id = int(max(COMPRAS.keys())) + 1
         COMPRAS[id] = compra
         return COMPRAS[id], 201
 

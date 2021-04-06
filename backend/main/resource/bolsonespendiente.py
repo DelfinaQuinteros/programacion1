@@ -14,7 +14,7 @@ class BolsonesPendientes(Resource):
 
     def post(self):
         bolsonpendiente = request.get_json()
-        id = int(max(BOLSONESPENDIENTES.keys()))
+        id = int(max(BOLSONESPENDIENTES.keys())) + 1
         BOLSONESPENDIENTES[id] = bolsonpendiente
         return BOLSONESPENDIENTES[id], 201
 

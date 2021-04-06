@@ -12,6 +12,8 @@ def create_app():
     load_dotenv()
     api.add_resource(resources.BolsonesResource, '/bolsones')
     api.add_resource(resources.BolsonResource, '/bolson/<id>')
+    api.add_resource(resource.BolsonesPendientesResource, '/bolsonesprevios')
+    api.add_resource(resource.BolsonPendienteResource, '/bolsonprevio/<id>')
     api.add_resource(resource.BolsonesPendientesResource, '/bolsonespendientes')
     api.add_resource(resource.BolsonPendienteResource, '/bolsonpendiente/<id>')
     api.add_resource(resource.BolsonesVentaResource, '/bolsonesventa')

@@ -8,7 +8,7 @@ from .bolsonesventa import BolsonesVenta as BolsonesVentaResource
 from .bolsonesventa import BolsonVenta as BolsonVentaResource
 from .clientes import Clientes as ClientesResource
 from .clientes import Cliente as ClienteResource
-from .compras import  Compras as ComprasResource
+from .compras import Compras as ComprasResource
 from .compras import Compra as CompraResource
 from .productos import Productos as ProductosResource
 from .productos import Producto as ProductoResource
