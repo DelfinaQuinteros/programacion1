@@ -8,7 +8,7 @@ BOLSONESPENDIENTES = {
 }
 
 
-class Bolsonespendientes(Resource):
+class BolsonesPendientes(Resource):
     def get(self):
         return BOLSONESPENDIENTES
 
@@ -19,7 +19,7 @@ class Bolsonespendientes(Resource):
         return BOLSONESPENDIENTES[id], 201
 
 
-class Bolsonpendiente(Resource):
+class BolsonPendiente(Resource):
     def get(self, id):
         if int(id) in BOLSONESPENDIENTES:
             return BOLSONESPENDIENTES[int(id)]

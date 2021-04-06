@@ -8,12 +8,12 @@ BOLSONESVENTA = {
 }
 
 
-class Bolsonesventa(Resource):
+class BolsonesVenta(Resource):
     def get(self):
         return BOLSONESVENTA
 
 
-class Bolsonventa(Resource):
+class BolsonVenta(Resource):
     def get(self, id):
         if int(id) in BOLSONESVENTA:
             return BOLSONESVENTA[int(id)]
