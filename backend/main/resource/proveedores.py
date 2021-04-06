@@ -1,18 +1,26 @@
 from flask_restful import Resource
 from flask import request
 
+PROFESSORS = {
+    1: {'firstname': 'aa', 'lastname': 'bb'},
+    2: {'firstname': 'cc', 'lastname': 'dd'},
+}
 
-class Bolsones_pendientes(Resource):
+
+class Proveedores(Resource):
     def get(self):
         return ''
+
     def post(self):
         return ''
 
 
-class Bolson_pendiente(Resource):
+class Proveedor(Resource):
     def get(self):
         return ""
+
     def delete(self):
-        return''
+        return ''
+
     def put(self):
-        return''
+        return ''
