@@ -15,7 +15,7 @@ class Compras(Resource):
         compra = request.get_json()
         id = int(max(COMPRAS.keys())) + 1
         COMPRAS[id] = compra
-        return COMPRAS[id], 201
+        return COMPRAS[int(id)], 201
 
 
 class Compra(Resource):
@@ -26,7 +26,7 @@ class Compra(Resource):
 
     def delete(self, id):
         if int(id) in COMPRAS:
-            del COMPRAS[id]
+            del COMPRAS[int(id)]
             return '', 204
         return '', 404
 

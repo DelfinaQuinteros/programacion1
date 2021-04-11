@@ -16,7 +16,7 @@ class BolsonesPendientes(Resource):
         bolsonpendiente = request.get_json()
         id = int(max(BOLSONESPENDIENTES.keys())) + 1
         BOLSONESPENDIENTES[id] = bolsonpendiente
-        return BOLSONESPENDIENTES[id], 201
+        return BOLSONESPENDIENTES[int(id)], 201
 
 
 class BolsonPendiente(Resource):
@@ -27,7 +27,7 @@ class BolsonPendiente(Resource):
 
     def delete(self, id):
         if int(id) in BOLSONESPENDIENTES:
-            del BOLSONESPENDIENTES[id]
+            del BOLSONESPENDIENTES[int(id)]
             return '', 204
         return '', 404
 

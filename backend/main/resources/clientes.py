@@ -26,7 +26,7 @@ class Cliente(Resource):
 
     def delete(self, id):
         if int(id) in CLIENTES:
-            del CLIENTES[id]
+            del CLIENTES[int(id)]
             return '', 204
         return '', 404
 

@@ -15,7 +15,7 @@ class Proveedores(Resource):
         proveedor = request.get_json()
         id = int(max(PROVEEDORES.keys())) + 1
         PROVEEDORES[id] = proveedor
-        return PROVEEDORES[id], 201
+        return PROVEEDORES[int(id)], 201
 
 
 class Proveedor(Resource):
@@ -26,7 +26,7 @@ class Proveedor(Resource):
 
     def delete(self, id):
         if int(id) in PROVEEDORES:
-            del PROVEEDORES[id]
+            del PROVEEDORES[int(id)]
             return '', 204
         return '', 404
 
