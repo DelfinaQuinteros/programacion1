@@ -21,6 +21,7 @@ class Clientes(db.Model):
         }
         return clientes_json
 
+    @staticmethod
     def from_json(clientes_json):
         id = clientes_json.get('id')
         nombre = clientes_json.get('nombre')

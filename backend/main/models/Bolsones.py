@@ -20,6 +20,7 @@ class Bolsones(db.Model):
         }
         return bolsones_json
 
+    @staticmethod
     def from_json(bolsones_json):
         id = bolsones_json.get('id')
         nombre = bolsones_json.get('nombre')
@@ -30,3 +31,12 @@ class Bolsones(db.Model):
                         aprobado=aprobado,
                         fecha=fecha,
                         )
+
+
+"""
+en to_json
+self.bolsones = db.session.query(BolsonesModels).get_or_404(self.bolsonesId)
+'bolsones' =  self.bolson.to_json
+bolsonesId = db.Column(db.Integrer, db.Foreignkey('BolsonesId'))
+bolsones = db.relationship("nombre de la clase con la que se relacion", back_populates="nombre de lo que se relaciona", uselist=False)
+"""

@@ -15,6 +15,7 @@ class Productos(db.Model):
         }
         return productos_json
 
+    @staticmethod
     def from_json(productos_json):
         id = productos_json.get('id')
         nombre = productos_json.get('nombre')
