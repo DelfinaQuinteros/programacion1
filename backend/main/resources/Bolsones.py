@@ -8,6 +8,7 @@ class Bolsones(Resource):
     def get(self):
         bolsones = db.session.query(BolsonesModels).all()
         bolsonespendientes = db.session.query(BolsonesModels).filter(BolsonesModels.aprobado == 0).all()
+        bolsonesprevios = db.session.query(BolsonesModels).filter(BolsonesModels.aprobado == 1).all()
         return jsonify([bolson.to_json() for bolson in bolsones])
 
 
