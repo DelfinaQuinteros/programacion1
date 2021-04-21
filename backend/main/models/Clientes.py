@@ -1,7 +1,7 @@
 from .. import db
 
 
-class Clientes(db.Model):
+class Cliente(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     apellido = db.Column(db.String(100), nullable=False)

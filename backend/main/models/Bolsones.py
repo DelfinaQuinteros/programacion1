@@ -1,7 +1,7 @@
 from .. import db
 
 
-class Bolsones(db.Model):
+class Bolson(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     aprobado = db.Column(db.Boolean, nullable=False)
@@ -26,17 +26,10 @@ class Bolsones(db.Model):
         nombre = bolsones_json.get('nombre')
         aprobado = bolsones_json.get('aprobado')
         fecha = bolsones_json.get('fecha')
-        return Bolsones(id=id,
+        return Bolson(id=id,
                         nombre=nombre,
                         aprobado=aprobado,
                         fecha=fecha,
                         )
 
 
-"""
-en to_json
-self.bolsones = db.session.query(BolsonesModels).get_or_404(self.bolsonesId)
-'bolsones' =  self.bolson.to_json
-bolsonesId = db.Column(db.Integrer, db.Foreignkey('BolsonesId'))
-bolsones = db.relationship("nombre de la clase con la que se relacion", back_populates="nombre de lo que se relaciona", uselist=False)
-"""

@@ -2,7 +2,7 @@ from .. import db
 from datetime import datetime
 
 
-class Compras(db.Model):
+class Compra(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fechacompra = db.Column(db.DateTime, nullable=False)
     retirado = db.Column(db.Boolean, default=False, nullable=False)
