@@ -6,8 +6,22 @@ from main.models import BolsonModels
 
 class Bolsones(Resource):
     def get(self):
-        bolsones = db.session.query(BolsonModels).all()
-        return jsonify([bolson.to_json() for bolson in bolsones])
+        page = 1
+        per_page = 10
+        bolsones = db.session.query(BolsonModels)
+        if request.get_json():
+            filtro = request.get_json().items()
+            for key, value in filtro:
+                if key == "page":
+                    page = int(value)
+                if key == "per_page":
+                    per_page = int(value)
+        bolsones = bolsones.paginate(page, per_page, True, 30)
+        return jsonify({'bolsones': [bolson.to_json() for bolson in bolsones.items],
+                        'total': bolsones.total,
+                        'page': bolsones.page,
+                        'pages': bolsones.pages
+                        })
 
 
 class Bolson(Resource):

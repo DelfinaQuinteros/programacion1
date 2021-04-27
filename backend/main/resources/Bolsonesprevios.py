@@ -6,14 +6,17 @@ from main.models import BolsonModels
 
 
 class BolsonesPrevios(Resource):
+    def __init__(self):
+        self.fecha = datetime.today() - timedelta(days=7)
+
     def get(self):
-        fecha = datetime.today() - timedelta(days=7)
-        bolsonesprevios = db.session.query(BolsonModels).filter(BolsonModels.fecha <= fecha).all
+        bolsonesprevios = db.session.query(BolsonModels).filter(BolsonModels.fecha <= self.fecha).all
         return bolsonesprevios
 
 
 class BolsonPrevio(Resource):
     def get(self, id):
+        bolsonesprevios = db.session.query(BolsonModels).filter(BolsonModels.fecha <= self.fecha).all
         if int(id) in bolsonesprevios:
             return bolsonesprevios[int(id)]
         return "", 404

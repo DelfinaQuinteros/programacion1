@@ -6,8 +6,22 @@ from main.models import ClienteModels
 
 class Clientes(Resource):
     def get(self):
-        clientes = db.session.query(ClienteModels).all()
-        return jsonify([cliente.to_json() for cliente in clientes])
+        page = 1
+        per_page = 10
+        clientes = db.session.query(ClienteModels)
+        if request.get_json():
+            filtro = request.get_json().items()
+            for key, value in filtro:
+                if key == "page":
+                    page = int(value)
+                if key == "per_page":
+                    per_page = int(value)
+        clientes = clientes.paginate(page, per_page, True, 30)
+        return jsonify({'clientes': [cliente.to_json() for cliente in clientes.items],
+                        'total': clientes.total,
+                        'page': clientes.page,
+                        'pages': clientes.pages
+                        })
 
     def post(self):
         cliente = ClienteModels.from_json(request.get_json())
