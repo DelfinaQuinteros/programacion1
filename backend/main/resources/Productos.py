@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
-from main.models import ProductoModels, ProveedorModels
+from main.models import ProductoModels
 
 
 class Productos(Resource):
@@ -11,10 +11,12 @@ class Productos(Resource):
 
     def post(self):
         producto = ProductoModels.from_json(request.get_json())
-        proveedor = db.session.query(ProveedorModels).get_or_404(producto.proveedorid)
-        db.session.add(producto)
-        db.session.commit()
-        return producto.to_json(), 201
+        try:
+            db.session.add(producto)
+            db.session.commit()
+            return producto.to_json(), 201
+        except:
+            return '', 404
 
 
 class Producto(Resource):
@@ -24,15 +26,21 @@ class Producto(Resource):
 
     def delete(self, id):
         producto = db.session.query(ProductoModels).get_or_404(id)
-        db.session.delete(producto)
-        db.session.commit()
-        return '', 204
+        try:
+            db.session.delete(producto)
+            db.session.commit()
+            return '', 204
+        except:
+            return '', 404
 
     def put(self, id):
         producto = db.session.query(ProductoModels).get_or_404(id)
         data = request.get_json().items()
         for key, value in data:
             setattr(producto, key, value)
-        db.session.add(producto)
-        db.session.commit()
-        return producto.to_json(), 201
+        try:
+            db.session.add(producto)
+            db.session.commit()
+            return producto.to_json(), 201
+        except:
+            return '', 404

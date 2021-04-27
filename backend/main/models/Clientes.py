@@ -7,6 +7,7 @@ class Cliente(db.Model):
     apellido = db.Column(db.String(100), nullable=False)
     telefono = db.Column(db.String(100), nullable=False)
     mail = db.Column(db.String(100), nullable=False)
+    compras = db.relationship('Compra', back_populates='cliente', cascade='all, delete-orphan')
 
     def __repr__(self):
         return '<Cliente: %r %r %r %r >' % (self.nombre, self.apellido, self.telefono, self.mail)
@@ -28,9 +29,9 @@ class Cliente(db.Model):
         apellido = clientes_json.get('apellido')
         telefono = clientes_json.get('telefono')
         mail = clientes_json.get('mail')
-        return Clientes(id=id,
-                        nombre=nombre,
-                        apellido=apellido,
-                        telefono=telefono,
-                        mail=mail
-                        )
+        return Cliente(id=id,
+                       nombre=nombre,
+                       apellido=apellido,
+                       telefono=telefono,
+                       mail=mail
+                       )

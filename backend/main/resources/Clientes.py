@@ -11,9 +11,12 @@ class Clientes(Resource):
 
     def post(self):
         cliente = ClienteModels.from_json(request.get_json())
-        db.session.add(cliente)
-        db.session.commit()
-        return cliente.to_json(), 201
+        try:
+            db.session.add(cliente)
+            db.session.commit()
+            return cliente.to_json(), 201
+        except:
+            return '', 404
 
 
 class Cliente(Resource):
@@ -23,15 +26,21 @@ class Cliente(Resource):
 
     def delete(self, id):
         cliente = db.session.query(ClienteModels).get_or_404(id)
-        db.session.delete(cliente)
-        db.session.commit()
-        return '', 204
+        try:
+            db.session.delete(cliente)
+            db.session.commit()
+            return '', 204
+        except:
+            return '', 404
 
     def put(self, id):
         cliente = db.session.query(ClienteModels).get_or_404(id)
         data = request.get_json().items()
         for key, value in data:
             setattr(cliente, key, value)
-        db.session.add(cliente)
-        db.session.commit()
-        return cliente.to_json(), 201
+        try:
+            db.session.add(cliente)
+            db.session.commit()
+            return cliente.to_json(), 201
+        except:
+            return '', 404

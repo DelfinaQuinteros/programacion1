@@ -11,9 +11,12 @@ class Proveedores(Resource):
 
     def post(self):
         proveedor = ProveedorModels.from_json(request.get_json())
-        db.session.add(proveedor)
-        db.session.commit()
-        return proveedor.to_json(), 201
+        try:
+            db.session.add(proveedor)
+            db.session.commit()
+            return proveedor.to_json(), 201
+        except:
+            return '', 404
 
 
 class Proveedor(Resource):
@@ -23,15 +26,21 @@ class Proveedor(Resource):
 
     def delete(self, id):
         proveedor = db.session.query(ProveedorModels).get_or_404(id)
-        db.session.delete(proveedor)
-        db.session.commit()
-        return '', 204
+        try:
+            db.session.delete(proveedor)
+            db.session.commit()
+            return '', 204
+        except:
+            return '', 404
 
     def put(self, id):
         proveedor = db.session.query(ProveedorModels).get_or_404(id)
         data = request.get_json().items()
         for key, value in data:
             setattr(proveedor, key, value)
-        db.session.add(proveedor)
-        db.session.commit()
-        return proveedor.to_json(), 201
+        try:
+            db.session.add(proveedor)
+            db.session.commit()
+            return proveedor.to_json(), 201
+        except:
+            return '', 404

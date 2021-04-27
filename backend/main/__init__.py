@@ -36,5 +36,7 @@ def create_app():
     api.add_resource(resources.ClienteResource, '/cliente/<id>')
     api.add_resource(resources.ProveedoresResource, '/proveedores')
     api.add_resource(resources.ProveedorResource, '/proveedor/<id>')
+    api.add_resource(resources.ProductosBolsonesResource, '/productos-bolsones')
+    api.add_resource(resources.ProductoBolsonResource, '/producto-bolson/<id>')
     api.init_app(app)
     return app

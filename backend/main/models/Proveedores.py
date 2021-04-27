@@ -8,7 +8,7 @@ class Proveedor(db.Model):
     productos = db.relationship('Producto', back_populates='proveedor')
 
     def __repr__(self):
-        return '<Proveedores: %r %r %r >' % (self.nombre, self.nombre, self.telefono)
+        return '<Proveedor: %r %r %r >' % (self.nombre, self.nombre, self.telefono)
 
     def to_json(self):
         proveedor_json = {
@@ -28,3 +28,4 @@ class Proveedor(db.Model):
                          nombre=nombre,
                          telefono=telefono,
                          )
+

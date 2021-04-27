@@ -1,40 +1,46 @@
 from flask_restful import Resource
-from flask import request
-
-BOLSONESPENDIENTES = {
-    1: {'primer bolson pendiente': 'Bolson1'},
-    2: {'segundo bolson pendiente': 'Bolson2'},
-    3: {'tercer bolson pendiente': 'Bolson3'},
-}
-
+from flask import request, jsonify
+from .. import db
+from main.models import BolsonModels
 
 class BolsonesPendientes(Resource):
     def get(self):
-        return BOLSONESPENDIENTES
+        bolsonespendientes = db.session.query(BolsonModels).filter(BolsonModels.aprobado == 0).all()
+        return jsonify([bolsonpendiente.to_json() for bolsonpendiente in bolsonespendientes])
+
 
     def post(self):
-        bolsonpendiente = request.get_json()
-        id = int(max(BOLSONESPENDIENTES.keys())) + 1
-        BOLSONESPENDIENTES[id] = bolsonpendiente
-        return BOLSONESPENDIENTES[int(id)], 201
+        bolsonpendiente = BolsonModels.from_json(request.get_json())
+        try:
+            db.session.add(bolsonpendiente)
+            db.session.commit()
+            return bolsonpendiente.to_json(), 201
+        except:
+            return '', 404
 
 
 class BolsonPendiente(Resource):
     def get(self, id):
-        if int(id) in BOLSONESPENDIENTES:
-            return BOLSONESPENDIENTES[int(id)]
-        return "", 404
+        bolsonpendiente = db.session.query(BolsonModels).get_or_404(id)
+        return bolsonpendiente.to_json()
 
     def delete(self, id):
-        if int(id) in BOLSONESPENDIENTES:
-            del BOLSONESPENDIENTES[int(id)]
+        bolsonpendiente = db.session.query(BolsonModels).get_or_404(id)
+        try:
+            db.session.delete(bolsonpendiente)
+            db.session.commit()
             return '', 204
-        return '', 404
+        except:
+            return '', 404
 
     def put(self, id):
-        if int(id) in BOLSONESPENDIENTES:
-            bolsonprevio = BOLSONESPENDIENTES[int(id)]
-            date = request.get_json()
-            bolsonprevio.update(date)
-            return bolsonprevio, 201
-        return '', 404
+        bolsonpendiente = db.session.query(BolsonModels).get_or_404(id)
+        data = request.get_json().items()
+        for key, value in data:
+            setattr(bolsonpendiente, key, value)
+        try:
+            db.session.add(bolsonpendiente)
+            db.session.commit()
+            return bolsonpendiente.to_json(), 201
+        except:
+            return '', 404

@@ -11,9 +11,12 @@ class Compras(Resource):
 
     def post(self):
         compra = CompraModels.from_json(request.get_json())
-        db.session.add(compra)
-        db.session.commit()
-        return compra.to_json(), 201
+        try:
+            db.session.add(compra)
+            db.session.commit()
+            return compra.to_json(), 201
+        except:
+            return '', 404
 
 
 class Compra(Resource):
@@ -23,15 +26,21 @@ class Compra(Resource):
 
     def delete(self, id):
         compra = db.session.query(CompraModels).get_or_404(id)
-        db.session.delete(compra)
-        db.session.commit()
-        return '', 204
+        try:
+            db.session.delete(compra)
+            db.session.commit()
+            return '', 204
+        except:
+            return '', 404
 
     def put(self, id):
         compra = db.session.query(CompraModels).get_or_404(id)
         data = request.get_json().items()
         for key, value in data:
             setattr(compra, key, value)
-        db.session.add(compra)
-        db.session.commit()
-        return compra.to_json(), 201
+        try:
+            db.session.add(compra)
+            db.session.commit()
+            return compra.to_json(), 201
+        except:
+            return '', 404
