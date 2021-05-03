@@ -7,7 +7,7 @@ class Bolson(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     aprobado = db.Column(db.Boolean, default=False, nullable=False)
     fecha = db.Column(db.DateTime, nullable=False)
-    compras = db.relationship('Compra', back_populates='bolson')
+    compras = db.relationship('Compra', back_populates='bolson', cascade="all, delete-orphan")
     productosbolsones = db.relationship("ProductoBolson", back_populates="bolson", cascade="all, delete-orphan")
 
     def _repr_(self):

@@ -3,11 +3,25 @@ from flask import request, jsonify
 from .. import db
 from main.models import BolsonModels
 
+
 class BolsonesPendientes(Resource):
     def get(self):
+        page = 1
+        per_page = 10
         bolsonespendientes = db.session.query(BolsonModels).filter(BolsonModels.aprobado == 0).all()
-        return jsonify([bolsonpendiente.to_json() for bolsonpendiente in bolsonespendientes])
-
+        if request.get_json():
+            filtro = request.get_json().items()
+            for key, value in filtro:
+                if key == "page":
+                    page = int(value)
+                if key == "per_page":
+                    per_page = int(value)
+        bolsones = bolsonespendientes.paginate(page, per_page, True, 30)
+        return jsonify({'bolsonespendientes': [bolson.to_json() for bolson in bolsones.items],
+                        'total': bolsones.total,
+                        'page': bolsones.page,
+                        'pages': bolsones.pages
+                        })
 
     def post(self):
         bolsonpendiente = BolsonModels.from_json(request.get_json())
@@ -17,6 +31,12 @@ class BolsonesPendientes(Resource):
             return bolsonpendiente.to_json(), 201
         except:
             return '', 404
+
+
+    def get(self):
+
+        bolsones = db.session.query(BolsonModels)
+
 
 
 class BolsonPendiente(Resource):
