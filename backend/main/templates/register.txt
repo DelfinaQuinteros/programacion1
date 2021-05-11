@@ -1,0 +1,9 @@
+Bienvenido {{usuario.nombre}} {{usuario.apellido}}!
+
+Gracias por registrarte en nuestro sistema.
+
+Nuestros bolsones disponibles de esta semana son:
+
+#solo a los usuarios que son clientes
+#info de los bolsones actuales
+#enviar info de todos los bolsones
