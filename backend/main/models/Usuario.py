@@ -7,7 +7,7 @@ class Usuario(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     apellido = db.Column(db.String(100), nullable=False)
     telefono = db.Column(db.String(100), nullable=True)
-    mail = db.Column(db.String(100), nullable=False)
+    mail = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
     role = db.Column(db.String(10), nullable=False, default="cliente")
     productos = db.relationship('Producto', back_populates='usuario')
