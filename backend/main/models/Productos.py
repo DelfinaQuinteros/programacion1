@@ -1,11 +1,16 @@
+from flask_restful import Resource
+from flask import request, jsonify
 from .. import db
+from main.models import usuarioModels
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.Decorators import admin_required
 
 
 class Producto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    proveedorid = db.Column(db.Integer, db.ForeignKey('proveedor.id'), nullable=False)
-    proveedor = db.relationship('Proveedor', back_populates='productos', uselist=False, single_parent=True)
+    usuarioid = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
+    usuario = db.relationship('Usuario', back_populates='productos', uselist=False, single_parent=True)
     productosbolsones = db.relationship("ProductoBolson", back_populates="producto", cascade="all, delete-orphan")
 
     def __repr__(self):
@@ -15,7 +20,7 @@ class Producto(db.Model):
         productos_json = {
             'id': self.id,
             'nombre': str(self.nombre),
-            'proveedor': self.proveedor.nombre
+            'usuario': self.usuario.nombre
         }
         return productos_json
 
@@ -23,9 +28,9 @@ class Producto(db.Model):
     def from_json(productos_json):
         id = productos_json.get('id')
         nombre = productos_json.get('nombre')
-        proveedorid = productos_json.get('proveedorid')
+        usuarioid = productos_json.get('usuarioid')
         return Producto(id=id,
                         nombre=nombre,
-                        proveedorid=proveedorid
+                        usuarioid=usuarioid
                         )
 

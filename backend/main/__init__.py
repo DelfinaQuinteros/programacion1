@@ -2,11 +2,13 @@ import os
 from flask import Flask
 from dotenv import load_dotenv
 from flask_restful import Api
+from flask_jwt_extended import JWTManager
 
 from flask_sqlalchemy import SQLAlchemy
 
 api = Api()
 db = SQLAlchemy()
+jwt = JWTManager()
 
 
 def create_app():
@@ -39,4 +41,12 @@ def create_app():
     api.add_resource(resources.ProductosBolsonesResource, '/productos-bolsones')
     api.add_resource(resources.ProductoBolsonResource, '/producto-bolson/<id>')
     api.init_app(app)
+
+    app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES'))
+    jwt.init_app(app)
+
+    from main.auth import Routes
+    app.register_blueprint(auth.Routes.auth)
+
     return app

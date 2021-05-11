@@ -7,12 +7,12 @@ class Compra(db.Model):
     fechacompra = db.Column(db.DateTime, nullable=False)
     retirado = db.Column(db.Boolean, nullable=False)
     bolsonid= db.Column(db.Integer, db.ForeignKey('bolson.id'), nullable=False)
-    clienteid= db.Column(db.Integer, db.ForeignKey('cliente.id'), nullable=False)
+    usuarioid= db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
     bolson = db.relationship('Bolson', back_populates='compras', uselist=False, single_parent=True)
-    cliente= db.relationship('Cliente', back_populates='compras', uselist=False, single_parent=True)
+    usuario= db.relationship('Usuario', back_populates='compras', uselist=False, single_parent=True)
 
     def __repr__(self):
-        return '<Compra: %r %r %r %r >' % (self.fechacompra, self.retirado, self.cliente.to_json(), self.bolson.to_json())
+        return '<Compra: %r %r %r %r >' % (self.fechacompra, self.retirado, self.usuarioto_json(), self.bolson.to_json())
 
     def to_json(self):
         compra_json = {
@@ -20,7 +20,7 @@ class Compra(db.Model):
             'fechacompra': self.fechacompra.strftime('%Y-%m-%d'),
             'retirado': str(self.retirado),
             'bolson': self.bolson.to_json(),
-            'cliente': self.cliente.to_json()
+            'usuario': self.usuario.to_json()
         }
         return compra_json
 
@@ -30,10 +30,10 @@ class Compra(db.Model):
         fechacompra = datetime.strptime(compra_json.get('fechacompra'), '%Y-%m-%d')
         retirado = compra_json.get('retirado')
         bolsonid = compra_json.get('bolsonid')
-        clienteid = compra_json.get('clienteid')
+        usuarioid = compra_json.get('usuarioid')
         return Compra(id=id,
                       fechacompra=fechacompra,
                       retirado=retirado,
                       bolsonid=bolsonid,
-                      clienteid=clienteid
+                      usuarioid=usuarioid
                       )
