@@ -1,11 +1,12 @@
 from flask_restful import Resource
 from flask import request, jsonify
-from datetime import datetime, timedelta
 from .. import db
 from main.models import BolsonModels
+from flask_jwt_extended import jwt_required
 
 
 class BolsonesVenta(Resource):
+    @jwt_required()
     def get(self):
         page = 1
         per_page = 10
@@ -26,6 +27,7 @@ class BolsonesVenta(Resource):
 
     
 class BolsonVenta(Resource):
+    @jwt_required()
     def get(self, id):
         bolsonventa = db.session.query(BolsonModels).get_or_404(id)
         if bolsonventa.aprobado == 1:

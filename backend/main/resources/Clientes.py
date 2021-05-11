@@ -2,11 +2,12 @@ from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
 from main.models import UsuarioModels
-from flask_jwt_extended import jwt_required, get_jwt_identity
 from main.auth.Decorators import admin_required
+from flask_jwt_extended import jwt_required
 
 
 class Clientes(Resource):
+    @jwt_required()
     def get(self):
         page = 1
         per_page = 10
@@ -25,6 +26,7 @@ class Clientes(Resource):
                         'pages': clientes.pages
                         })
 
+    @jwt_required()
     def post(self):
         cliente = UsuarioModels.from_json(request.get_json())
         try:
@@ -36,10 +38,12 @@ class Clientes(Resource):
 
 
 class Cliente(Resource):
+    @jwt_required()
     def get(self, id):
         cliente = db.session.query(UsuarioModels).get_or_404(id)
         return cliente.to_json()
 
+    @admin_required
     def delete(self, id):
         cliente = db.session.query(UsuarioModels).get_or_404(id)
         try:
@@ -49,6 +53,7 @@ class Cliente(Resource):
         except:
             return '', 404
 
+    @jwt_required()
     def put(self, id):
         cliente = db.session.query(UsuarioModels).get_or_404(id)
         data = request.get_json().items()

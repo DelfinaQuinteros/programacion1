@@ -2,9 +2,12 @@ from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
 from main.models import CompraModels
+from main.auth.Decorators import admin_required
+from main.auth.Decorators import admin_or_cliente_required
 
 
 class Compras(Resource):
+    @admin_required
     def get(self):
         page = 1
         per_page = 10
@@ -23,6 +26,7 @@ class Compras(Resource):
                         'pages': compras.pages
                         })
 
+    @admin_or_cliente_required
     def post(self):
         compra = CompraModels.from_json(request.get_json())
         try:
@@ -34,10 +38,12 @@ class Compras(Resource):
 
 
 class Compra(Resource):
+    @admin_or_cliente_required
     def get(self, id):
         compra = db.session.query(CompraModels).get_or_404(id)
         return compra.to_json()
 
+    @admin_required
     def delete(self, id):
         compra = db.session.query(CompraModels).get_or_404(id)
         try:
@@ -47,6 +53,7 @@ class Compra(Resource):
         except:
             return '', 404
 
+    @admin_required
     def put(self, id):
         compra = db.session.query(CompraModels).get_or_404(id)
         data = request.get_json().items()

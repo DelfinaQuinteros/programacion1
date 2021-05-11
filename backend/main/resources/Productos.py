@@ -2,9 +2,12 @@ from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
 from main.models import ProductoModels
+from main.auth.Decorators import admin_or_proveedor_required
+from flask_jwt_extended import jwt_required
 
 
 class Productos(Resource):
+    @admin_or_proveedor_required
     def get(self):
         page = 1
         per_page = 10
@@ -23,6 +26,7 @@ class Productos(Resource):
                         'pages': productos.pages
                         })
 
+    @admin_or_proveedor_required
     def post(self):
         producto = ProductoModels.from_json(request.get_json())
         try:
@@ -34,10 +38,12 @@ class Productos(Resource):
 
 
 class Producto(Resource):
+    @jwt_required()
     def get(self, id):
         producto = db.session.query(ProductoModels).get_or_404(id)
         return producto.to_json()
 
+    @admin_or_proveedor_required
     def delete(self, id):
         producto = db.session.query(ProductoModels).get_or_404(id)
         try:
@@ -47,6 +53,7 @@ class Producto(Resource):
         except:
             return '', 404
 
+    @admin_or_proveedor_required
     def put(self, id):
         producto = db.session.query(ProductoModels).get_or_404(id)
         data = request.get_json().items()

@@ -6,10 +6,10 @@ class Compra(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fechacompra = db.Column(db.DateTime, nullable=False)
     retirado = db.Column(db.Boolean, nullable=False)
-    bolsonid= db.Column(db.Integer, db.ForeignKey('bolson.id'), nullable=False)
-    usuarioid= db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
+    bolsonid = db.Column(db.Integer, db.ForeignKey('bolson.id'), nullable=False)
+    usuarioid = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
     bolson = db.relationship('Bolson', back_populates='compras', uselist=False, single_parent=True)
-    usuario= db.relationship('Usuario', back_populates='compras', uselist=False, single_parent=True)
+    usuario = db.relationship('Usuario', back_populates='compras', uselist=False, single_parent=True)
 
     def __repr__(self):
         return '<Compra: %r %r %r %r >' % (self.fechacompra, self.retirado, self.usuarioto_json(), self.bolson.to_json())
