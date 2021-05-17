@@ -32,7 +32,7 @@ def register():
         try:
             db.session.add(usuario)
             db.session.commit()
-            sent = sendMail([usuario.mail], "Welcome!", 'register', usuario=usuario)
+            sent = sendMail([usuario.mail], "Bienvenido!", 'register', usuario=usuario)
         except Exception as error:
             db.session.rollback()
             return str(error), 409
