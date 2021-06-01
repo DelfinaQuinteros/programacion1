@@ -2,11 +2,11 @@ from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
 from main.models import BolsonModels
-from main.auth.Decorators import admin_required
+from main.auth.Decorators import admin_or_cliente_required
 
 
 class Bolsones(Resource):
-    @admin_required
+    @admin_or_cliente_required
     def get(self):
         page = 1
         per_page = 10
@@ -27,7 +27,7 @@ class Bolsones(Resource):
 
 
 class Bolson(Resource):
-    @admin_required
+    @admin_or_cliente_required
     def get(self, id):
         bolson = db.session.query(BolsonModels).get_or_404(id)
         return bolson.to_json()

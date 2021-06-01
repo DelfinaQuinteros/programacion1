@@ -11,7 +11,7 @@ def admin_required(fn):
         if claims['role'] == 'admin':
             return fn(*args, **kwargs)
         else:
-            return 'Solo administradores acceder', 403
+            return 'Solo administradores acceden', 403
     return wrapper
 
 
@@ -20,7 +20,7 @@ def admin_or_proveedor_required(fn):
     def wrapper(*args, **kwargs):
         verify_jwt_in_request()
         claims = get_jwt()
-        if claims['rol'] == 'proveedor' or claims['role'] == 'admin':
+        if claims['role'] == 'proveedor' or claims['role'] == 'admin':
             return fn(*args, **kwargs)
         else:
             return 'Solo administradores o proveedores pueden acceder', 403
@@ -32,7 +32,7 @@ def admin_or_cliente_required(fn):
     def wrapper(*args, **kwargs):
         verify_jwt_in_request()
         claims = get_jwt()
-        if claims['rol'] == 'cliente' or claims['rol'] == 'admin':
+        if claims['role'] == 'cliente' or claims['role'] == 'admin':
             return fn(*args, **kwargs)
         else:
             return 'Solo administradores o clientes pueden acceder', 403
