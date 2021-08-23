@@ -1,0 +1,19 @@
+body {
+font-family: 'Titillium Web', sans-serif;
+}
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .05);
+    min-heiht: 100px;
+}
+.navbar-brand{color: #1a1a1a;}
+.navbar-brand:hover {color: #1a1a1a;}
+.nav-link{color: #1a1a1a;}
+.nav-link:hover {color: #1a1a1a;}
+
+.navbar-toggler {font-size: 40px;}
+.navbar-toggler:focus{outline: none;}
+
+#here {
+    background-image: url
+}
