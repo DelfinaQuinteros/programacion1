@@ -29,6 +29,7 @@
 }
 
 #orange {
+    position: relative;
     background-color: #fd7e14;
     padding-top: 50px;
     margin-bottom: 0px;
@@ -74,10 +75,8 @@ letter-spacing: .05rem
 .navbar-brand:hover {color: #1a1a1a;}
 .nav-link{color: #1a1a1a;}
 .nav-link:hover {color: #1a1a1a;}
-
 .navbar-toggler {font-size: 40px;}
 .navbar-toggler:focus{outline: none;}
-
 --bs-yellow: #ffc107;
 
 

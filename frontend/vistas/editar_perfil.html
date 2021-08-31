@@ -20,11 +20,8 @@
              </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                     <a class="nav-link" href="#" id="inicio">Inico</a>
-                </li>
                     <li class="nav-item">
-                    <a class="nav-link btn btn-primary py-2 px-4" href="#" id="registrarse">Registrarse </a>
+                    <a class="nav-link btn btn-primary py-2 px-4" href="#" id="Inicio">Inicio</a>
                     </li>
                 </ul>
             </div>
@@ -32,12 +29,24 @@
     </nav>
 
         <div class="w3l-login-form d-flex align-items-center flex-column main-section">
-            <h1>Inicie sesion</h1>
+            <h1><strong>Editar perfil</strong></h1>
             <form action="#" method="POST">
                 <div class="w3l-login-form">
-                    <ion-icon  name = "mail-outline" > </ion-icon ><label>Email:</label>
+                    <ion-icon name="accessibility-outline"></ion-icon><label>Nombre:</label>
                     <div class="group">
-                        <input type="text" class="form-control" placeholder="Email" required="required">
+                        <input type="text" class="form-control" placeholder="Nombre" required="required">
+                    </div>
+                </div>
+                <div class="w3l-login-form">
+                    <ion-icon name="accessibility-outline"></ion-icon><label>Apellido:</label>
+                    <div class="group">
+                        <input type="text" class="form-control" placeholder="Apellido" required="required">
+                    </div>
+                </div>
+                <div class="w3l-login-form">
+                    <ion-icon name="call-outline"></ion-icon><label>Telefono:</label>
+                    <div class="group">
+                        <input type="text" class="form-control" placeholder="Telefono" required="required">
                     </div>
                 </div>
                 <div class="w3l-login-form" >
@@ -46,14 +55,12 @@
                         <input type="password" class="form-control" placeholder="Contraseña" required="required">
                     </div>
                 </div>
-                    <a class="btn button btn-xl mt-1 " href="#scroll">Iniciar sesion</a>
-                     <div class="forgot">
-                          <strong>Olvido su contraseña? </strong>
-                         <a href="#">Entre aqui.</a>
-                     </div>
+                    <a class="btn button btn-xl mt-1 " href="#scroll">Actualizar perfil</a>
+                <div class="recuperar_contraseña">
+                     <strong>Olvido su contraseña?</strong><a href="#">Entre aqui.</a>
+                </div>
             </form>
         </div>
-
        <footer class="footer">
         <div class="container">
         </div>
@@ -62,6 +69,7 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+    <script  type = "module"  src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" > </script >
+    <script  nomodule  src = "https: // unpkg .com / ionicons @ 5.5.2 / dist / ionicons / ionicons.js " > </script >
+ </body>
 </html>

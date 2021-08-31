@@ -21,10 +21,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                     <a class="nav-link" href="#" id="inicio">Inico</a>
+                     <a class="nav-link" href="#" id="listaprov">Lista proveedores</a>
                 </li>
                     <li class="nav-item">
-                    <a class="nav-link btn btn-primary py-2 px-4" href="#" id="registrarse">Registrarse </a>
+                    <a class="nav-link btn btn-primary py-2 px-4" href="#" id="paneladmin">Panel administrador</a>
                     </li>
                 </ul>
             </div>
@@ -32,28 +32,35 @@
     </nav>
 
         <div class="w3l-login-form d-flex align-items-center flex-column main-section">
-            <h1>Inicie sesion</h1>
+            <h1><strong>Agregar nuevo proveedor</strong></h1>
             <form action="#" method="POST">
+                <div class="w3l-login-form">
+                    <ion-icon name="accessibility-outline"></ion-icon><label>Nombre:</label>
+                    <div class="group">
+                        <input type="text" class="form-control" placeholder="Nombre" required="required">
+                    </div>
+                </div>
+                <div class="w3l-login-form">
+                    <ion-icon name="accessibility-outline"></ion-icon><label>Apellido:</label>
+                    <div class="group">
+                        <input type="text" class="form-control" placeholder="Apellido" required="required">
+                    </div>
+                </div>
+                <div class="w3l-login-form">
+                    <ion-icon name="call-outline"></ion-icon><label>Telefono:</label>
+                    <div class="group">
+                        <input type="text" class="form-control" placeholder="Telefono" required="required">
+                    </div>
+                </div>
                 <div class="w3l-login-form">
                     <ion-icon  name = "mail-outline" > </ion-icon ><label>Email:</label>
                     <div class="group">
                         <input type="text" class="form-control" placeholder="Email" required="required">
                     </div>
                 </div>
-                <div class="w3l-login-form" >
-                    <ion-icon name="key-outline"></ion-icon><label>Contraseña:</label>
-                    <div class="group">
-                        <input type="password" class="form-control" placeholder="Contraseña" required="required">
-                    </div>
-                </div>
-                    <a class="btn button btn-xl mt-1 " href="#scroll">Iniciar sesion</a>
-                     <div class="forgot">
-                          <strong>Olvido su contraseña? </strong>
-                         <a href="#">Entre aqui.</a>
-                     </div>
+                    <a class="btn button btn-xl mt-1 " href="#scroll">Agregar proveedor</a>
             </form>
         </div>
-
        <footer class="footer">
         <div class="container">
         </div>
