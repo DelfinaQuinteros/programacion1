@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7eb58d4-aedf-48eb-aece-cc22fb1790e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/vistas/circulo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/vistas/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vistas/inicio.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/vistas/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vistas/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/agregar_proveedor.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vistas/agregar_proveedor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/cambiar_contraseña.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vistas/cambiar_contraseña.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/editar_perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vistas/editar_perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vistas/inicio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/inicio_registrado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vistas/inicio_registrado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/inicio_sesion.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vistas/inicio_sesion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/panel_cliente.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vistas/panel_cliente.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/panel_proveedor.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vistas/panel_proveedor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/registrarse.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vistas/registrarse.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +46,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Bookmaker-DS" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
