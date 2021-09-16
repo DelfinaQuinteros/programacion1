@@ -21,10 +21,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                     <a class="nav-link" href="http://localhost:63342/programacion1/frontend/vistas/inicio.html?_ijt=u8p06nib4q67p74at9mft02l7k&_ij_reload=RELOAD_ON_SAVE" id="inicio">Inico</a>
+                     <a class="nav-link" href="http://localhost:63342/programacion1/frontend/vistas/bolsones_admin.html?_ijt=oi894f1nvj74ehgak9s6tpblel&_ij_reload=RELOAD_ON_SAVE" id="listabolsones">Ver bolsones</a>
                 </li>
                     <li class="nav-item">
-                    <a class="nav-link btn btn-primary py-2 px-4" href="http://localhost:63342/programacion1/frontend/vistas/registrarse.html?_ijt=u8p06nib4q67p74at9mft02l7k&_ij_reload=RELOAD_ON_SAVE" id="registrarse">Registrarse </a>
+                        <a class="nav-link btn btn-primary py-2 px-4" href="http://localhost:63342/programacion1/frontend/vistas/panel_admin.html?_ijt=9767j8cspnd7fv1c9qus1263fp&_ij_reload=RELOAD_ON_SAVE" id="paneladmin">Panel administrador</a>
                     </li>
                 </ul>
             </div>
@@ -32,22 +32,23 @@
     </nav>
 
         <div class="w3l-login-form d-flex align-items-center flex-column main-section">
-            <h1>Inicie sesion</h1>
+            <h1><strong>Agregar bolson</strong></h1>
+             <br>
                 <div class="w3l-login-form">
-                    <br><ion-icon  name = "mail-outline" > </ion-icon ><label>Email:</label>
+                    <label>Nombre del bolson:</label>
                     <div class="group">
-                        <input type="text" class="form-control" placeholder="Email" required="required">
+                        <input type="text" class="form-control" placeholder="Nombre" required="required">
                     </div>
-                    <br><ion-icon name="key-outline"></ion-icon><label>Contraseña:</label>
+                    <label>Fecha:</label>
                     <div class="group">
-                        <input type="password" class="form-control" placeholder="Contraseña" required="required">
+                        <input type="text" class="form-control" placeholder="Fecha" required="required">
                     </div>
-                     <br> <a class="btn button btn-xl mt-1 " href="#scroll">Iniciar sesion</a>
-                     <div class="forgot">
-                          <strong>Olvido su contraseña?</strong>
-                         <a href="http://localhost:63342/programacion1/frontend/vistas/cambiar_contrase%C3%B1a.html?_ijt=4qfpsmk7glfuufv26pt5d7ebnu&_ij_reload=RELOAD_ON_SAVE">Entre aqui.</a>
-                         <br><br>
-                     </div>
+                    <label>Productos:</label>
+                    <div class="group">
+                        <input type="text" class="form-control" placeholder="Productos" required="required">
+                    </div>
+                    <br><a class="btn button btn-xl mt-1 " href="#scroll">Agregar bolson</a>
+                  <br><br>
                 </div>
         </div>
 
