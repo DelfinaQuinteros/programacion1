@@ -97,6 +97,11 @@ letter-spacing: .05rem
     width: 100%;
     border-radius: 6px;
 }
+.boton-secundario{
+    color: var(--color-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 .button:hover {
     background-color: var(--color-dark);
     color: var(--color-light);
