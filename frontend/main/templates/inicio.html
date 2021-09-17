@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https:unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
+
+    <title>Bolsoneria</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container">
+             <a class="navbar-brand">Bolsoneria</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <i class="icon ion-md-menu"></i>
+             </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                     <a class="nav-link" href="http://localhost:63342/programacion1/frontend/vistas/inicio_sesion.html?_ijt=u8p06nib4q67p74at9mft02l7k&_ij_reload=RELOAD_ON_SAVE" id="iniciarsesion">Iniciar Sesion</a>
+                </li>
+                    <li class="nav-item">
+                    <a class="nav-link btn btn-primary py-2 px-4" href="http://localhost:63342/programacion1/frontend/vistas/registrarse.html?_ijt=u8p06nib4q67p74at9mft02l7k&_ij_reload=RELOAD_ON_SAVE" id="registrarse">Registrarse</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+        <header id="orange">
+            <div class="container d-flex align-items-center flex-column" >
+            <div class="container">
+                <div class="row gx-5 align-items-center ">
+                    <div class="col-sm-7 order-sm-2 col-md-7 order-md-2">
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{{url_for('static', filename='imagenes/circulo.png')}}" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-5 order-lg-1">
+                        <div class="p-5">
+                            <h1 class="display-4">Bolsoneria</h1>
+                            <h4> Los mejores bolsones fruta y verdura del mercado</h4>
+                            <a class="btn btn-primary btn-xl mt-5" href="http://localhost:63342/programacion1/frontend/vistas/bolsones_no_logeado.html?_ijt=ch0b62512d63nthci01d9pcn7h&_ij_reload=RELOAD_ON_SAVE">VER BOLSONES</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </header>
+
+        <section class="page-section bg-light" id="team">
+        <div class="testimonials">
+		    <div class="container">
+			    <div class="row">
+				    <div class="col">
+				    	<div class="section_title_container text-center">
+						<div class="col-sm-12 col-md-12"><br></div>
+						<div class="section_title">Opinion de los clientes</div>
+					</div>
+				</div>
+			</div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="{{url_for('static', filename='imagenes/cliente1.jpeg')}}"  alt="...">
+                            <h4>Julian Romero</h4>
+                            <p class="text-muted">Cliente</p>
+                            <p class="text-mutes">Excelente todo, lo recomiendo</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="{{url_for('static', filename='imagenes/cliente2.jpeg')}}" alt="...">
+                            <h4>Maria Correa</h4>
+                            <p class="text-muted">Cliente</p>
+                            <p class="text-mutes">Primera compra y el servicio fue muy bueno</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHkITygGTrVJSgyCmLSh1oX7YxEH7fVyilFw&usqp=CAU" alt="...">
+                            <h4>Nicolas Dominguez</h4>
+                            <p class="text-muted">Cliente</p>
+                            <p class="text-mutes">Excelente servicio</p>
+                        </div>
+                    </div>
+                    <div class = "col-sm-12"> <br><br></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <footer class="footer">
+        <div class="testimonials">
+		    <div class="container">
+			    <div class="row">
+                    <div class = "col-sm-12 col-md-12"><br></div>
+				    <div class="col-sm-12 col-md-12">
+				    	<div class="section_title_container text-center"></div>
+						<div class="section_title">Comunicate con nosotros</div>
+                         <br><br>
+					</div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Direccion</h3>
+                        <p>España 50, San Rafael, Codigo postal: 5600</p>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Direccion de correo electronico</h3>
+                        <p>hola@bolsoneria.com</p>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Numero de telefono</h3>
+                        <p>(260)4665522</p>
+                    </div>
+				</div>
+			</div>
+        </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+

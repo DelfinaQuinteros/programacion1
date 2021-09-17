@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="450e59e7-a9b8-41b6-a518-c0fa113219fb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/main/templates/imagenes/circulo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/main/templates/imagenes/cliente1.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/main/templates/imagenes/cliente2.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/main/templates/imagenes/perfil.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/routes/bolsones.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/inicio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/routes/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/bolsones.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/agregar_bolson.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/agregar_bolson.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/agregar_proveedor.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/agregar_proveedor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/bolsones_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/bolsones_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/bolsones_no_logeado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/bolsones_no_logeado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/bolsones_pendientes.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/bolsones_pendientes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/bolsones_previos.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/bolsones_previos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/cambiar_contraseña.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/cambiar_contraseña.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/compra_cliente.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/compra_cliente.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/editar_perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/editar_perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/imagenes/circulo.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/static/imagenes/circulo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/imagenes/cliente1.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/static/imagenes/cliente1.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/imagenes/cliente2.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/static/imagenes/cliente2.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/imagenes/cliente3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/imagenes/fondo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/imagenes/perfil.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/static/imagenes/perfil.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/inicio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/inicio_registrado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/inicio_registrado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/inicio_sesion.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/inicio_sesion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/links" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/links" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/lista_proveedores.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/lista_proveedores.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/modificar_producto_prov.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/modificar_producto_prov.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/panel_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/panel_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/panel_cliente.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/panel_cliente.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/panel_proveedor.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/panel_proveedor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/registrarse.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/registrarse.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/ver_bolsones_registrado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/ver_bolsones_registrado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vistas/ver_productos.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/ver_productos.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1yGthp5fWYBcKvB64gY46SiMGwa" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/main/static" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/main/static" />
+      <recent name="$PROJECT_DIR$/frontend/main/templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/main/static/css" />
+      <recent name="$PROJECT_DIR$/frontend/main" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="450e59e7-a9b8-41b6-a518-c0fa113219fb" name="Changes" comment="" />
+      <created>1631889877555</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1631889877555</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
