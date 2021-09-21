@@ -18,7 +18,8 @@ class Bolson(db.Model):
             'id': self.id,
             'nombre': str(self.nombre),
             'aprobado': self.aprobado,
-            'fecha': self.fecha.strftime('%Y-%m-%d')
+            'fecha': self.fecha.strftime('%Y-%m-%d'),
+            'producto': self.productosbolsones
         }
         return bolson_json
 
@@ -28,8 +29,12 @@ class Bolson(db.Model):
         nombre = bolson_json.get('nombre')
         fecha = datetime.strptime(bolson_json.get('fecha'), '%Y-%m-%d')
         aprobado = bolson_json.get('aprobado')
-        return Bolson(id=id,
-                      nombre=nombre,
-                      aprobado=aprobado,
-                      fecha=fecha
-                      )
+        bolson = Bolson(id=id,
+                        nombre=nombre,
+                        aprobado=aprobado,
+                        fecha=fecha,
+                        )
+        if 'producto' in bolson_json:
+            for productoId in bolson_json.get('producto'):
+                bolson.productosbolsones.append(ProductoBolsonModels(productoId=productoId))
+        return bolson
