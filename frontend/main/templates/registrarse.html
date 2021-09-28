@@ -22,10 +22,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                     <a class="nav-link" href="http://localhost:63342/programacion1/frontend/vistas/inicio.html?_ijt=u8p06nib4q67p74at9mft02l7k&_ij_reload=RELOAD_ON_SAVE" id="inicio">Inico</a>
+                     <a class="nav-link" href="{{url_for('registrarse.inicio', id=1)}}" id="inicio">Inico</a>
                 </li>
                     <li class="nav-item">
-                    <a class="nav-link btn btn-primary py-2 px-4" href="http://localhost:63342/programacion1/frontend/vistas/inicio_sesion.html?_ijt=u8p06nib4q67p74at9mft02l7k&_ij_reload=RELOAD_ON_SAVE" id="Iniciar sesion">Iniciar sesion </a>
+                    <a class="nav-link btn btn-primary py-2 px-4" href="{{url_for('registrarse.inicio_sesion')}}" id="Iniciar sesion">Iniciar sesion </a>
                     </li>
                 </ul>
             </div>
@@ -36,7 +36,7 @@
             <br><br>
             <h1>Crear una nueva cuenta</h1>
                 <div class="registrado">
-                     <strong>Ya esta registrado?</strong><a href="http://localhost:63342/programacion1/frontend/vistas/inicio_sesion.html?_ijt=4qfpsmk7glfuufv26pt5d7ebnu&_ij_reload=RELOAD_ON_SAVE">Entre aqui.</a>
+                     <strong>Ya esta registrado?</strong><a href="{{url_for('registrarse.inicio_sesion')}}">Entre aqui.</a>
                 </div>
             <form action="#" method="POST">
                 <div class="w3l-login-form">
