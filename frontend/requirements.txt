@@ -1,2 +1,4 @@
 flask
 python-dotenv
+flask_wtf
+email_validator
