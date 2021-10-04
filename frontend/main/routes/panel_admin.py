@@ -1,1 +1,0 @@
-#inicio, editar perfil, agregar proveedor, agregar bolson, consultar compras, consultar bolsones en venta, consultar bolsones previos, consultar productosm consiltar bolsones pendientes, cerrar sesion
