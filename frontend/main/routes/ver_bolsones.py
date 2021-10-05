@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template
 import requests, json
+"""importar forms"""
 
 ver_bolsones = Blueprint('ver_bolsones', __name__, url_prefix='/ver_bolsones')
 
