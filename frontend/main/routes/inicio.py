@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+import requests, json
 
 # Crear Blueprint
 inicio = Blueprint('inicio', __name__, url_prefix='/inicio')
