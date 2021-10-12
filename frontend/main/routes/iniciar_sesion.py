@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from ..forms.iniciar_sesion_from import Inicio_Sesion_Form
+from ..forms.iniciar_sesion_from import LoginForm
 
 # Crear Blueprint
 iniciar_sesion = Blueprint('inicio_sesion', __name__, url_prefix='/inicio_sesion')

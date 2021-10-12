@@ -42,3 +42,14 @@ def admin_required(fn):
         return fn(*args, **kws)
 
     return wrapper
+
+
+def proveedor_required(fn):
+    @wraps(fn)
+    def wrapper(*args, **kws):
+        if not current_user.role == "proveedores":
+            flash('Acceso restringido a proveedores.', 'warning')
+            return redirect(url_for('main.index'))
+        return fn(*args, **kws)
+
+    return wrapper
