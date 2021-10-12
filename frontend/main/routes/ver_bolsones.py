@@ -1,5 +1,7 @@
+import json
+import requests
 from flask import Blueprint, render_template
-import requests, json
+
 """importar forms"""
 
 ver_bolsones = Blueprint('ver_bolsones', __name__, url_prefix='/ver_bolsones')
@@ -13,7 +15,7 @@ def index():
     r = requests.get(
         current_app.config["API_URL"]+'/ver_bolsones',
         headers={"content-type":"application/json"},
-        data = json.dumps(data))
+        data=json.dumps(data))
     #Convertir respuesta de JSON a  diccionario
     print(r)
     bolsones_no_log = json.loads(r.text)["bolsones"]

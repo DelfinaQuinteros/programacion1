@@ -1,9 +1,8 @@
 flask
 python-dotenv
 flask-restful
-requests
-flask-login
 flask_wtf
 email_validator
 requests
-PyJWT
+flask-login
+PyJWT==2.1.0

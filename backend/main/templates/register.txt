@@ -1,3 +1,0 @@
-Bienvenido {{usuario.nombre}} {{usuario.apellido}}!
-
-Estas son las ofertas semanales:

@@ -4,15 +4,18 @@ from wtforms.fields.html5 import EmailField
 from wtforms import validators
 
 
-class Inicio_Sesion_Form(FlaskForm):
+class LoginForm(FlaskForm):
     email = EmailField('E-mail',
                        [
                            validators.Required(message="E-mail es obligatorio"),
                            validators.Email(message='Formato invalido'),
-                       ])
+                       ],
+                       render_kw={"placeholder": "Email"}
+                       )
 
     password = PasswordField('Password', [
         validators.Required(message='Password es obligatorio'),
-    ])
-
+                                        ],
+                             render_kw={"placeholder": "Contraseña"}
+                             )
     submit = SubmitField("Send")
