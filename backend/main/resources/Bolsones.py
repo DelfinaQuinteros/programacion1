@@ -6,7 +6,7 @@ from main.auth.Decorators import admin_or_cliente_required
 
 
 class Bolsones(Resource):
-    @admin_or_cliente_required
+    #@admin_or_cliente_required
     def get(self):
         page = 1
         per_page = 10
@@ -27,7 +27,7 @@ class Bolsones(Resource):
 
 
 class Bolson(Resource):
-    @admin_or_cliente_required
+    #@admin_or_cliente_required
     def get(self, id):
         bolson = db.session.query(BolsonModels).get_or_404(id)
         return bolson.to_json()
