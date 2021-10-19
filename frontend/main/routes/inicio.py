@@ -8,7 +8,7 @@ inicio = Blueprint('inicio', __name__, url_prefix='/inicio')
 @inicio.route('/')
 def index():
     # Mostrar template
-    return render_template('inicio.html')
+    return render_template('inicio.index')
 
 
 @inicio.route('/iniciar_sesion/<int:id>')

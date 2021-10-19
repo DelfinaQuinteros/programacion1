@@ -6,21 +6,12 @@ from flask_login import login_user, logout_user
 from .auth import User
 from ..forms.iniciar_sesion_from import LoginForm
 
-# Crear Blueprint
 main = Blueprint('main', __name__, url_prefix='/')
 
 
 @main.route('/')
 def index():
     return redirect(url_for('inicio.index'))
-
-
-main = Blueprint('main', __name__, url_prefix='/')
-
-
-@main.route('/')
-def index():
-    return redirect(url_for('professor.index'))
 
 
 @main.route('/login', methods=['POST'])
@@ -48,5 +39,6 @@ def login():
 def logout():
     req = make_response(redirect(url_for('inicio.index')))
     req.set_cookie('access_token', '', httponly=True)
+    req.delete_cookie('access_token', httponly=False)
     logout_user()
     return req

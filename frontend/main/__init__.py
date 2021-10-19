@@ -2,10 +2,10 @@ import os
 from flask import Flask
 from dotenv import load_dotenv
 from flask_wtf import CSRFProtect
-from flask_login import LoginManager
-4
+from flask_login import LoginManager, login_required
 
 csrf = CSRFProtect()
+login_manager = LoginManager()
 
 
 def create_app():
