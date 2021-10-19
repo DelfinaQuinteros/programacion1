@@ -7,6 +7,7 @@ class ProductoBolson(db.Model):
     producto = db.relationship('Producto', back_populates="productosbolsones", uselist=False, single_parent=True)
     bolsonId = db.Column(db.Integer, db.ForeignKey('bolson.id'), nullable=False)
     bolson = db.relationship('Bolson', back_populates="productosbolsones", uselist=False, single_parent=True)
+    cantidad = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return '<Producto Bolsones: %r %r %r >' % (self.id, self.producto.to_json(), self.bolson.to_json())
@@ -16,6 +17,7 @@ class ProductoBolson(db.Model):
             'id': self.id,
             'producto': self.producto.to_json,
             'bolson': self.bolson.to_json,
+            'cantidad': self.cantidad
         }
         return productobolson_json
 
@@ -24,7 +26,9 @@ class ProductoBolson(db.Model):
         id = producto_json.get('id')
         productoId = producto_json.get('productoId')
         bolson = producto_json.get('bolson')
+        cantidad = producto_json.get('cantidad')
         return ProductoBolson(id=id,
                               productoId=productoId,
                               bolson=bolson,
+                              cantidad=cantidad,
                               )
