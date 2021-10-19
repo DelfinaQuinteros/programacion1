@@ -1,13 +1,9 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for, current_app, request
 from ..forms.iniciar_sesion_from import LoginForm
+from flask_login import login_required, LoginManager, current_user
 
 # Crear Blueprint
 iniciar_sesion = Blueprint('inicio_sesion', __name__, url_prefix='/inicio_sesion')
-
-
-@iniciar_sesion.route('/')
-def index():
-    return render_template('inicio_sesion.html')
 
 
 @iniciar_sesion.route('/inicio/')

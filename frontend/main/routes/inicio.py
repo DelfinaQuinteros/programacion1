@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template
-import requests, json
+import json
+import requests
+from flask import Blueprint, current_app, render_template
 
 # Crear Blueprint
 inicio = Blueprint('inicio', __name__, url_prefix='/inicio')
@@ -8,7 +9,7 @@ inicio = Blueprint('inicio', __name__, url_prefix='/inicio')
 @inicio.route('/')
 def index():
     # Mostrar template
-    return render_template('inicio.index')
+    return render_template('inicio.html')
 
 
 @inicio.route('/iniciar_sesion/<int:id>')
@@ -25,5 +26,4 @@ def registrarse(id):
 
 @inicio.route('/ver-bolsones/<int:id>')
 def ver_bolsones(id):
-    # Mostrar template
     return render_template('bolsones_no_logeado.html')

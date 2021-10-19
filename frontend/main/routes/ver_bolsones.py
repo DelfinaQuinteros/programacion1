@@ -9,7 +9,7 @@ ver_bolsones = Blueprint('ver_bolsones', __name__, url_prefix='/ver_bolsones')
 
 
 @ver_bolsones.route('/bolsones_venta/<int:page>')
-def venta(page):
+def bolsones_registrado(page):
     page = {"page": int(page)}
     r = requests.get(f'{current_app.config["API_URL"]}/bolsones-venta', headers={"content-type": "application/json"},
                      json=page)
@@ -20,12 +20,12 @@ def venta(page):
     return render_template('ver_bolsones_registrado.html', bolsones=bolsones, page=page, pages=pages)
 
 
-@ver_bolsones.route('/bolsones/<int:id>')
+@ver_bolsones.route('/bolsones-sin-logear/<int:id>')
 def ver(id):
-    r = requests.get(f'{current_app.config["API_URL"]}/bolson-venta/{id}',
+    r = requests.get(f'{current_app.config["API_URL"]}/bolson-no-logeado/{id}',
                      headers={"content-type": "applications/json"}, json={})
-    bolson = json.loads(r.text)
-    bolsonId = bolson["id"]
+    bolson = json.loads(r.text)["bolson"]
+    id = bolson["id"]
     nombre = bolson["nombre"]
     fecha = bolson["fecha"]
     descripcion = bolson["descripcion"]
@@ -34,9 +34,7 @@ def ver(id):
     r = requests.get(f'{current_app.config["API_URL"]}/productos-bolsones',
                      headers={"content-type": "application/json"}, json=json_api)
     productos = json.loads(r.text)["productosbolsones"]
-    return render_template('bolsones_no_logeado.html', title=f'{nombre}', bg_color="bg-secondary",
-                           nombre=nombre, descripcion=descripcion, productos=productos
-                           )
+    return render_template('bolsones_no_logeado.html', nombre=nombre, descripcion=descripcion, productos=productos)
 
 
 @ver_bolsones.route('/inicio_sesion/')

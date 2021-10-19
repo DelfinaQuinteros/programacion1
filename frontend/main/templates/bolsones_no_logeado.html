@@ -8,7 +8,7 @@
 {% block content %}
     <nav class="navbar navbar-expand-sm navbar-expand-md ">
       <div class="container">
-             <a class="navbar-brand" href="#">Bolsoneria</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <a class="navbar-brand" href="{{url_for('inicio_sesion.inicio')}}" >Bolsoneria</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
              <i class="icon ion-md-menu"></i>
              </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -39,18 +39,20 @@
 				</div>
 			</div>
                 <div class="row">
-                    {% for bolson in bolsones %}
-                        <div class="col-sm-4 col-md-4 card border-dark mb-3" style="max-width: 25rem;">
-                            <br>
-                            <div class="team-member text-center">
-                                <img style="width: 280px; height: 280px;" src="https://mecopo.org/wp-content/uploads/2019/09/bolsonutt.jpg" alt="...">
-                                <br><br>
-                                <h3>[bolson['nombre']]</h3>
-                                <p class="text-mutes">{{ bolson['descripcion'] }}</p>
-                                <p class="text-mutes"> Fecha: {{ bolson['fecha'] }}</p>
-                                <br><br>
+                    {% for columna in range(3)%}
+                        {% for bolson in bolsones %}
+                            <div class="col-sm-4 col-md-4 card border-dark mb-3" style="max-width: 25rem;">
+                                <br>
+                                <div class="team-member text-center">
+                                    <img style="width: 280px; height: 280px;" src="https://mecopo.org/wp-content/uploads/2019/09/bolsonutt.jpg" alt="...">
+                                    <br><br>
+                                    <h3>[bolson['nombre']]</h3>
+                                    <p class="text-mutes">{{ bolson['descripcion'] }}</p>
+                                    <p class="text-mutes"> Fecha: {{ bolson['fecha'] }}</p>
+                                    <br><br>
+                                </div>
                             </div>
-                        </div>
+                        {% endfor %}
                     {% endfor %}
                 </div>
             </div>
