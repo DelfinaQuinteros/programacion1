@@ -1,7 +1,8 @@
 import json
 import requests
 from flask import Blueprint, render_template
-
+from .auth import admin_required
+from flask_login import login_required, LoginManager, current_user
 from ..forms.registrarse_from import Registrarse_Form
 
 # Crear Blueprint
@@ -13,8 +14,8 @@ def index():
     return render_template('registrarse.html')
 
 
-@registrarse.route('/create', methods=["POST", "GET"])
-def create():
+@registrarse.route('/registrarse', methods=["POST", "GET"])
+def registrar():
     form = Registrarse_Form()
     if form.validate_on_submit():
         data = {}
@@ -23,7 +24,6 @@ def create():
         data["E-mail"] = form.email.data
         data["password"] = form.password.data
         data["Confirm"] = form.password.data
-
         print(data)
         headers = {
             'content-type': "application/json"
@@ -32,7 +32,7 @@ def create():
             current_app.config["API_URL"] + '/registrarse',
             headers=headers,
             data=json.dumps(data))
-        return redirect(url_for('registrarse.html'))
+        return redirect(url_for('inicio.html'))
     return render_template('registrarse.html', form=form)
 
 

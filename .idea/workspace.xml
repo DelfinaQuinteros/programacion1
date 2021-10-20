@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1410dfb-87be-4c6c-a1a8-9d5c5718e032" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/programacion1.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/programacion1.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/routes/inicio.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/inicio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/routes/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/routes/registrarse.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/registrarse.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/routes/ver_bolsones.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/ver_bolsones.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/bolsones_no_logeado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/bolsones_no_logeado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/registrarse.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/registrarse.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +33,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../borrar/Programacion-1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -75,5 +74,17 @@
       <updated>1631823202484</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

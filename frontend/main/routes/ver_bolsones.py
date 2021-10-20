@@ -22,19 +22,22 @@ def bolsones_registrado(page):
 
 @ver_bolsones.route('/bolsones-sin-logear/<int:id>')
 def ver(id):
-    r = requests.get(f'{current_app.config["API_URL"]}/bolson-no-logeado/{id}',
-                     headers={"content-type": "applications/json"}, json={})
-    bolson = json.loads(r.text)["bolson"]
-    id = bolson["id"]
-    nombre = bolson["nombre"]
-    fecha = bolson["fecha"]
-    descripcion = bolson["descripcion"]
-
-    json_api = {"bolsonId": int(id)}
-    r = requests.get(f'{current_app.config["API_URL"]}/productos-bolsones',
-                     headers={"content-type": "application/json"}, json=json_api)
-    productos = json.loads(r.text)["productosbolsones"]
-    return render_template('bolsones_no_logeado.html', nombre=nombre, descripcion=descripcion, productos=productos)
+    data = {}
+    data[page] = 1
+    headers = {'content-type': 'application/json'}
+    r = requests.get(
+        current_app.config["API_URL"]+'/bolsones',
+        headers=headers,
+        data=json.dumps(data)
+    )
+    bolsones = json.loads(r.text)["bolsones"]
+    r = requests.get(
+        current_app.config["API_URL"]+'/bolsonespendientes',
+        headers=headers,
+        data=json.dumps(data)
+    )
+    bolsones_pendientes = json.loads(r.text)["Bolsones pendientes"]
+    return render_template('bolsones_no_logueado.html', bolsones=bolsones, bolsones_pendientes=bolsones_pendientes)
 
 
 @ver_bolsones.route('/inicio_sesion/')

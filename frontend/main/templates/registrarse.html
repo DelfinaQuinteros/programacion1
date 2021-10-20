@@ -30,12 +30,12 @@
                 <div class="registrado">
                      <strong>Ya esta registrado?</strong><a href="{{url_for('registrarse.inicio_sesion')}}">Entre aqui.</a>
                 </div>
-            <form action="#" method="POST">
+            <form action="{{url_for('registrarse.registrar')}}" method="POST">
                 <div class="w3l-login-form">
                     <br>
                     <ion-icon name="accessibility-outline"></ion-icon><label>Nombre:</label>
                     <div class="group">
-                        <input type="text" class="form-control" placeholder="Nombre" required="required">
+                        {{Mostrar(forms.)}}
                     </div>
                 </div>
                 <div class="w3l-login-form">
