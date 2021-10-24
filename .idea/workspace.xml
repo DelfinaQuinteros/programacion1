@@ -3,9 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="f1410dfb-87be-4c6c-a1a8-9d5c5718e032" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/forms/iniciar_sesion_from.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/iniciar_sesion_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/forms/registrarse_from.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/registrarse_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/routes/iniciar_sesion.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/routes/inicio.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/inicio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/routes/registrarse.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/registrarse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/routes/ver_bolsones.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/ver_bolsones.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/routes/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/routes/registrarse.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/bolsones_no_logeado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/bolsones_no_logeado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/inicio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/inicio_sesion.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/inicio_sesion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/macros/from_macro.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/macros/from_macro.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/templates/registrarse.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/registrarse.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>

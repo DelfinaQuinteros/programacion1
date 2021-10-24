@@ -4,16 +4,21 @@ from wtforms.fields.html5 import EmailField
 from wtforms import validators
 
 
-class Registrarse_Form(FlaskForm):
-    firstname = StringField('Nombre',
+class RegistrarseForm(FlaskForm):
+    nombre = StringField('Nombre',
                             [
                                 validators.Required(message="El nombre es obligatorio"),
                             ])
 
-    lastname = StringField('Apellido',
+    apellido = StringField('Apellido',
                            [
                                validators.Required(message="El apellido es obligatorio"),
                            ])
+
+    telefono = StringField("Telefono",
+                             [
+                                 validators.Required(message="El telefono es obligatorio")
+                             ])
 
     email = EmailField('E-mail',
                        [
@@ -28,4 +33,4 @@ class Registrarse_Form(FlaskForm):
 
     confirm = PasswordField('Repita la contraseña')
 
-    submit = SubmitField("Send")
+    submit = SubmitField("Registrarse")

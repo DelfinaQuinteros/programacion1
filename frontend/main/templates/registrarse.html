@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% from 'macros/from_macro.html' import mostrarcampo, mostrarenvio %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
@@ -14,10 +14,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                     <a class="nav-link" href="{{url_for('registrarse.inicio', id=1)}}" id="inicio">Inico</a>
+                     <a class="nav-link" href="{{url_for('inicio.inicio_no_logeado')}}" id="inicio">Inico</a>
                 </li>
                     <li class="nav-item">
-                    <a class="nav-link btn btn-primary py-2 px-4" href="{{url_for('registrarse.inicio_sesion')}}" id="Iniciar sesion">Iniciar sesion </a>
+                    <a class="nav-link btn btn-primary py-2 px-4" href="{{url_for('cliente.inicio_sesion')}}" id="Iniciar sesion">Iniciar sesion </a>
                     </li>
                 </ul>
             </div>
@@ -28,14 +28,14 @@
             <br><br>
             <h1>Crear una nueva cuenta</h1>
                 <div class="registrado">
-                     <strong>Ya esta registrado?</strong><a href="{{url_for('registrarse.inicio_sesion')}}">Entre aqui.</a>
+                     <strong>Ya esta registrado?</strong><a href="{{url_for('cliente.inicio_sesion')}}">Entre aqui.</a>
                 </div>
-            <form action="{{url_for('registrarse.registrar')}}" method="POST">
+            <form action="{{url_for('cliente.registrarse')}}" method="POST">
                 <div class="w3l-login-form">
                     <br>
                     <ion-icon name="accessibility-outline"></ion-icon><label>Nombre:</label>
                     <div class="group">
-                        {{Mostrar(forms.)}}
+                        {{mostrarcampo(form.email, class="from-control")}}
                     </div>
                 </div>
                 <div class="w3l-login-form">

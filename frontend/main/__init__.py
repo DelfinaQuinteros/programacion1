@@ -15,10 +15,8 @@ def create_app():
     app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
     csrf.init_app(app)
     login_manager.init_app(app)
-    from main.routes import inicio, main, iniciar_sesion, registrarse, ver_bolsones
-    app.register_blueprint(routes.ver_bolsones.ver_bolsones)
-    app.register_blueprint(routes.registrarse.registrarse)
-    app.register_blueprint(routes.iniciar_sesion.iniciar_sesion)
+    from main.routes import inicio, main, cliente
+    app.register_blueprint(routes.cliente.cliente)
     app.register_blueprint(routes.inicio.inicio)
     app.register_blueprint(routes.main.main)
     return app

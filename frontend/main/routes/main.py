@@ -4,7 +4,7 @@ from flask import Blueprint, redirect, url_for, current_app, make_response, flas
 from flask_login import login_user, logout_user
 
 from .auth import User
-from ..forms.iniciar_sesion_from import LoginForm
+from ..forms.iniciar_sesion_form import LoginForm
 
 main = Blueprint('main', __name__, url_prefix='/')
 
@@ -32,7 +32,7 @@ def login():
             return req
         else:
             flash('Usuario o contraseña incorrecta', 'danger')
-    return redirect(url_for('inicio.index'))
+    return redirect(url_for('inicio.html'))
 
 
 @main.route('/logout')

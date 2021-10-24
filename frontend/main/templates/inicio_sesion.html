@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% from 'macros/from_macro.html' import mostrarcampo, mostrarenvio %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
@@ -14,10 +14,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                     <a class="nav-link" href="{{url_for('inicio_sesion.inicio')}}" id="inicio">Inico</a>
+                     <a class="nav-link" href="{{url_for('inicio.inicio_no_logeado')}}" id="inicio">Inico</a>
                 </li>
                     <li class="nav-item">
-                    <a class="nav-link btn btn-primary py-2 px-4" href="{{url_for('inicio_sesion.registrarse')}}" id="registrarse">Registrarse </a>
+                    <a class="nav-link btn btn-primary py-2 px-4" href="{{url_for('cliente.registrarse')}}" id="registrarse">Registrarse </a>
                     </li>
                 </ul>
             </div>
@@ -27,23 +27,27 @@
         <div class="w3l-login-form d-flex align-items-center flex-column main-section card border-dark mb-3" style="max-width: 26rem;">
             <br><br>
             <h1>Inicie sesion</h1>
-                <div class="w3l-login-form">
-                    <br><ion-icon  name = "mail-outline" > </ion-icon ><label>Email:</label>
-                    <div class="group">
-                        <input type="text" class="form-control" placeholder="Email" required="required">
-                    </div>
-                    <br><ion-icon name="key-outline"></ion-icon><label>Contraseña:</label>
-                    <div class="group">
-                        <input type="password" class="form-control" placeholder="Contraseña" required="required">
-                    </div>
-                     <br> <a class="btn button btn-xl mt-1 " href="#scroll">Iniciar sesion</a>
-                     <div class="forgot">
-                          <strong>Olvido su contraseña?</strong>
-                         <a href="{{url_for('inicio_sesion.cambiar_password')}}">Entre aqui.</a>
-                         <br><br><br>
-                     </div>
-                </div>
+                <form method="POST" action="{{url_for('main.login')}}">.
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                        <div class="w3l-login-form">
+                            <br><ion-icon  name = "mail-outline" > </ion-icon ><label>Email:</label>
+                            <div class="group">
+                                <input type="text" class="form-control" placeholder="Email" required="required">
+                            </div>
+                            <br><ion-icon name="key-outline"></ion-icon><label>Contraseña:</label>
+                            <div class="group">
+                                <input type="password" class="form-control" placeholder="Contraseña" required="required">
+                            </div>
+                             <br> <a class="btn button btn-xl mt-1 " href="#scroll">Iniciar sesion</a>
+                             <div class="forgot">
+                                  <strong>Olvido su contraseña?</strong>
+                                 <a href="{{url_for('cliente.inicio_sesion')}}">Entre aqui.</a>
+                                 <br><br><br>
+                             </div>
+                        </div>
+                </form>
         </div>
+
 
        <footer class="footer">
         <div class="container"></div>
