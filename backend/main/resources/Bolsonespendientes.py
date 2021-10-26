@@ -7,7 +7,7 @@ from flask_jwt_extended import jwt_required
 
 
 class BolsonesPendientes(Resource):
-    #@jwt_required()
+    @jwt_required()
     def get(self):
         page = 1
         per_page = 10
@@ -26,7 +26,7 @@ class BolsonesPendientes(Resource):
                         'pages': bolsones.pages
                         })
 
-    #@admin_or_cliente_required
+    @admin_or_cliente_required
     def post(self):
         bolsonpendiente = BolsonModels.from_json(request.get_json())
         try:
@@ -38,12 +38,12 @@ class BolsonesPendientes(Resource):
 
 
 class BolsonPendiente(Resource):
-    #@jwt_required()
+    @jwt_required()
     def get(self, id):
         bolsonpendiente = db.session.query(BolsonModels).get_or_404(id)
         return bolsonpendiente.to_json()
 
-    #@admin_or_cliente_required
+    @admin_or_cliente_required
     def delete(self, id):
         bolsonpendiente = db.session.query(BolsonModels).get_or_404(id)
         try:
@@ -53,7 +53,7 @@ class BolsonPendiente(Resource):
         except:
             return '', 404
 
-    #@admin_or_cliente_required
+    @admin_or_cliente_required
     def put(self, id):
         bolsonpendiente = db.session.query(BolsonModels).get_or_404(id)
         data = request.get_json().items()

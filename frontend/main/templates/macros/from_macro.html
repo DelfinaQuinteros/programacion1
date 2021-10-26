@@ -1,19 +1,17 @@
-{% macro mostrar_error(campo) %}
-    {% if campo.errors %}
-        <div class="alert alert-danger" role="alert">
-            {% for error in campo.errors %}
-                {{ error }}<br/>
-            {% endfor %}
-        </div>
-    {% endif %}
-{% endmacro %}
-
 {% macro mostrarcampo(campo) %}
-        {{ campo.label }}
-        {{ campo(**kwargs)|safe }}
-        {{ mostrarcampo(campo) }}
+{{campo.label}}
+{{campo(**kwargs)}}
+{{mostrarerror(campo)}}
 {% endmacro %}
 
 {% macro mostrarenvio(campo) %}
-        {{ campo(**kwargs)|safe }}
+{{campo(**kwargs)|safe}}
+{% endmacro %}
+
+{% macro mostrarerror(campo) %}
+{% if campo.errors %}
+{% for error in campo.errors %}
+<span style="color:red">{{error}}</span><br/>
+{% endfor %}
+{% endif %}
 {% endmacro %}

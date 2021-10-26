@@ -9,7 +9,7 @@ auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 @auth.route('/login', methods=['POST'])
 def login():
-    usuario = db.session.query(UsuarioModels).filter(UsuarioModels.mail == request.get_json().get("mail")).first_or_404()
+    usuario = db.session.query(UsuarioModels).filter(UsuarioModels.mail == request.get_json().get("email")).first_or_404()
     if usuario.validate_pass(request.get_json().get("password")):
         access_token = create_access_token(identity=usuario)
         data = {

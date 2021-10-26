@@ -5,7 +5,7 @@ from wtforms import validators
 
 
 class LoginForm(FlaskForm):
-    email = EmailField('E-mail',
+    email = EmailField('E-mail:',
                        [
                            validators.Required(message="Email es obligatorio"),
                            validators.Email(message='Formato invalido'),
@@ -13,9 +13,9 @@ class LoginForm(FlaskForm):
                        render_kw={"placeholder": "Email"}
                        )
 
-    password = PasswordField('Password', [
+    password = PasswordField('Contraseña:', [
         validators.Required(message='Password es obligatorio'),
                                         ],
                             render_kw={"placeholder": "Contraseña"}
                             )
-    submit = SubmitField("Send")
+    submit = SubmitField("Iniciar sesion")

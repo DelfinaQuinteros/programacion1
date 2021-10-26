@@ -15,7 +15,7 @@ class ModificarDatosForm(FlaskForm):
                                validators.Required(message="El apellido es obligatorio"),
                            ])
 
-    telefono = TelefonoField("Telefono",
+    telefono = StringField("Telefono",
                              [
                                  validators.Required(message="El telefono es obligatorio")
                              ])

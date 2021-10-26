@@ -27,21 +27,21 @@
         <div class="w3l-login-form d-flex align-items-center flex-column main-section card border-dark mb-3" style="max-width: 26rem;">
             <br><br>
             <h1>Inicie sesion</h1>
-                <form method="POST" action="{{url_for('main.login')}}">.
+                <form method="POST" action="{{url_for('cliente.inicio_sesion')}}">
                     <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
                         <div class="w3l-login-form">
-                            <br><ion-icon  name = "mail-outline" > </ion-icon ><label>Email:</label>
                             <div class="group">
-                                <input type="text" class="form-control" placeholder="Email" required="required">
+                                {{mostrarcampo(form.email, class="form-control")}}
                             </div>
-                            <br><ion-icon name="key-outline"></ion-icon><label>Contraseña:</label>
+                            <br>
                             <div class="group">
-                                <input type="password" class="form-control" placeholder="Contraseña" required="required">
+                                {{mostrarcampo(form.password, class="form-control")}}
                             </div>
-                             <br> <a class="btn button btn-xl mt-1 " href="#scroll">Iniciar sesion</a>
+                             <br>
+                                {{mostrarenvio(form.submit, class="btn button btn-xl mt-1")}}
                              <div class="forgot">
                                   <strong>Olvido su contraseña?</strong>
-                                 <a href="{{url_for('cliente.inicio_sesion')}}">Entre aqui.</a>
+                                 <a href="#">Entre aqui.</a>
                                  <br><br><br>
                              </div>
                         </div>

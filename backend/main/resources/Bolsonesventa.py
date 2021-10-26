@@ -6,7 +6,7 @@ from flask_jwt_extended import jwt_required
 
 
 class BolsonesVenta(Resource):
-    #@jwt_required()
+    @jwt_required()
     def get(self):
         page = 1
         per_page = 10
@@ -27,7 +27,7 @@ class BolsonesVenta(Resource):
 
     
 class BolsonVenta(Resource):
-    #@jwt_required()
+    @jwt_required()
     def get(self, id):
         bolsonventa = db.session.query(BolsonModels).get_or_404(id)
         if bolsonventa.aprobado == 1:

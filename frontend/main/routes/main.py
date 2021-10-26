@@ -32,7 +32,7 @@ def login():
             return req
         else:
             flash('Usuario o contraseña incorrecta', 'danger')
-    return redirect(url_for('inicio.html'))
+    return redirect(url_for('inicio.index'))
 
 
 @main.route('/logout')

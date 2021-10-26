@@ -5,32 +5,38 @@ from wtforms import validators
 
 
 class RegistrarseForm(FlaskForm):
-    nombre = StringField('Nombre',
-                            [
-                                validators.Required(message="El nombre es obligatorio"),
-                            ])
+    nombre = StringField('Nombre:',
+                         [
+                             validators.Required(message="El nombre es obligatorio"),
+                         ],
+                         render_kw={"placeholder": "Nombre"})
 
-    apellido = StringField('Apellido',
+    apellido = StringField('Apellido:',
                            [
                                validators.Required(message="El apellido es obligatorio"),
-                           ])
+                           ],
+                           render_kw={"placeholder": "Apellido"})
 
-    telefono = StringField("Telefono",
-                             [
-                                 validators.Required(message="El telefono es obligatorio")
-                             ])
+    telefono = StringField("Telefono:",
+                           [
+                               validators.Required(message="El telefono es obligatorio")
+                           ],
+                           render_kw={"placeholder": "Telefono"})
 
-    email = EmailField('E-mail',
+    email = EmailField('E-mail:',
                        [
                            validators.Required(message="El E-mail es obligatorio"),
                            validators.Email(message='Formato no valido'),
-                       ])
+                       ],
+                       render_kw={"placeholder": "Email"})
 
-    password = PasswordField('Password', [
+    password = PasswordField('Contraseña:', [
         validators.Required(),
         validators.EqualTo('confirm', message='Las contraseñas no coinciden')
-    ])
+    ],
+                             render_kw={"placeholder": "Contraseña"})
 
-    confirm = PasswordField('Repita la contraseña')
+    confirm = PasswordField('Repita la contraseña:',
+                            render_kw={"placeholder": "Repita la contraseña"})
 
     submit = SubmitField("Registrarse")

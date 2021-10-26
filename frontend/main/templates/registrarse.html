@@ -30,51 +30,44 @@
                 <div class="registrado">
                      <strong>Ya esta registrado?</strong><a href="{{url_for('cliente.inicio_sesion')}}">Entre aqui.</a>
                 </div>
-            <form action="{{url_for('cliente.registrarse')}}" method="POST">
-                <div class="w3l-login-form">
-                    <br>
-                    <ion-icon name="accessibility-outline"></ion-icon><label>Nombre:</label>
-                    <div class="group">
-                        {{mostrarcampo(form.email, class="from-control")}}
-                    </div>
-                </div>
-                <div class="w3l-login-form">
-                    <ion-icon name="accessibility-outline"></ion-icon><label>Apellido:</label>
-                    <div class="group">
-                        <input type="text" class="form-control" placeholder="Apellido" required="required">
-                    </div>
-                </div>
-                <div class="w3l-login-form">
-                    <ion-icon name="call-outline"></ion-icon><label>Telefono:</label>
-                    <div class="group">
-                        <input type="text" class="form-control" placeholder="Telefono" required="required">
-                    </div>
-                </div>
-                <div class="w3l-login-form">
-                    <ion-icon  name = "mail-outline" > </ion-icon ><label>Email:</label>
-                    <div class="group">
-                        <input type="text" class="form-control" placeholder="Email" required="required">
-                    </div>
-                </div>
-                <div class="w3l-login-form" >
-                    <ion-icon name="key-outline"></ion-icon><label>Contraseña:</label>
-                    <div class="group">
-                        <input type="password" class="form-control" placeholder="Contraseña" required="required">
-                    </div>
-                </div>
-                  <div class="w3l-login-form" >
-                    <ion-icon name="key-outline"></ion-icon><label>Confirmar contraseña:</label>
-                    <div class="group">
-                        <input type="password" class="form-control" placeholder="Contraseña" required="required">
-                    </div>
-                </div>
-                    <a class="btn button btn-xl mt-1 " href="#scroll">Registrarse</a>
-                <br><br><br>
-            </form>
-        </div>
+                <form method="POST" action="{{url_for('cliente.registrarse')}}" >
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                        <div class="w3l-login-form">
+                            <div class="group">
+                                {{mostrarcampo(form.nombre, class="form-control")}}
+                            </div>
+                        </div>
+                        <div class="w3l-login-form">
+                            <div class="group">
+                                {{mostrarcampo(form.apellido, class="form-control")}}
+                            </div>
+                        </div>
+                        <div class="w3l-login-form">
+                            <div class="group">
+                                {{mostrarcampo(form.telefono, class="form-control")}}
+                            </div>
+                        </div>
+                        <div class="w3l-login-form">
+                            <div class="group">
+                                {{mostrarcampo(form.email, class="form-control")}}
+                            </div>
+                        </div>
+                        <div class="w3l-login-form" >
+                            <div class="group">
+                                {{mostrarcampo(form.password, class="form-control")}}
+                            </div>
+                        </div>
+                        <div class="w3l-login-form" >
+                            <div class="group">
+                                {{mostrarcampo(form.confirm, class="form-control")}}
+                            </div>
+                        </div>
+                            {{mostrarenvio(form.submit, class="btn button btn-xl mt-1")}}
+                        <br><br><br>
+                </form>
+            </div>
        <footer class="footer">
-        <div class="container">
-        </div>
+            <div class="container"></div>
        </footer>
 
 {% endblock %}
