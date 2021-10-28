@@ -13,14 +13,14 @@ def bolsones_en_venta():
     return render_template('inicio_registrado.html')
 
 
-@cliente.route('/bolsones-no-logeado')
+@cliente.route('/bolsones-no-logeado/')
 def bolsones_no_logueaedo():
     headers = {'content-type': 'application/json'}
     r = requests.get(
-        current_app.config["API_URL"]+'/bolsones',
-        headers=headers)
+            current_app.config["API_URL"]+'/bolsones',
+            headers=headers)
     bolsones = json.loads(r.text)["bolsones"]
-    return render_template('bolsones_no_logueado.html', bolsones=bolsones)
+    return render_template('bolsones_no_logeado.html', bolsones=bolsones)
 
 
 @cliente.route('/cuenta')
@@ -42,7 +42,7 @@ def inicio_sesion():
         data = {"email": form.email.data, "password": form.password.data}
         headers = {"content-type": "application/json"}
         r = requests.post(
-            current_app.config["API_URL"] + 'auth/login',
+            current_app.config["API_URL"] + '/auth/login',
             headers=headers,
             data=json.dumps(data))
         if r.status_code == 200:
@@ -78,4 +78,6 @@ def editar_perfil():
 @cliente.route('/ver-compras')
 def ver_compras():
     return not render_template('compra_cliente.html')
+
+
 

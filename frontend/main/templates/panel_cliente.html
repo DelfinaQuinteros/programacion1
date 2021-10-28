@@ -14,28 +14,30 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                         <a class="nav-link btn btn-primary py-2 px-4" href="#" id="Inicio">Inicio</a>
+                         <a class="nav-link btn btn-primary py-2 px-4" href="{{url_for('inicio.inicio_logeado')}}" id="Inicio">Inicio</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="w3l-login-form d-flex align-items-center flex-column main-section">
-            <h1><strong>Panel cliente</strong></h1>
-    </div>
-    <div class="col-sm-12 order-sm-1 col-md-12 order-md-1 ">
-        <div class="p-4 text-center">
-            <a class="btn btn-primary btn-xl mt-5" href="http://localhost:63342/programacion1/frontend/vistas/editar_perfil.html?_ijt=a8n5c2b05vnv76402o6s1t0ap3&_ij_reload=RELOAD_ON_SAVE">Editar perfil</a>
+    <div class="w3l-login-form d-flex align-items-center flex-column main-section card border-dark mb-3" style="max-width: 26rem;">
+        <div class="w3l-login-form d-flex align-items-center flex-column main-section ">
+                <h1><strong>Panel cliente</strong></h1>
         </div>
-    </div>
-     <div class="col-sm-12 order-sm-1 col-md-12 order-md-1">
-        <div class="p-4 text-center">
-            <a class="btn btn-primary btn-xl mt-5" href="http://localhost:63342/programacion1/frontend/vistas/compra_cliente.html?_ijt=pp72j99903c823tubks0lca47v&_ij_reload=RELOAD_ON_SAVE">Ver compras</a>
+        <div class="col-sm-12 order-sm-1 col-md-12 order-md-1 ">
+            <div class="p-4 text-center">
+                <a class="btn btn-primary btn-xl mt-5" href="{{url_for('cliente.editar_perfil')}}">Editar perfil</a>
+            </div>
         </div>
-    </div>
-     <div class="col-sm-12 order-sm-1 col-md-12 order-md-1">
-        <div class="p-4 text-center">
-            <a class="btn btn-primary btn-xl mt-5" href="http://localhost:63342/programacion1/frontend/vistas/inicio.html?_ijt=7giu5sgofnt2ihcgd31pkjk706&_ij_reload=RELOAD_ON_SAVE">Cerrar sesion</a>
+         <div class="col-sm-12 order-sm-1 col-md-12 order-md-1">
+            <div class="p-4 text-center">
+                <a class="btn btn-primary btn-xl mt-5" href="{{url_for('cliente.ver_compras')}}">Ver compras</a>
+            </div>
+        </div>
+         <div class="col-sm-12 order-sm-1 col-md-12 order-md-1">
+            <div class="p-4 text-center">
+                <a class="btn btn-primary btn-xl mt-5" href="{{url_for('main.logout')}}">Cerrar sesion</a>
+            </div>
         </div>
     </div>
     <footer class="footer">

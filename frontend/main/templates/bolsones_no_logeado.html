@@ -39,21 +39,21 @@
 				</div>
 			</div>
                 <div class="row">
-                    <form method="GET" action="{{url_for('bolsones.ver')}}">
-                    {% for columna in range(3)%}
-                        {% for bolson in bolsones %}
-                            <div class="col-sm-4 col-md-4 card border-dark mb-3" style="max-width: 25rem;">
-                                <br>
-                                <div class="team-member text-center">
-                                    <img style="width: 280px; height: 280px;" src="https://mecopo.org/wp-content/uploads/2019/09/bolsonutt.jpg" alt="...">
-                                    <br><br>
-                                    <h3>{{ bolson ['nombre'] }}</h3>
-                                    <p class="text-mutes">{{ bolson ['descripcion'] }}</p>
-                                    <br><br>
+                    <form method="GET" action="{{url_for('cliente.bolsones_no_logueaedo')}}">
+                        {% for columna in range(3)%}
+                            {% for bolson in bolsonespendientes %}
+                                <div class="col-sm-4 col-md-4 card border-dark mb-3" style="max-width: 25rem;">
+                                    <br>
+                                    <div class="team-member text-center">
+                                        <img style="width: 280px; height: 280px;" src="https://mecopo.org/wp-content/uploads/2019/09/bolsonutt.jpg" alt="...">
+                                        <br><br>
+                                        <!-- h3>{{ bolson ['nombre'] }}</h3>
+                                        <p class="text-mutes">{{ bolson ['descripcion'] }}</p-->
+                                        <br><br>
+                                    </div>
                                 </div>
-                            </div>
+                            {% endfor %}
                         {% endfor %}
-                    {% endfor %}
                     </form>
                 </div>
             </div>
