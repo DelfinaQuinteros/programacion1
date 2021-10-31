@@ -22,51 +22,14 @@ def bolsones_registrado():
 def ver():
     user = current_user
     auth = request.cookies['access_token']
-    print("1111111111111")
     headers = {'content-type': 'application/json',
                'authorization': 'Bearer'+auth}
-    print("222222222222222222")
     r = requests.get(
-        print("444444444444444"),
         current_app.config["API_URL"]+'/bolsones',
         headers=headers
     )
-    print("666666666")
     bolsones = json.loads(r.text)["bolsones"]
     return render_template('bolsones_no_logueado.html', bolsones=bolsones)
 
 
-@bolsones.route('/bolsones-pendientes')
-@login_required
-@admin_required
-@proveedor_required
-def bolsones_pendientes():
-    user = current_user
-    auth = request.cookies['access_token']
-    headers = {'content-type': 'application/json',
-               'authorization': "Beares"+auth}
-    r = requests.get(
-        current_app.config["API_URL"]+'/bolsonespendientes',
-        headers=headers,
-        data=json.dumps(data)
-    )
-    bolsones_pendientes = json.loads(r.text)["Bolsones pendientes"]
-    return render_template('bolsones_pendientes.html', bolsones_pendientes=bolsones_pendientes, user=user)
 
-
-@bolsones.route('/bolsones-previos')
-@login_required
-@admin_required
-@proveedor_required
-def bolsones_pendientes():
-    user = current_user
-    auth = request.cookies['access_token']
-    headers = {'content-type': 'application/json',
-               'authorization': "Beares"+auth}
-    r = requests.get(
-        current_app.config["API_URL"]+'/bolsonesprevios',
-        headers=headers,
-        data=json.dumps(data)
-    )
-    bolsones_previos = json.loads(r.text)["Bolsones previos"]
-    return render_template('bolsones_previos.html', bolsones_previos=bolsones_previos, user=user)

@@ -14,7 +14,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                         <a class="nav-link btn btn-primary py-2 px-4" href="http://localhost:63342/programacion1/frontend/vistas/inicio_registrado.html?_ijt=j7bueh5859unbugu6e8ic0cf20&_ij_reload=RELOAD_ON_SAVE" id="Inicio">Inicio</a>
+                         <a class="nav-link btn btn-nav py-2 px-4" href="{{url_for('inicio.inicio_logeado')}}" id="Inicio">Inicio</a>
                     </li>
                 </ul>
             </div>
@@ -26,51 +26,51 @@
     <div class="row">
         <div class="col-sm-4 order-sm-1 col-md-4 order-md-1 ">
             <div class="p-4 text-center">
-                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="http://localhost:63342/programacion1/frontend/vistas/editar_perfil.html?_ijt=4qfpsmk7glfuufv26pt5d7ebnu&_ij_reload=RELOAD_ON_SAVE">Editar perfil</a>
+                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="{{url_for('admin.editar_perfil')}}">Editar perfil</a>
             </div>
         </div>
         <div class="col-sm-4 order-sm-1 col-md-4 order-md-1">
             <div class="p-4 text-center">
-                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="http://localhost:63342/programacion1/frontend/vistas/agregar_proveedor.html?_ijt=4qfpsmk7glfuufv26pt5d7ebnu&_ij_reload=RELOAD_ON_SAVE">Agregar proveedor</a>
+                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="{{url_for('admin.agregar_proveedor')}}" >Agregar proveedor</a>
             </div>
         </div>
         <div class="col-sm-4 order-sm-1 col-md-4 order-md-1">
             <div class="p-4 text-center">
-                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="http://localhost:63342/programacion1/frontend/vistas/agregar_bolson.html?_ijt=dq2mht0ghvbtgob7772s833i76&_ij_reload=RELOAD_ON_SAVE">Agregar bolson</a>
+                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="{{url_for('admin.agregar_bolson')}}">Agregar bolson</a>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-4 order-sm-1 col-md-4 order-md-1 ">
             <div class="p-4 text-center">
-                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="http://localhost:63342/programacion1/frontend/vistas/bolsones_admin.html?_ijt=oi894f1nvj74ehgak9s6tpblel&_ij_reload=RELOAD_ON_SAVE">Consultar compras</a>
+                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="{{url_for('admin.consultar_compras')}}">Consultar compras</a>
             </div>
         </div>
         <div class="col-sm-4 order-sm-1 col-md-4 order-md-1">
             <div class="p-4 text-center">
-                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="http://localhost:63342/programacion1/frontend/vistas/ver_bolsones_registrado.html?_ijt=9767j8cspnd7fv1c9qus1263fp&_ij_reload=RELOAD_ON_SAVE">Consultar bolsones en venta</a>
+                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="{{url_for('admin.ver_bolsones')}}">Consultar bolsones en venta</a>
             </div>
         </div>
         <div class="col-sm-4 order-sm-1 col-md-4 order-md-1">
             <div class="p-4 text-center">
-                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="http://localhost:63342/programacion1/frontend/vistas/bolsones_pendientes.html?_ijt=aocgb8u4ha2fd7ht81rv8em0hn&_ij_reload=RELOAD_ON_SAVE">Consultar bolsones pendientes</a>
+                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="{{url_for('admin.bolsones_pendientes')}}">Consultar bolsones pendientes</a>
             </div>
         </div>
     </div>
         <div class="row">
         <div class="col-sm-4 order-sm-1 col-md-4 order-md-1 ">
             <div class="p-4 text-center">
-                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="http://localhost:63342/programacion1/frontend/vistas/ver_productos.html?_ijt=vkl9diltdbfi6967srrevfsnpb&_ij_reload=RELOAD_ON_SAVE">Consultar productos</a>
+                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="{{url_for('admin.ver_productos')}}">Consultar productos</a>
             </div>
         </div>
         <div class="col-sm-4 order-sm-1 col-md-4 order-md-1">
             <div class="p-4 text-center">
-                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="http://localhost:63342/programacion1/frontend/vistas/bolsones_previos.html?_ijt=vebi7ut4bq1k20pqflh1sdtg0o&_ij_reload=RELOAD_ON_SAVE">Consultar bolsones previos</a>
+                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="{{url_for('admin.bolsones_previos')}}">Consultar bolsones previos</a>
             </div>
         </div>
         <div class="col-sm-4 order-sm-1 col-md-4 order-md-1">
             <div class="p-4 text-center">
-                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="http://localhost:63342/programacion1/frontend/vistas/inicio.html?_ijt=4qfpsmk7glfuufv26pt5d7ebnu&_ij_reload=RELOAD_ON_SAVE">Cerrar sesion</a>
+                <a class="btn btn-primary btn-xl mt-5" style="width: 70%;" href="{{url_for('main.logout')}}">Cerrar sesion</a>
             </div>
         </div>
     </div>

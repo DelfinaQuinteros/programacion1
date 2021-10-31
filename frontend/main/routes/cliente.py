@@ -9,6 +9,7 @@ cliente = Blueprint('cliente', __name__, url_prefix='/cliente')
 
 
 @cliente.route('/bolsones')
+@login_required
 def bolsones_en_venta():
     user = current_user
     auth = request.cookies['access_token']
@@ -44,7 +45,12 @@ def panel_cliente():
     r = requests.get(
         current_app.config["API_URL"]+'/cliente',
         headers=headers)
-    return render_template('panel_cliente.html', cliente=cliente)
+    if current_user.role == 'cliente':
+        return render_template('panel_cliente.html', cliente=cliente)
+    elif current_user.role == 'admin':
+        return render_template('panel_admin.html')
+    elif current_user.role == 'proveedor':
+        return render_template('panel_proveedor.html')
 
 
 @cliente.route('/iniciar-sesion', methods=['POST', 'GET'])

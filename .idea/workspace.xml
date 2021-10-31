@@ -4,12 +4,18 @@
     <list default="true" id="f1410dfb-87be-4c6c-a1a8-9d5c5718e032" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/course.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/course.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/forms/agregar_bolson_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/agregar_bolson_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/routes/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/routes/bolsones.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/bolsones.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/routes/cliente.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/cliente.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/bolsones_no_logeado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/bolsones_no_logeado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/routes/proveedor.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/proveedor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/agregar_bolson.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/agregar_bolson.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/templates/inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/inicio.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/inicio_registrado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/inicio_registrado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/ver_bolsones_registrado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/ver_bolsones_registrado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/panel_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/panel_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/panel_cliente.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/panel_cliente.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/panel_proveedor.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/panel_proveedor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/styles.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +43,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dudas/programacion1" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">

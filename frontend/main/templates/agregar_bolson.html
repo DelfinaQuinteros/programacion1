@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% from 'macros/from_macro.html' import mostrarcampo %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
@@ -14,10 +14,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                     <a class="nav-link" href="http://localhost:63342/programacion1/frontend/vistas/bolsones_admin.html?_ijt=oi894f1nvj74ehgak9s6tpblel&_ij_reload=RELOAD_ON_SAVE" id="listabolsones">Ver bolsones</a>
+                     <a class="nav-link" href="{{url_for('admin.ver_bolsones')}}" id="listabolsones">Ver bolsones</a>
                 </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary py-2 px-4" href="http://localhost:63342/programacion1/frontend/vistas/panel_admin.html?_ijt=9767j8cspnd7fv1c9qus1263fp&_ij_reload=RELOAD_ON_SAVE" id="paneladmin">Panel administrador</a>
+                        <a class="nav-link btn btn-nav py-2 px-4" href="{{url_for('admin.panel_admin')}}" id="paneladmin">Panel administrador</a>
                     </li>
                 </ul>
             </div>

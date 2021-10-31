@@ -9,7 +9,7 @@ from .auth import admin_required, proveedor_required
 proveedor = Blueprint('proveedor', __name__, url_prefix='/proveedor')
 
 
-@proveedor.route('/regitrar', methods=['POST', 'GET'])
+@proveedor.route('/registrar', methods=['POST', 'GET'])
 def registrar():
     form = RegistrarseForm
     if form.validate_on_submit():
@@ -20,10 +20,9 @@ def registrar():
 
 @proveedor.route('/ver_productos')
 def ver_productos():
-    return render_template('ver_productos')
+    return render_template('ver_productos.html')
 
 
-# modificar, eliminar y agregar productos
 @proveedor.route('/modificar-producto')
 def modificar_producto():
     return render_template('modificar_producto_prov.html')

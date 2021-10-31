@@ -11,7 +11,7 @@ class BolsonForms:
                          ],
                          render_kw={"placeholder": "Nombre del bolson"}
                          )
-    fecha = DateField("Fecha",
+    fecha = StringField("Fecha",
                       [
                           validators.Required()
                       ], format='%Y-%m-%d'
