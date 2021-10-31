@@ -10,24 +10,29 @@ cliente = Blueprint('cliente', __name__, url_prefix='/cliente')
 
 @cliente.route('/bolsones')
 def bolsones_en_venta():
-    return render_template('inicio_registrado.html')
+    user = current_user
+    auth = request.cookies['access_token']
+    headers = {'content-type': 'application/json',
+               'authorization': 'Bearer'+auth}
+    r = requests.get(
+        current_app.config["API_URL"]+'/bolsones',
+        headers=headers,
+        json={}
+    )
+    bolsones = json.loads(r.text)["bolsones"]
+    return render_template('ver_bolsones_registrado.html', bolsones=bolsones)
 
 
 @cliente.route('/bolsones-no-logeado/')
-def ver():
-    user = current_user
-    auth = request.cookies['access_token']
-    print("1111111111111")
-    headers = {'content-type': 'application/json',
-               'authorization': 'Bearer'+auth}
-    print("222222222222222222")
+def bolsones_no_logeado():
+    headers = {'content-type': 'application/json'}
     r = requests.get(
         current_app.config["API_URL"]+'/bolsones',
-        headers=headers
+        headers=headers,
+        json={}
     )
-    print("666666666")
     bolsones = json.loads(r.text)["bolsones"]
-    return render_template('bolsones_no_logueado.html', bolsones=bolsones)
+    return render_template('bolsones_no_logeado.html', bolsones=bolsones)
 
 
 @cliente.route('/cuenta')

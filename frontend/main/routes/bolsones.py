@@ -29,8 +29,7 @@ def ver():
     r = requests.get(
         print("444444444444444"),
         current_app.config["API_URL"]+'/bolsones',
-        headers=headers,
-        data=json.dumps(data)
+        headers=headers
     )
     print("666666666")
     bolsones = json.loads(r.text)["bolsones"]
