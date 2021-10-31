@@ -14,13 +14,20 @@ def bolsones_en_venta():
 
 
 @cliente.route('/bolsones-no-logeado/')
-def bolsones_no_logueaedo():
-    headers = {'content-type': 'application/json'}
+def ver():
+    user = current_user
+    auth = request.cookies['access_token']
+    print("1111111111111")
+    headers = {'content-type': 'application/json',
+               'authorization': 'Bearer'+auth}
+    print("222222222222222222")
     r = requests.get(
-            current_app.config["API_URL"]+'/bolsones',
-            headers=headers)
+        current_app.config["API_URL"]+'/bolsones',
+        headers=headers
+    )
+    print("666666666")
     bolsones = json.loads(r.text)["bolsones"]
-    return render_template('bolsones_no_logeado.html', bolsones=bolsones)
+    return render_template('bolsones_no_logueado.html', bolsones=bolsones)
 
 
 @cliente.route('/cuenta')
@@ -57,8 +64,8 @@ def inicio_sesion():
 def registrarse():
     form = RegistrarseForm()
     if form.validate_on_submit():
-        data = {"nombre": form.nombre.data, "apellido": form.apellido.data, "E-mail": form.email.data,
-                "contraseña": form.password.data, "Confirm": form.password.data}
+        data = {"nombre": form.nombre.data, "apellido": form.apellido.data, "email": form.email.data,
+                "password": form.password.data}
         headers = {
             'content-type': "application/json"
         }

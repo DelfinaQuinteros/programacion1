@@ -5,7 +5,7 @@ from wtforms import validators
 
 
 class LoginForm(FlaskForm):
-    email = EmailField('E-mail:',
+    email = EmailField('email:',
                        [
                            validators.Required(message="Email es obligatorio"),
                            validators.Email(message='Formato invalido'),

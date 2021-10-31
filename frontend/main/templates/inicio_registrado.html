@@ -14,7 +14,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                     <a class="nav-link"  href="{{url_for('cliente.panel_cliente')}}" id="usuario">#####</a>
+                     <a class="nav-link"  href="{{url_for('cliente.panel_cliente')}}" id="usuario">{{current_user.email}}</a>
                 </li>
                 <li class="nav-item">
                     <img src="{{url_for('static', filename='imagenes/perfil.png')}}" class="img-circle special-img">
@@ -33,7 +33,7 @@
                         <div class="p-5">
                             <h1 class="display-4">Bolsoneria</h1>
                             <h4> Los mejores bolsones fruta y verdura del mercado</h4>
-                            <a class="btn btn-primary btn-xl mt-5" href="{{url_for('cliente.bolsones_no_logueaedo')}}">VER BOLSONES</a>
+                            <a class="btn btn-primary btn-xl mt-5" href="{{url_for('cliente.ver')}}">VER BOLSONES</a>
                         </div>
                     </div>
                 </div>

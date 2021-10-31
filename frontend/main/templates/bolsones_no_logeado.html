@@ -40,7 +40,6 @@
 			</div>
                 <div class="row">
                     <form method="GET" action="{{url_for('cliente.bolsones_no_logueaedo')}}">
-                        {% for columna in range(3)%}
                             {% for bolson in bolsonespendientes %}
                                 <div class="col-sm-4 col-md-4 card border-dark mb-3" style="max-width: 25rem;">
                                     <br>
@@ -53,7 +52,6 @@
                                     </div>
                                 </div>
                             {% endfor %}
-                        {% endfor %}
                     </form>
                 </div>
             </div>

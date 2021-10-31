@@ -9,13 +9,14 @@ auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 @auth.route('/login', methods=['POST'])
 def login():
-    usuario = db.session.query(UsuarioModels).filter(UsuarioModels.mail == request.get_json().get("email")).first_or_404()
+    usuario = db.session.query(UsuarioModels).filter(UsuarioModels.email == request.get_json().get("email")).first_or_404()
     if usuario.validate_pass(request.get_json().get("password")):
         access_token = create_access_token(identity=usuario)
         data = {
             'id': str(usuario.id),
-            'mail': usuario.mail,
-            'access_token': access_token
+            'email': usuario.email,
+            'access_token': access_token,
+            'role': str(usuario.role)
         }
         return data, 200
     else:
@@ -25,14 +26,14 @@ def login():
 @auth.route('/register', methods=['POST'])
 def register():
     usuario = UsuarioModels.from_json(request.get_json())
-    exists = db.session.query(UsuarioModels).filter(UsuarioModels.mail == usuario.mail).scalar() is not None
+    exists = db.session.query(UsuarioModels).filter(UsuarioModels.email == usuario.email).scalar() is not None
     if exists:
         return 'Mail duplicado', 409
     else:
         try:
             db.session.add(usuario)
             db.session.commit()
-            sent = sendMail([usuario.mail], "Bienvenido!", 'register', usuario=usuario)
+            sent = sendMail([usuario.email], "Bienvenido!", 'register', usuario=usuario)
         except Exception as error:
             db.session.rollback()
             return str(error), 409

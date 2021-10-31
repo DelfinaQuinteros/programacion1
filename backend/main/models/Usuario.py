@@ -7,7 +7,7 @@ class Usuario(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     apellido = db.Column(db.String(100), nullable=False)
     telefono = db.Column(db.String(100), nullable=True)
-    mail = db.Column(db.String(100), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
     role = db.Column(db.String(10), nullable=False, default="cliente")
     productos = db.relationship('Producto', back_populates='usuario')
@@ -25,7 +25,7 @@ class Usuario(db.Model):
         return check_password_hash(self.password, password)
 
     def __repr__(self):
-        return '<Usuario: %r %r %r %r >' % (self.nombre, self.apellido, self.telefono, self.mail)
+        return '<Usuario: %r %r %r %r >' % (self.nombre, self.apellido, self.telefono, self.email)
 
     def to_json(self):
         usuario_json = {
@@ -33,7 +33,8 @@ class Usuario(db.Model):
             'nombre': str(self.nombre),
             'apellido': str(self.apellido),
             'telefono': str(self.telefono),
-            'mail': str(self.mail),
+            'email': str(self.email),
+            'role': str(self.role)
         }
         return usuario_json
 
@@ -43,14 +44,14 @@ class Usuario(db.Model):
         nombre = usuario_json.get('nombre')
         apellido = usuario_json.get('apellido')
         telefono = usuario_json.get('telefono')
-        mail = usuario_json.get('mail')
+        email = usuario_json.get('email')
         password = usuario_json.get('password')
         role = usuario_json.get('role')
         return Usuario(id=id,
                        nombre=nombre,
                        apellido=apellido,
                        telefono=telefono,
-                       mail=mail,
+                       email=email,
                        plain_password=password,
                        role=role,
                        )

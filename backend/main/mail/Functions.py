@@ -28,7 +28,7 @@ def bolsones_promocion():
     bolsonesVenta = db.session.query(BolsonModels).filter(BolsonModels.aprobado == 1).all()
     try:
         for usuario in usuarios:
-            sent = sendMail([usuario.mail], "Bolsones de la semana", 'bolsones_promocion', usuario=usuario,
+            sent = sendMail([usuario.email], "Bolsones de la semana", 'bolsones_promocion', usuario=usuario,
                             bolsones=[bolson.nombre for bolson in bolsonesVenta])
     except SMTPException as e:
         print(str(e))

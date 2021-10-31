@@ -18,7 +18,7 @@ def load_user(request):
         try:
             decoded = jwt.decode(request.cookies['access_token'], current_app.config["SECRET_KEY"],
                                  algorithms=["HS256"], verify=False)
-            user = User(decoded["id"], decoded["mail"], decoded["role"])
+            user = User(decoded["id"], decoded["email"], decoded["role"])
             return user
         except jwt.exceptions.InvalidTokenError:
             print('Invalid Token.')

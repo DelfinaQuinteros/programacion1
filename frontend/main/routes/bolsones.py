@@ -6,10 +6,10 @@ from flask_login import login_required, LoginManager, current_user
 from flask import redirect, render_template, url_for, Blueprint, current_app, request
 from .auth import admin_required, proveedor_required
 
-ver_bolsones = Blueprint('ver_bolsones', __name__, url_prefix='/ver_bolsones')
+bolsones = Blueprint('bolsones', __name__, url_prefix='/bolsones')
 
 
-@ver_bolsones.route('/bolsones_venta')
+@bolsones.route('/bolsones_venta')
 @login_required
 def bolsones_registrado():
     r = requests.get(f'{current_app.config["API_URL"]}/bolsones-venta',
@@ -18,19 +18,26 @@ def bolsones_registrado():
     return render_template('ver_bolsones_registrado.html', bolsones=bolsones)
 
 
-@ver_bolsones.route('/bolsones-sin-logear')
+@bolsones.route('/bolsones-venta')
 def ver():
-    headers = {'content-type': 'application/json'}
+    user = current_user
+    auth = request.cookies['access_token']
+    print("1111111111111")
+    headers = {'content-type': 'application/json',
+               'authorization': 'Bearer'+auth}
+    print("222222222222222222")
     r = requests.get(
+        print("444444444444444"),
         current_app.config["API_URL"]+'/bolsones',
         headers=headers,
         data=json.dumps(data)
     )
+    print("666666666")
     bolsones = json.loads(r.text)["bolsones"]
     return render_template('bolsones_no_logueado.html', bolsones=bolsones)
 
 
-@ver_bolsones.route('/bolsones-pendientes')
+@bolsones.route('/bolsones-pendientes')
 @login_required
 @admin_required
 @proveedor_required
@@ -48,7 +55,7 @@ def bolsones_pendientes():
     return render_template('bolsones_pendientes.html', bolsones_pendientes=bolsones_pendientes, user=user)
 
 
-@ver_bolsones.route('/bolsones-previos')
+@bolsones.route('/bolsones-previos')
 @login_required
 @admin_required
 @proveedor_required
