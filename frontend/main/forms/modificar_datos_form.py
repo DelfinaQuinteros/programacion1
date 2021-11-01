@@ -20,9 +20,9 @@ class ModificarDatosForm(FlaskForm):
                                  validators.Required(message="El telefono es obligatorio")
                              ])
 
-    email = EmailField('E-mail',
+    email = EmailField('Email',
                        [
-                           validators.Required(message="El E-mail es obligatorio"),
+                           validators.Required(message="El Email es obligatorio"),
                            validators.Email(message='Formato no valido'),
                        ])
 

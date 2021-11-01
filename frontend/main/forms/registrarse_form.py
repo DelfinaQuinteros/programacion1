@@ -23,7 +23,7 @@ class RegistrarseForm(FlaskForm):
                            ],
                            render_kw={"placeholder": "Telefono"})
 
-    email = EmailField('email:',
+    email = EmailField('Email:',
                        [
                            validators.Required(message="El email es obligatorio"),
                            validators.Email(message='Formato no valido'),

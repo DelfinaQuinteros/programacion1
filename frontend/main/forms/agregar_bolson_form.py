@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, SubmitField, StringField
+from wtforms import DateField, SubmitField, StringField, SelectMultipleField
 from wtforms.fields.html5 import EmailField
 from wtforms import validators
 
@@ -11,7 +11,7 @@ class BolsonForms:
                          ],
                          render_kw={"placeholder": "Nombre del bolson"}
                          )
-    fecha = StringField("Fecha",
+    fecha = DateField("Fecha",
                       [
                           validators.Required()
                       ], format='%Y-%m-%d'

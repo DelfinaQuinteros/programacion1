@@ -4,6 +4,7 @@ from flask import Blueprint, render_template, redirect, url_for, current_app, re
 from flask_login import login_required, LoginManager, current_user
 from ..forms.iniciar_sesion_form import LoginForm
 from ..forms.registrarse_form import RegistrarseForm
+from ..forms.modificar_datos_form import ModificarDatosForm
 
 cliente = Blueprint('cliente', __name__, url_prefix='/cliente')
 
@@ -84,13 +85,30 @@ def registrarse():
             current_app.config["API_URL"] + '/auth/register',
             headers=headers,
             data=json.dumps(data))
-        return redirect(url_for('inicio.inicio_logeado'))
+        return redirect(url_for('inicio_sesion.html'))
     return render_template('registrarse.html', form=form)
 
 
 @cliente.route('/editar-perfil')
-def editar_perfil():
-    return render_template('editar_perfil.html')
+def editar_perfil(id: int):
+    form = PerfilForm()
+    if not form.is_submitted():
+        r = requests.get(
+            f'{current_app.config["API_URL"]}/usuario/{int(id)}',
+            headers={"content-type": "application/json"},
+            auth=BearerAuth(str(request.cookies['access_token']))
+        )
+    try:
+        usuario = json.loads(r.text)
+        form.nombre.data = usuario['nombre']
+        form.apellido.data = usuario['apellido']
+        form.telefono.data = usuario['telefono']
+        form.email.data = usuario['email']
+    except:
+        pass
+
+    return form
+
 
 
 @cliente.route('/ver-compras')

@@ -21,10 +21,12 @@
         </div>
     </nav>
 
-        <div class="w3l-login-form d-flex align-items-center flex-column main-section">
+        <div class="w3l-login-form d-flex align-items-center flex-column main-section card border-dark mb-3" style="max-width: 26rem;">
+            <br><br>
             <h1><strong>Editar perfil</strong></h1>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <div class="w3l-login-form">
-                    <br><ion-icon name="accessibility-outline"></ion-icon><label>Nombre:</label>
+                    <br>{{ mostrarcampo(form.nombre, class="from control") }}
                     <div class="group">
                         <input type="text" class="form-control" placeholder="Nombre" required="required">
                     </div>

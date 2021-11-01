@@ -27,48 +27,8 @@ def lista_proveedores():
 @admin.route('/agregar-bolson', methods=['POST', 'GET'])
 @login_required
 def agregar_bolson():
-    data = {'per_page': 10}
-    r = requests.get(f'{current_app.config["API_URL"]}/productos', headers={"content-type": "application/json"}, json=data)
-    productos = json.loads(r.text)["productos"]
-    productos = [(producto['id'], producto['nombre']) for producto in productos]
-    productos.insert(0, (0, '--Seleccionar producto'))
-    form = BolsonForms()
-    form.producto.choices = productos
-    form.producto2.choices = productos
-    form.producto3.choices = productos
-    form.producto4.choices = productos
-    form.producto5.choices = productos
+    return render_template('agregar_bolson.html')
 
-    if form.validate_on_submit():
-        bolson = {
-            'nombre': form.nombre.data,
-            'aprobado': form.venta.data,
-            'imagen': form.imagen.data,
-            'descripcion': form.descripcion.data
-        }
-        r = requests.post(f'{current_app.config["API_URL"]}/bolsones-pendientes', headers={"content-type": "application/json"}, json = bolson, auth=BearerAuth(str(request.cookies['access_token'])))
-        bolsonId = json.loads(r.text)['id']
-        productos = [form.producto.data, form.producto2.data, form.producto3.data, form.producto4.data,
-                     form.producto5.data]
-        for producto in productos:
-            if producto != '0':
-                print('it works')
-                data = {
-                    'productoId': producto,
-                    'bolsonId': int(bolsonId),
-                    'cantidad': 15
-                }
-                try:
-                    r = requests.post(f'{current_app.config["API_URL"]}/productos-bolsones',
-                                      headers={"content-type": "application/json"}, json=data,
-                                      auth=BearerAuth(str(request.cookies['access_token'])))
-
-                except:
-                    pass
-            else:
-                print('it doesnt work')
-        return redirect(url_for('admin.agregar_bolson'))
-    return render_template('agregarbolson.html', form=form)
 
 @admin.route('/agregar-proveedor')
 def agregar_proveedor():
@@ -101,8 +61,7 @@ def bolsones_pendientes():
                'authorization': "Beares"+auth}
     r = requests.get(
         current_app.config["API_URL"]+'/bolsonespendientes',
-        headers=headers,
-        data=json.dumps(data))
+        headers=headers)
     bolsones_pendientes = json.loads(r.text)["bolsonespendientes"]
     return render_template('bolsones_pendientes.html', bolsones_pendientes=bolsones_pendientes, user=user)
 
@@ -118,8 +77,6 @@ def bolsones_previos():
                'authorization': "Beares"+auth}
     r = requests.get(
         current_app.config["API_URL"]+'/bolsonesprevios',
-        headers=headers,
-        data=json.dumps(data)
-    )
+        headers=headers)
     bolsones_previos = json.loads(r.text)["Bolsones previos"]
     return render_template('bolsones_previos.html', bolsones_previos=bolsones_previos, user=user)
