@@ -40,7 +40,7 @@ def agregar_bolson():
     return render_template('agregar_bolson.html')
 
 
-@admin.route('/agregar-proveedor')
+@admin.route('/agregar-proveedor', methods=['POST', 'GET'])
 def agregar_proveedor():
     return render_template('agregar_proveedor.html')
 
@@ -58,6 +58,9 @@ def ver_productos():
 @admin.route('/ver-bolsones')
 @admin_required
 def ver_bolsones():
+    data = {'per_page': 3}
+    if 'page' in request.args:
+        data["page"] = request.args.get('page', '')
     user = current_user
     auth = request.cookies['access_token']
     headers = {'content-type': 'application/json',
@@ -65,14 +68,20 @@ def ver_bolsones():
     r = requests.get(
         current_app.config["API_URL"] + '/bolsonesventa',
         headers=headers,
-        json={}
+        json=data
     )
     bolsones = json.loads(r.text)["bolsonesventa"]
-    return render_template('bolsones_admin.html', bolsones=bolsones, user=user)
+    pagination = {}
+    pagination["pages"] = json.loads(r.text)["pages"]
+    pagination["current_page"] = json.loads(r.text)["page"]
+    return render_template('bolsones_admin.html', bolsones=bolsones, user=user, pagination=pagination)
 
 
 @admin.route('/bolsones-pendientes')
 def bolsones_pendientes():
+    data = {'per_page': 3}
+    if 'page' in request.args:
+        data["page"] = request.args.get('page', '')
     user = current_user
     auth = request.cookies['access_token']
     headers = {'content-type': 'application/json',
@@ -80,13 +89,19 @@ def bolsones_pendientes():
     r = requests.get(
         current_app.config["API_URL"]+'/bolsonespendientes',
         headers=headers,
-        json={})
-    bolsones= json.loads(r.text)["bolsonespendientes"]
-    return render_template('bolsones_pendientes.html', bolsones=bolsones, user=user)
+        json=data)
+    bolsones = json.loads(r.text)["bolsonespendientes"]
+    pagination = {}
+    pagination["pages"] = json.loads(r.text)["pages"]
+    pagination["current_page"] = json.loads(r.text)["page"]
+    return render_template('bolsones_pendientes.html', bolsones=bolsones, user=user, pagination=pagination)
 
 
 @admin.route('/bolsones-previos')
 def bolsones_previos():
+    data = {'per_page': 3}
+    if 'page' in request.args:
+        data["page"] = request.args.get('page', '')
     user = current_user
     auth = request.cookies['access_token']
     headers = {'content-type': 'application/json',
@@ -94,6 +109,9 @@ def bolsones_previos():
     r = requests.get(
         current_app.config["API_URL"]+'/bolsonesprevios',
         headers=headers,
-        json={})
+        json=data)
     bolsones = json.loads(r.text)["bolsonesprevios"]
-    return render_template('bolsones_previos.html', bolsones=bolsones, user=user)
+    pagination = {}
+    pagination["pages"] = json.loads(r.text)["pages"]
+    pagination["current_page"] = json.loads(r.text)["page"]
+    return render_template('bolsones_previos.html', bolsones=bolsones, user=user, pagination=pagination)

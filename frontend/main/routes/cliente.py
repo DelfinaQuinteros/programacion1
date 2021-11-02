@@ -1,6 +1,6 @@
 import json
 import requests
-from flask import Blueprint, render_template, redirect, url_for, current_app, request, make_response
+from flask import Blueprint, render_template, redirect, url_for, current_app, request, make_response, flash
 from flask_login import login_required, LoginManager, current_user
 from ..forms.iniciar_sesion_form import LoginForm
 from ..forms.registrarse_form import RegistrarseForm
@@ -12,24 +12,30 @@ cliente = Blueprint('cliente', __name__, url_prefix='/cliente')
 @cliente.route('/bolsones')
 @login_required
 def bolsones_en_venta():
+    data = {'per_page': 3}
+    if 'page' in request.args:
+        data["page"] = request.args.get('page', '')
     user = current_user
     auth = request.cookies['access_token']
     headers = {'content-type': 'application/json',
-               'authorization': 'Bearer'+auth}
+               'authorization': 'Bearer' + auth}
     r = requests.get(
-        current_app.config["API_URL"]+'/bolsones',
+        current_app.config["API_URL"] + '/bolsonesventa',
         headers=headers,
-        json={}
+        json=data
     )
-    bolsones = json.loads(r.text)["bolsones"]
-    return render_template('ver_bolsones_registrado.html', bolsones=bolsones)
+    bolsones = json.loads(r.text)["bolsonesventa"]
+    pagination = {}
+    pagination["pages"] = json.loads(r.text)["pages"]
+    pagination["current_page"] = json.loads(r.text)["page"]
+    return render_template('ver_bolsones_registrado.html', bolsones=bolsones, user=user, pagination=pagination)
 
 
 @cliente.route('/bolsones-no-logeado/')
 def bolsones_no_logeado():
     headers = {'content-type': 'application/json'}
     r = requests.get(
-        current_app.config["API_URL"]+'/bolsones',
+        current_app.config["API_URL"] + '/bolsones',
         headers=headers,
         json={}
     )
@@ -42,9 +48,9 @@ def bolsones_no_logeado():
 def panel_cliente():
     auth = request.cookies['access_token']
     headers = {"content-type": "application/json",
-               "authorization": "Bearer"+auth}
+               "authorization": "Bearer" + auth}
     r = requests.get(
-        current_app.config["API_URL"]+'/cliente',
+        current_app.config["API_URL"] + '/cliente',
         headers=headers)
     if current_user.role == 'cliente':
         return render_template('panel_cliente.html', cliente=cliente)
@@ -69,6 +75,8 @@ def inicio_sesion():
             req = make_response(redirect(url_for('inicio.inicio_logeado')))
             req.set_cookie('access_token', user_data.get("access_token"), httponly=True)
             return req
+        else:
+            flash('Usuario o contraseña incorrecta', 'danger')
     return render_template('inicio_sesion.html', form=form)
 
 
@@ -97,6 +105,3 @@ def editar_perfil():
 @cliente.route('/ver-compras')
 def ver_compras():
     return render_template('compra_cliente.html')
-
-
-

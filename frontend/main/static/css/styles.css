@@ -80,6 +80,7 @@ background-color: var(--color-light);
 color: var(--color-dark);
 letter-spacing: .05rem
 }
+
 .navbar {
     background-color: #ffffff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .05);
@@ -97,6 +98,7 @@ letter-spacing: .05rem
 * {
     font-family:'Titillium Web', sans-serif;
 }
+
 .button {
     background-color: transparent;
     color: var(--color-dark);
