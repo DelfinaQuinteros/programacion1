@@ -14,7 +14,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                    <a class="nav-link btn btn-primary py-2 px-4" href="http://localhost:63342/programacion1/frontend/vistas/inicio_registrado.html?_ijt=a8n5c2b05vnv76402o6s1t0ap3&_ij_reload=RELOAD_ON_SAVE" id="Inicio">Inicio</a>
+                        <a class="nav-link"  href="{{url_for('cliente.panel_cliente')}}" id="panelprov">Panel proveedor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary py-2 px-4" href="{{url_for('inicio.inicio_logeado')}}" id="Inicio">Inicio</a>
                     </li>
                 </ul>
             </div>
@@ -26,7 +29,7 @@
             <h1><strong>Editar perfil</strong></h1>
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <div class="w3l-login-form">
-                    <br>{{ mostrarcampo(form.nombre, class="from control") }}
+                    <br><ion-icon name="accessibility-outline"></ion-icon><label>Nombre:</label>
                     <div class="group">
                         <input type="text" class="form-control" placeholder="Nombre" required="required">
                     </div>
@@ -51,10 +54,7 @@
                 </div>
                 <div class="w3l-login-form">
                     <br><a class="btn button btn-xl mt-1 " href="#scroll">Actualizar perfil</a>
-                    <div class="recuperar_contraseña">
-                      <strong>Olvido su contraseña?</strong><a href="http://localhost:63342/programacion1/frontend/vistas/cambiar_contrase%C3%B1a.html?_ijt=4qfpsmk7glfuufv26pt5d7ebnu&_ij_reload=RELOAD_ON_SAVE">Entre aqui.</a>
-                      <br><br>
-                    </div>
+                     <br> <br>
                 </div>
         </div>
        <footer class="footer">

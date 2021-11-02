@@ -7,11 +7,11 @@ from flask_jwt_extended import jwt_required
 
 
 class BolsonesPendientes(Resource):
-    @jwt_required()
+    #@jwt_required()
     def get(self):
         page = 1
         per_page = 10
-        bolsonespendientes = db.session.query(BolsonModels).filter(BolsonModels.aprobado == 0).all()
+        bolsonespendientes = db.session.query(BolsonModels).filter(BolsonModels.aprobado == 0)
         if request.get_json():
             filtro = request.get_json().items()
             for key, value in filtro:
@@ -20,13 +20,14 @@ class BolsonesPendientes(Resource):
                 if key == "per_page":
                     per_page = int(value)
         bolsones = bolsonespendientes.paginate(page, per_page, True, 30)
+        print("eeeeeeeeeeeeeeeeeeeeee")
         return jsonify({'bolsonespendientes': [bolson.to_json() for bolson in bolsones.items],
                         'total': bolsones.total,
                         'page': bolsones.page,
                         'pages': bolsones.pages
                         })
 
-    @admin_or_cliente_required
+    #@admin_or_cliente_required
     def post(self):
         bolsonpendiente = BolsonModels.from_json(request.get_json())
         try:
@@ -38,12 +39,12 @@ class BolsonesPendientes(Resource):
 
 
 class BolsonPendiente(Resource):
-    @jwt_required()
+    #@jwt_required()
     def get(self, id):
         bolsonpendiente = db.session.query(BolsonModels).get_or_404(id)
         return bolsonpendiente.to_json()
 
-    @admin_or_cliente_required
+    #@admin_or_cliente_required
     def delete(self, id):
         bolsonpendiente = db.session.query(BolsonModels).get_or_404(id)
         try:
@@ -53,7 +54,7 @@ class BolsonPendiente(Resource):
         except:
             return '', 404
 
-    @admin_or_cliente_required
+    #@admin_or_cliente_required
     def put(self, id):
         bolsonpendiente = db.session.query(BolsonModels).get_or_404(id)
         data = request.get_json().items()

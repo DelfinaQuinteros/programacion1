@@ -85,35 +85,18 @@ def registrarse():
             current_app.config["API_URL"] + '/auth/register',
             headers=headers,
             data=json.dumps(data))
-        return redirect(url_for('inicio_sesion.html'))
+        return redirect(url_for('cliente.inicio_sesion'))
     return render_template('registrarse.html', form=form)
 
 
 @cliente.route('/editar-perfil')
-def editar_perfil(id: int):
-    form = PerfilForm()
-    if not form.is_submitted():
-        r = requests.get(
-            f'{current_app.config["API_URL"]}/usuario/{int(id)}',
-            headers={"content-type": "application/json"},
-            auth=BearerAuth(str(request.cookies['access_token']))
-        )
-    try:
-        usuario = json.loads(r.text)
-        form.nombre.data = usuario['nombre']
-        form.apellido.data = usuario['apellido']
-        form.telefono.data = usuario['telefono']
-        form.email.data = usuario['email']
-    except:
-        pass
-
-    return form
-
+def editar_perfil():
+    return render_template('editar_perfil.html')
 
 
 @cliente.route('/ver-compras')
 def ver_compras():
-    return not render_template('compra_cliente.html')
+    return render_template('compra_cliente.html')
 
 
 

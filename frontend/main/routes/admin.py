@@ -16,7 +16,17 @@ def panel_admin():
 
 @admin.route('/consultar-compras')
 def consultar_compras():
-    return render_template('compras_admin.html')
+    user = current_user
+    auth = request.cookies['access_token']
+    headers = {'content-type': 'application/json',
+               'authorization': 'Bearer' + auth}
+    r = requests.get(
+        current_app.config["API_URL"] + '/bolsonesventa',
+        headers=headers,
+        json={}
+    )
+    bolsones = json.loads(r.text)["bolsonesventa"]
+    return render_template('compras_admin.html', bolsones=bolsones, user=user)
 
 
 @admin.route('/lista-proveedores')
@@ -46,14 +56,22 @@ def ver_productos():
 
 
 @admin.route('/ver-bolsones')
+@admin_required
 def ver_bolsones():
-    return render_template('bolsones_admin.html')
+    user = current_user
+    auth = request.cookies['access_token']
+    headers = {'content-type': 'application/json',
+               'authorization': 'Bearer' + auth}
+    r = requests.get(
+        current_app.config["API_URL"] + '/bolsonesventa',
+        headers=headers,
+        json={}
+    )
+    bolsones = json.loads(r.text)["bolsonesventa"]
+    return render_template('bolsones_admin.html', bolsones=bolsones, user=user)
 
 
 @admin.route('/bolsones-pendientes')
-@login_required
-@admin_required
-@proveedor_required
 def bolsones_pendientes():
     user = current_user
     auth = request.cookies['access_token']
@@ -61,15 +79,13 @@ def bolsones_pendientes():
                'authorization': "Beares"+auth}
     r = requests.get(
         current_app.config["API_URL"]+'/bolsonespendientes',
-        headers=headers)
-    bolsones_pendientes = json.loads(r.text)["bolsonespendientes"]
-    return render_template('bolsones_pendientes.html', bolsones_pendientes=bolsones_pendientes, user=user)
+        headers=headers,
+        json={})
+    bolsones= json.loads(r.text)["bolsonespendientes"]
+    return render_template('bolsones_pendientes.html', bolsones=bolsones, user=user)
 
 
 @admin.route('/bolsones-previos')
-@login_required
-@admin_required
-@proveedor_required
 def bolsones_previos():
     user = current_user
     auth = request.cookies['access_token']
@@ -77,6 +93,7 @@ def bolsones_previos():
                'authorization': "Beares"+auth}
     r = requests.get(
         current_app.config["API_URL"]+'/bolsonesprevios',
-        headers=headers)
-    bolsones_previos = json.loads(r.text)["Bolsones previos"]
-    return render_template('bolsones_previos.html', bolsones_previos=bolsones_previos, user=user)
+        headers=headers,
+        json={})
+    bolsones = json.loads(r.text)["bolsonesprevios"]
+    return render_template('bolsones_previos.html', bolsones=bolsones, user=user)
