@@ -10,20 +10,15 @@ class Bolsones(Resource):
     def get(self):
         page = 1
         per_page = 10
-        print("aaaaaaaaaaa")
         bolsones = db.session.query(BolsonModels)
-        print("bbbbbbbbbb")
         if request.get_json():
-            print("cccccccccccc")
             filtro = request.get_json().items()
             for key, value in filtro:
                 if key == "page":
                     page = int(value)
                 if key == "per_page":
                     per_page = int(value)
-        print("dddddddddddddd")
         bolsones = bolsones.paginate(page, per_page, True, 30)
-        print("eeeeeeeeeeeeeeeee")
         return jsonify({'bolsones': [bolson.to_json() for bolson in bolsones.items],
                         'total': bolsones.total,
                         'page': bolsones.page,

@@ -4,6 +4,9 @@ from flask import Blueprint, render_template, redirect, url_for, current_app, re
 from flask_login import login_required, LoginManager, current_user
 from ..forms.agregar_bolson_form import BolsonForms
 from .auth import admin_required, proveedor_required
+from ..forms.modificar_datos_form import ModificarDatosForm
+from ..forms.agregar_proveedor_form import AgregarProveedorForm
+from ..forms.registrarse_form import RegistrarseForm
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -41,13 +44,40 @@ def agregar_bolson():
 
 
 @admin.route('/agregar-proveedor', methods=['POST', 'GET'])
+@admin_required
+@login_required
 def agregar_proveedor():
-    return render_template('agregar_proveedor.html')
+    form = AgregarProveedorForm()
+    if form.validate_on_submit():
+        data = {"nombre": form.nombre.data, "apellido": form.apellido.data, "email": form.email.data,
+                "password": form.password.data, "role": "proveedor"}
+        headers = {
+            'content-type': "application/json"
+        }
+        r = requests.post(
+            current_app.config["API_URL"] + '/auth/register',
+            headers=headers,
+            data=json.dumps(data))
+    return render_template('agregar_proveedor.html', form=form)
 
 
-@admin.route('/editar-perfil')
-def editar_perfil():
-    return render_template('editar_perfil.html')
+@admin.route('/editar-perfil/<int:id>', methods=['POST', 'GET'])
+def editar_perfil(id):
+    auth = request.cookies['access_token']
+    form = ModificarDatosForm()
+    usuario = {
+        "nombre": form.nombre.data,
+        "apellido": form.apellido.data,
+        "telefono": form.telefono.data,
+        "password": form.password.data
+    }
+
+    r = requests.put(current_app.config['API_URL'] + '/cliente/' + str(id),
+                     headers={'content-type': "application/json",
+                              'authorization': "Bearer " + auth},
+                     json=usuario
+                     )
+    return render_template('editar_perfil.html', form=form, id=id)
 
 
 @admin.route('/ver-productos')

@@ -33,6 +33,20 @@ def panel_proveedor():
     return render_template('panel_proveedor.html')
 
 
-@proveedor.route('/editar-perfil')
-def editar_perfil():
-    return render_template('editar_perfil.html')
+@proveedor.route('/editar-perfil/<int:id>', methods=['POST', 'GET'])
+def editar_perfil(id):
+    auth = request.cookies['access_token']
+    form = ModificarDatosForm()
+    usuario = {
+        "nombre": form.nombre.data,
+        "apellido": form.apellido.data,
+        "telefono": form.telefono.data,
+        "password": form.password.data
+    }
+
+    r = requests.put(current_app.config['API_URL'] + '/cliente/' + str(id),
+                     headers={'content-type': "application/json",
+                              'authorization': "Bearer " + auth},
+                     json=usuario
+                     )
+    return render_template('editar_perfil.html', form=form, id=id)

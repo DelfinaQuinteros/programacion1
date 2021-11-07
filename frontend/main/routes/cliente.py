@@ -5,6 +5,7 @@ from flask_login import login_required, LoginManager, current_user
 from ..forms.iniciar_sesion_form import LoginForm
 from ..forms.registrarse_form import RegistrarseForm
 from ..forms.modificar_datos_form import ModificarDatosForm
+from main.routes.auth import BearerAuth
 
 cliente = Blueprint('cliente', __name__, url_prefix='/cliente')
 
@@ -97,9 +98,29 @@ def registrarse():
     return render_template('registrarse.html', form=form)
 
 
-@cliente.route('/editar-perfil')
-def editar_perfil():
-    return render_template('editar_perfil.html')
+@cliente.route('/editar-perfil/<int:id>', methods=['POST', 'GET'])
+def editar_perfil(id):
+    auth = request.cookies['access_token']
+    form = ModificarDatosForm()
+    usuario = {
+        "nombre": form.nombre.data,
+        "apellido": form.apellido.data,
+        "telefono": form.telefono.data,
+        "password": form.password.data
+    }
+
+    r = requests.put(current_app.config['API_URL'] + '/cliente/' + str(id),
+                     headers={'content-type': "application/json",
+                              'authorization': "Bearer " + auth},
+                     json=usuario
+                     )
+    return render_template('editar_perfil.html', form=form, id=id)
+
+
+@cliente.route('/perfil')
+def perfil():
+    form = ModificarDatosForm()
+    return render_template('editar_perfil.html', form=form)
 
 
 @cliente.route('/ver-compras')

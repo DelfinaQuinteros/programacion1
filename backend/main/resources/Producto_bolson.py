@@ -17,7 +17,7 @@ class ProductosBolsones(Resource):
                 elif key == 'per_page':
                     per_page = int(value)
         productobolsones = productosbolsones.paginate(page, per_page, True, 30)
-        return jsonify({'productosbolsones': [productobolson.to_json() for productobolson in productosbolsones],
+        return jsonify({'productosbolsones': [productobolson.to_json() for productobolson in productosbolsones.items],
                         'total': productobolsones.total,
                         'page': productobolsones.page,
                         'pages': productobolsones.pages

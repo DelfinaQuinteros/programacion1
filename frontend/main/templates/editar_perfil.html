@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% from 'macros/from_macro.html' import mostrarcampo, mostrarenvio %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
@@ -27,35 +27,34 @@
         <div class="w3l-login-form d-flex align-items-center flex-column main-section card border-dark mb-3" style="max-width: 26rem;">
             <br><br>
             <h1><strong>Editar perfil</strong></h1>
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <form action="{{url_for('cliente.editar_perfil', id=id)}}" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <div class="w3l-login-form">
-                    <br><ion-icon name="accessibility-outline"></ion-icon><label>Nombre:</label>
                     <div class="group">
-                        <input type="text" class="form-control" placeholder="Nombre" required="required">
+                        {{mostrarcampo(form.nombre, class="form-control")}}
                     </div>
                 </div>
                 <div class="w3l-login-form">
-                   <br><ion-icon name="accessibility-outline"></ion-icon><label>Apellido:</label>
                     <div class="group">
-                        <input type="text" class="form-control" placeholder="Apellido" required="required">
+                        {{mostrarcampo(form.apellido, class="form-control")}}
                     </div>
                 </div>
                 <div class="w3l-login-form">
-                    <br><ion-icon name="call-outline"></ion-icon><label>Telefono:</label>
                     <div class="group">
-                        <input type="text" class="form-control" placeholder="Telefono" required="required">
+                        {{mostrarcampo(form.telefono, class="form-control")}}
                     </div>
                 </div>
                 <div class="w3l-login-form">
-                    <br><ion-icon name="key-outline"></ion-icon><label>Contraseña:</label>
                     <div class="group">
-                        <input type="password" class="form-control" placeholder="Contraseña" required="required">
+                        {{mostrarcampo(form.password, class="form-control")}}
                     </div>
                 </div>
                 <div class="w3l-login-form">
-                    <br><a class="btn button btn-xl mt-1 " href="#scroll">Actualizar perfil</a>
+                     <br>
+                    {{mostrarenvio(form.submit, class="btn button btn-xl mt-1")}}
                      <br> <br>
                 </div>
+            </form>
         </div>
        <footer class="footer">
         <div class="container">

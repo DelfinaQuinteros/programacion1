@@ -1,36 +1,34 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, SubmitField, StringField
+from wtforms import PasswordField, SubmitField, StringField, IntegerField
 from wtforms.fields.html5 import EmailField
 from wtforms import validators
 
 
 class ModificarDatosForm(FlaskForm):
-    firstname = StringField('Nombre',
-                            [
-                                validators.Required(message="El nombre es obligatorio"),
-                            ])
+    nombre = StringField('Nombre',
+                         [
+                             validators.Required(message="El nombre es obligatorio"),
+                         ],
+                         render_kw={"placeholder": "Nombre"}
+                         )
 
-    lastname = StringField('Apellido',
+    apellido = StringField('Apellido',
                            [
                                validators.Required(message="El apellido es obligatorio"),
-                           ])
+                           ],
+                           render_kw={"placeholder": "Apellido"}
+                           )
 
-    telefono = StringField("Telefono",
-                             [
-                                 validators.Required(message="El telefono es obligatorio")
-                             ])
+    telefono = IntegerField("Telefono",
+                            [
+                                validators.Required(message="El telefono es obligatorio")
+                            ],
+                            render_kw={"placeholder": "Telefono"}
+                            )
 
-    email = EmailField('Email',
-                       [
-                           validators.Required(message="El Email es obligatorio"),
-                           validators.Email(message='Formato no valido'),
-                       ])
+    password = PasswordField('Contraseña', [
+        validators.Required(message="La contraseña es obligatoria")
+    ],
+                             render_kw={"placeholder": "Contraseña"})
 
-    password = PasswordField('Password', [
-        validators.Required(),
-        validators.EqualTo('confirm', message='Las contraseñas no coinciden')
-    ])
-
-    confirm = PasswordField('Repita la contraseña')
-
-    submit = SubmitField("Modificar datos")
+    submit = SubmitField("Actualizar datos")

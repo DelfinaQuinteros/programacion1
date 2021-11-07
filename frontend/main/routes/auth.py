@@ -1,5 +1,6 @@
 from .. import login_manager
 from flask import request, flash, redirect, url_for, current_app
+import requests
 from flask_login import UserMixin, LoginManager, current_user
 import jwt
 from functools import wraps
@@ -53,3 +54,12 @@ def proveedor_required(fn):
         return fn(*args, **kws)
 
     return wrapper
+
+
+class BearerAuth(requests.auth.AuthBase):
+    def __init__(self, token):
+        self.token = token
+
+    def __call__(self, r):
+        r.headers["authorization"] = "Bearer " + self.token
+        return r

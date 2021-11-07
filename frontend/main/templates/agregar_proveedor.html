@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% from 'macros/from_macro.html' import mostrarcampo, mostrarenvio %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
@@ -14,7 +14,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary py-2 px-4" href="{{url_for('inicio.inicio_logeado')}}"  id="paneladmin">Panel administrador</a>
+                        <a class="nav-link btn btn-primary py-2 px-4" href="{{url_for('cliente.panel_cliente')}}"  id="paneladmin">Panel administrador</a>
                     </li>
                 </ul>
             </div>
@@ -25,39 +25,45 @@
             <br><br>
             <h1><strong>Agregar nuevo</strong></h1>
             <h1><strong>proveedor</strong></h1>
-            <form action="#" method="POST">
-                <div class="w3l-login-form">
-                    <ion-icon name="accessibility-outline"></ion-icon><label>Nombre:</label>
-                    <div class="group">
-                        <input type="text" class="form-control" placeholder="Nombre" required="required">
-                    </div>
-                </div>
-                <div class="w3l-login-form">
-                    <ion-icon name="accessibility-outline"></ion-icon><label>Apellido:</label>
-                    <div class="group">
-                        <input type="text" class="form-control" placeholder="Apellido" required="required">
-                    </div>
-                </div>
-                <div class="w3l-login-form">
-                    <ion-icon name="call-outline"></ion-icon><label>Telefono:</label>
-                    <div class="group">
-                        <input type="text" class="form-control" placeholder="Telefono" required="required">
-                    </div>
-                </div>
-                <div class="w3l-login-form">
-                    <ion-icon  name = "mail-outline" > </ion-icon ><label>Email:</label>
-                    <div class="group">
-                        <input type="text" class="form-control" placeholder="Email" required="required">
-                        <br>
-                    </div>
-                </div>
-                    <a class="btn button btn-xl mt-1 " href="#scroll">Agregar proveedor</a>
-                <br><br>
-            </form>
+                <form method="POST" action="{{url_for('admin.agregar_proveedor')}}" >
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                        <div class="w3l-login-form">
+                            <div class="group">
+                                {{mostrarcampo(form.nombre, class="form-control")}}
+                            </div>
+                        </div>
+                        <div class="w3l-login-form">
+                            <div class="group">
+                                {{mostrarcampo(form.apellido, class="form-control")}}
+                            </div>
+                        </div>
+                        <div class="w3l-login-form">
+                            <div class="group">
+                                {{mostrarcampo(form.telefono, class="form-control")}}
+                            </div>
+                        </div>
+                        <div class="w3l-login-form">
+                            <div class="group">
+                                {{mostrarcampo(form.email, class="form-control")}}
+                            </div>
+                        </div>
+                        <div class="w3l-login-form" >
+                            <div class="group">
+                                {{mostrarcampo(form.password, class="form-control")}}
+                            </div>
+                        </div>
+                        <div class="w3l-login-form" >
+                            <div class="group">
+                                {{mostrarcampo(form.confirm, class="form-control")}}
+                            </div>
+                        </div>
+                            {{mostrarenvio(form.submit, class="btn button btn-xl mt-1")}}
+                        <br><br><br>
+                </form>
         </div>
        <footer class="footer">
-        <div class="container">
-        </div>
+            <div class="container">
+            </div>
        </footer>
 
 {% endblock %}
