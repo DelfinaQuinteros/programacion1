@@ -21,7 +21,7 @@ class Bolson(db.Model):
             'nombre': str(self.nombre),
             'aprobado': self.aprobado,
             'fecha': self.fecha.strftime('%Y-%m-%d'),
-            'producto': self.productosbolsones,
+            #'producto': self.productosbolsones,
             'descripcion': self.descripcion,
             'precio': self.precio
         }

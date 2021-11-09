@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import DateField, SubmitField, StringField, SelectMultipleField, FloatField, IntegerField
+from wtforms import DateField, SubmitField, StringField, SelectMultipleField, FloatField, IntegerField, DateTimeField
 from wtforms.fields.html5 import EmailField
 from wtforms import validators
 
@@ -40,3 +40,9 @@ class BolsonForms(FlaskForm):
                         render_kw={"placeholder": "$0000"})
     productosId = SelectMultipleField("", coerce=int)
     submit = SubmitField("Agregar bolson")
+
+
+class FormFilterBolsones(FlaskForm):
+    desde = DateTimeField('', [validators.optional()], format='%Y-%m-%d')
+    hasta = DateTimeField('', [validators.optional()], format='%Y-%m-%d')
+    submit = SubmitField('Filtrar')

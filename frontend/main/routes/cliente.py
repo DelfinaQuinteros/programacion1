@@ -4,6 +4,7 @@ from flask import Blueprint, render_template, redirect, url_for, current_app, re
 from flask_login import login_required, LoginManager, current_user
 from ..forms.iniciar_sesion_form import LoginForm
 from ..forms.registrarse_form import RegistrarseForm
+from ..forms.agregar_bolson_form import BolsonForms, FormFilterBolsones
 from ..forms.modificar_datos_form import ModificarDatosForm
 from main.routes.auth import BearerAuth
 
@@ -13,13 +14,22 @@ cliente = Blueprint('cliente', __name__, url_prefix='/cliente')
 @cliente.route('/bolsones')
 @login_required
 def bolsones_en_venta():
-    data = {'per_page': 3}
+    filter = FormFilterBolsones(request.args, meta={'csrf': False})
+    data = {}
+    data['page'] = 1
+    data['per_page'] = 5
     if 'page' in request.args:
         data["page"] = request.args.get('page', '')
     user = current_user
     auth = request.cookies['access_token']
     headers = {'content-type': 'application/json',
                'authorization': 'Bearer' + auth}
+    if filter.submit():
+        if filter.desde.data is not None:
+            data['desde'] = filter.desde.data.strftime('%Y-%m-%d')
+        if filter.hasta.data is not None:
+            data['hasta'] = filter.hasta.data.strftime('%Y-%m-%d')
+
     r = requests.get(
         current_app.config["API_URL"] + '/bolsonesventa',
         headers=headers,
@@ -29,7 +39,7 @@ def bolsones_en_venta():
     pagination = {}
     pagination["pages"] = json.loads(r.text)["pages"]
     pagination["current_page"] = json.loads(r.text)["page"]
-    return render_template('ver_bolsones_registrado.html', bolsones=bolsones, user=user, pagination=pagination)
+    return render_template('ver_bolsones_registrado.html', bolsones=bolsones, user=user, pagination=pagination, filter = filter)
 
 
 @cliente.route('/bolsones-no-logeado/')
@@ -99,6 +109,7 @@ def registrarse():
 
 
 @cliente.route('/editar-perfil/<int:id>', methods=['POST', 'GET'])
+@login_required
 def editar_perfil(id):
     auth = request.cookies['access_token']
     form = ModificarDatosForm()
@@ -117,12 +128,24 @@ def editar_perfil(id):
     return render_template('editar_perfil.html', form=form, id=id)
 
 
+
 @cliente.route('/perfil')
 def perfil():
     form = ModificarDatosForm()
     return render_template('editar_perfil.html', form=form)
 
 
-@cliente.route('/ver-compras')
+@cliente.route('/compras')
 def ver_compras():
-    return render_template('compra_cliente.html')
+    auth = request.cookies['access_token']
+    data = {
+        "usuarioId": current_user.id
+    }
+    r = requests.get(current_app.config["API_URL"] + '/compras',
+                     headers={"content-type": "applications/json",
+                              'authorization': "Bearer " + auth},
+                     data=data)
+    compras = json.loads(r.text)["compras"]
+    pagination = {"pages": json.loads(r.text)["pages"], "current_page": json.loads(r.text)["page"]}
+    return render_template('compra_cliente.html', compras=compras, pagination=pagination)
+

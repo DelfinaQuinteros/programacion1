@@ -30,7 +30,7 @@
             <h1>Compras</h1>
             <br>
         </div>
-        {% for bolson in bolsones %}
+        {% for bolson in compras %}
             <div class="row">
                 <div class="col-sm-3 col-md-3">
                   <br>
@@ -40,7 +40,7 @@
                  <br><br><br>
                  <h2>{{ bolson ['nombre'] }}</h2>
                  <h4>{{ bolson ['descripcion'] }}</h4>
-                 <h4>{{ bolson ['precio'] }}</h4>
+                 <h4>Precio: {{ bolson ['precio'] }}</h4>
               </div>
               <div class="col-sm-3 col-md-3">
                   <br><br>

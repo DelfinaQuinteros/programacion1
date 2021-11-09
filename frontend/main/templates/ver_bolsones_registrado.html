@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% from 'macros/from_macro.html' import mostrarcampo, mostrarenvio %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
@@ -23,6 +23,26 @@
             </div>
         </div>
     </nav>
+
+  <div class="row">
+       <div class="col-md-12 justify-content-center">
+         <form method="GET" action="{{ url_for('cliente.bolsones_en_venta') }}" >
+           <div class="form-row">
+             <div class="form-group col-md-3">
+                 {{ mostrarcampo(filter.desde , class='form-control', placeholder='Desde')}}
+             </div>
+             <div class="form-group col-md-3">
+                 {{ mostrarcampo(filter.hasta , class='form-control', placeholder='Hasta')}}
+             </div>
+             <div class="form-group col-md-4" style="margin-top:15px">
+               {{ mostrarenvio(filter.submit , class='btn btn-primary')}}
+             </div>
+           </div>
+         </form>
+       </div>
+     </div>
+
+
     {% for bolson in bolsones%}
         <div class="container">
             <div class="row">

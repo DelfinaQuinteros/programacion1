@@ -25,12 +25,12 @@
     </div>
     <div class="col-sm-12 order-sm-1 col-md-12 order-md-1 ">
         <div class="p-1 text-center">
-            <a class="btn btn-primary btn-xl mt-5" style="width: 20%;"  href="{{url_for('proveedor.editar_perfil')}}">Editar perfil</a>
+            <a class="btn btn-primary btn-xl mt-5" style="width: 20%;"  href="{{url_for('proveedor.editar_perfil', id=current_user['id'])}}">Editar perfil</a>
         </div>
     </div>
      <div class="col-sm-12 order-sm-1 col-md-12 order-md-1">
         <div class="p-1 text-center">
-            <a class="btn btn-primary btn-xl mt-5" style="width: 20%;" href="{{url_for('proveedor.modificar_producto')}}">Agregar productos</a>
+            <a class="btn btn-primary btn-xl mt-5" style="width: 20%;" href="{{url_for('proveedor.agregar_producto')}}">Agregar productos</a>
         </div>
     </div>
      <div class="col-sm-12 order-sm-1 col-md-12 order-md-1">

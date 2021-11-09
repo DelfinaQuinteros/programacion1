@@ -1,28 +1,33 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, SubmitField, StringField
+from wtforms import PasswordField, SubmitField, StringField, IntegerField
 from wtforms.fields.html5 import EmailField
 from wtforms import validators
 
 
-class AgregarProductoForms:
-    nombre = StringField('Nombre',
-                            [
-                                validators.Required(message="El nombre del producto obligatorio"),
-                            ])
+class AgregarProductoForms(FlaskForm):
+    nombre = StringField('NOMBRE DEL PRODUCTO',
+                         [
+                             validators.Required(message="El nombre del producto obligatorio"),
+                         ])
+    id = IntegerField('PROVEEDOR ID',
+                      [
+                          validators.Required(message="El ID del proveedor obligatorio"),
+                      ])
     submit = SubmitField("Agregar producto")
 
-
+"""
 class ModificarProductoForms:
-    nombre = StringField('Nombre',
-                            [
-                                validators.Required(message="El nombre del producto obligatorio"),
-                            ])
+    nombre = StringField('NOMBRE DEL PRODUCTO',
+                         [
+                             validators.Required(message="El nombre del producto obligatorio"),
+                         ])
     submit = SubmitField("Modificar producto")
 
 
 class EliminarProductoForms:
-    nombre = StringField('Nombre',
-                            [
-                                validators.Required(message="El nombre del producto obligatorio"),
-                            ])
+    id = IntegerField('PRODUCTO ID',
+                      [
+                          validators.Required(message="El ID    del producto obligatorio"),
+                      ])
     submit = SubmitField("Eliminar producto")
+"""

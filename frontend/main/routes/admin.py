@@ -38,7 +38,7 @@ def lista_proveedores():
     return render_template('lista_proveedores.html')
 
 
-@admin.route('/agregar-bolson', methods=['POST'])
+@admin.route('/agregar-bolson', methods=['POST', 'GET'])
 @login_required
 def agregar_bolson():
     form = BolsonForms()
@@ -102,7 +102,30 @@ def editar_perfil(id):
 
 @admin.route('/ver-productos')
 def ver_productos():
-    return render_template('ver_productos.html')
+    auth = request.cookies['access_token']
+    data = {
+        "per_page": 3
+    }
+    r = requests.get(
+        f'{current_app.config["API_URL"]}/productos',
+        headers={'content-type': "application/json",
+                 'authorization': "Bearer " + auth},
+        json=data
+    )
+    productos = json.loads(r.text)['productos']
+    pagination = {}
+    pagination["pages"] = json.loads(r.text)["pages"]
+    pagination["current_page"] = json.loads(r.text)["page"]
+    return render_template('ver_productos.html', productos=productos, pagination=pagination)
+
+
+@admin.route('/producto-eliminar/<int:id>')
+def eliminar_producto(id):
+    auth = request.cookies['access_token']
+    r = requests.delete(f'{current_app.config["API_URL"]}/producto/{id}',
+                        headers={'content-type': "application/json",
+                                 'authorization': "Bearer " + auth})
+    return redirect(url_for('admin.ver_productos'))
 
 
 @admin.route('/ver-bolsones')
@@ -116,20 +139,21 @@ def ver_bolsones():
     headers = {'content-type': 'application/json',
                'authorization': 'Bearer' + auth}
     r = requests.get(
-        current_app.config["API_URL"] + '/bolsonesventa',
+        current_app.config["API_URL"] + '/compras',
         headers=headers,
         json=data
     )
-    bolsones = json.loads(r.text)["bolsonesventa"]
+    bolsones = json.loads(r.text)["compras"]
     pagination = {}
     pagination["pages"] = json.loads(r.text)["pages"]
     pagination["current_page"] = json.loads(r.text)["page"]
-    return render_template('bolsones_admin.html', bolsones=bolsones, user=user, pagination=pagination)
+    return render_template('compras_admin.html', bolsones=bolsones, user=user, pagination=pagination)
 
 
 @admin.route('/verbolsones')
 def verbolsones():
     return render_template("compras_admin.html")
+
 
 @admin.route('/bolsones-pendientes')
 def bolsones_pendientes():
@@ -169,3 +193,17 @@ def bolsones_previos():
     pagination["pages"] = json.loads(r.text)["pages"]
     pagination["current_page"] = json.loads(r.text)["page"]
     return render_template('bolsones_previos.html', bolsones=bolsones, user=user, pagination=pagination)
+
+
+@admin.route('/eliminar/<int:id>')
+def eliminar(id):
+    auth = request.cookies['access_token']
+    headers = {
+        'content-Type': "application/json",
+        'authorization': "Bearer " + auth}
+    r = requests.delete(
+        current_app.config["API_URL"] + '/bolsonpendiente/'+str(id),
+        headers=headers)
+    if r.status_code == 204:
+        return redirect(url_for('admin.ver_bolsones'))
+

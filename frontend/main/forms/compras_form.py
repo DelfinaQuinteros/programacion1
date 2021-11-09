@@ -4,6 +4,6 @@ from wtforms.fields.html5 import EmailField
 from wtforms import validators
 
 
-class CompraForms:
+class CompraForms(FlaskForm):
     bolsonId = IntergerField(label=None)
     send = SubmitField("Comprar")

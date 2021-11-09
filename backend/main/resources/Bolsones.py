@@ -19,6 +19,7 @@ class Bolsones(Resource):
                 if key == "per_page":
                     per_page = int(value)
         bolsones = bolsones.paginate(page, per_page, True, 30)
+        print(bolsones)
         return jsonify({'bolsones': [bolson.to_json() for bolson in bolsones.items],
                         'total': bolsones.total,
                         'page': bolsones.page,

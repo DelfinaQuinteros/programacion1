@@ -5,12 +5,23 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/course.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/course.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/main/models/Bolsones.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/models/Bolsones.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main/models/Producto_bolson.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/models/Producto_bolson.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main/resources/Bolsones.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/resources/Bolsones.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main/resources/Producto_bolson.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/resources/Producto_bolson.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/forms/agregar_bolson_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/agregar_bolson_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/forms/compras_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/compras_form.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/forms/producto_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/producto_form.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/routes/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/static/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/agregar_bolson.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/agregar_bolson.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/routes/cliente.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/cliente.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/routes/proveedor.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/proveedor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/bolsones_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/bolsones_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/bolsones_pendientes.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/bolsones_pendientes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/templates/compras_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/compras_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/editar_perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/editar_perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/modificar_producto_prov.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/modificar_producto_prov.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/panel_proveedor.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/panel_proveedor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/ver_bolsones_registrado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/ver_bolsones_registrado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/ver_productos.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/ver_productos.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +38,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1yEiYV7WjUKbDb5LHI2vGoncvQ3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
