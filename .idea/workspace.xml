@@ -4,18 +4,13 @@
     <list default="true" id="f1410dfb-87be-4c6c-a1a8-9d5c5718e032" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/course.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/course.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main/models/Producto_bolson.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/models/Producto_bolson.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main/resources/Bolsones.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/resources/Bolsones.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main/resources/Producto_bolson.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/resources/Producto_bolson.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/forms/modificar_datos_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/modificar_datos_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main/models/Bolsones.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/models/Bolsones.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/forms/agregar_bolson_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/agregar_bolson_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/forms/producto_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/producto_form.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/routes/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/routes/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/routes/cliente.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/cliente.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/routes/proveedor.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/proveedor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/agregar_proveedor.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/agregar_proveedor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/editar_perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/editar_perfil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/panel_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/panel_admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/panel_cliente.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/panel_cliente.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/agregar_bolson.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/agregar_bolson.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/compras_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/compras_admin.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>

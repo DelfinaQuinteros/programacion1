@@ -5,6 +5,7 @@ from flask_login import login_required, LoginManager, current_user
 from ..forms.agregar_bolson_form import BolsonForms
 from .auth import admin_required, proveedor_required
 from ..forms.modificar_datos_form import ModificarDatosForm
+from ..forms.agregar_bolson_form import BolsonForms
 from ..forms.agregar_proveedor_form import AgregarProveedorForm
 from ..forms.registrarse_form import RegistrarseForm
 
@@ -37,10 +38,28 @@ def lista_proveedores():
     return render_template('lista_proveedores.html')
 
 
-@admin.route('/agregar-bolson', methods=['POST', 'GET'])
+@admin.route('/agregar-bolson', methods=['POST'])
 @login_required
 def agregar_bolson():
-    return render_template('agregar_bolson.html')
+    form = BolsonForms()
+    if form.validate_on_submit():
+        auth = request.cookies['access_token']
+        headers = {'content-type': 'application/json',
+                   'authorization': 'Bearer' + auth}
+        bolson = {
+            'id': int(form.id.data),
+            'nombre': form.nombre.data,
+            'aprobado': form.aprobado.data,
+            'fecha': form.fecha.data,
+            'descripcion': form.descripcion.data,
+            'precio': form.precio.data
+        }
+        r = requests.post(
+            current_app.config["API_URL"] + '/bolsonespendientes',
+            headers=headers,
+            json=bolson
+        )
+    return render_template('agregar_bolson.html', form=form)
 
 
 @admin.route('/agregar-proveedor', methods=['POST', 'GET'])
@@ -62,6 +81,7 @@ def agregar_proveedor():
 
 
 @admin.route('/editar-perfil/<int:id>', methods=['POST', 'GET'])
+@login_required
 def editar_perfil(id):
     auth = request.cookies['access_token']
     form = ModificarDatosForm()
@@ -107,6 +127,10 @@ def ver_bolsones():
     return render_template('bolsones_admin.html', bolsones=bolsones, user=user, pagination=pagination)
 
 
+@admin.route('/verbolsones')
+def verbolsones():
+    return render_template("compras_admin.html")
+
 @admin.route('/bolsones-pendientes')
 def bolsones_pendientes():
     data = {'per_page': 3}
@@ -115,9 +139,9 @@ def bolsones_pendientes():
     user = current_user
     auth = request.cookies['access_token']
     headers = {'content-type': 'application/json',
-               'authorization': "Beares"+auth}
+               'authorization': "Beares" + auth}
     r = requests.get(
-        current_app.config["API_URL"]+'/bolsonespendientes',
+        current_app.config["API_URL"] + '/bolsonespendientes',
         headers=headers,
         json=data)
     bolsones = json.loads(r.text)["bolsonespendientes"]
@@ -135,9 +159,9 @@ def bolsones_previos():
     user = current_user
     auth = request.cookies['access_token']
     headers = {'content-type': 'application/json',
-               'authorization': "Beares"+auth}
+               'authorization': "Beares" + auth}
     r = requests.get(
-        current_app.config["API_URL"]+'/bolsonesprevios',
+        current_app.config["API_URL"] + '/bolsonesprevios',
         headers=headers,
         json=data)
     bolsones = json.loads(r.text)["bolsonesprevios"]

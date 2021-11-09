@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-{% from 'macros/from_macro.html' import mostrarcampo %}
+{% from 'macros/from_macro.html' import mostrarcampo, mostrarenvio %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
@@ -27,23 +27,33 @@
             <br><br>
         <h1><strong>Agregar bolson</strong></h1>
              <br>
+        <form method="POST" action="{{url_for('admin.agregar_bolson')}}" >
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
                 <div class="w3l-login-form">
-                    <label>Nombre del bolson:</label>
                     <div class="group">
-                        <input type="text" class="form-control" placeholder="Nombre" required="required">
+                        {{mostrarcampo(form.id, class="form-control")}}
                     </div>
-                    <label>Fecha:</label>
                     <div class="group">
-                        <input type="text" class="form-control" placeholder="Fecha" required="required">
+                        {{mostrarcampo(form.nombre, class="form-control")}}
                     </div>
-                    <label>Productos:</label>
                     <div class="group">
-                        <input type="text" class="form-control" placeholder="Productos" required="required">
+                        {{mostrarcampo(form.aprobado, class="form-control")}}
                     </div>
-                    <br><a class="btn button btn-xl mt-1 " href="#scroll">Agregar bolson</a>
+                    <div class="group">
+                        {{mostrarcampo(form.fecha, class="form-control")}}
+                    </div>
+                    <div class="group">
+                        {{mostrarcampo(form.descripcion, class="form-control")}}
+                    </div>
+                    <div class="group">
+                        {{mostrarcampo(form.precio, class="form-control")}}
+                    </div>
+                    <br>{{mostrarenvio(form.submit, class="btn button btn-xl mt-1")}}
                   <br><br>
                 </div>
+        </form>
     </div>
+
 
        <footer class="footer">
         <div class="container"></div>

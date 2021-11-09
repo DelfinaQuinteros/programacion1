@@ -1,15 +1,15 @@
 :root {
 --color-dark:#1b1b1b;
 --color-light: #ffffff;
+--color-green: #198754;
+--color-orange: #fd7e14;
 --color-gold: #c/b8a5
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;
     --bs-pink: #d63384;
     --bs-red: #dc3545;
-    --bs-orange: #fd7e14;
     --bs-yellow: #ffc107;
-    --bs-green: #198754;
     --bs-teal: #20c997;
     --bs-cyan: #0dcaf0;
     --bs-white: #fff;
@@ -113,15 +113,29 @@ letter-spacing: .05rem
     border-radius: 6px;
 }
 .boton-secundario{
-    color: var(--color-dark);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    background-color: transparent;
+    border: 1px solid var(--color-orange);
+    border-radius: 0;
+    color: var(--color-orange);
+    padding: .7rem 2.5rem;
+    font-size: 1.25rem;
 }
-.button:hover {
-    background-color: var(--color-dark);
+.boton-secundario:hover {
+    background-color: var(--color-orange);
     color: var(--color-light);
-    border: 1px solid var(--color-dark);
+    border: 1px solid var(--color-orange);
 }
+
+.boton-clic{
+    background-color: transparent;
+    border: 1px solid var(--color-green);
+    border-radius: 0;
+    color: var(--color-green);
+    padding: .7rem 2.5rem;
+    font-size: 1.25rem;
+}
+
+
 
 .main-section{
     margin: 0 auto;
