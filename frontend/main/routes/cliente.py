@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, redirect, url_for, current_app, re
 from flask_login import login_required, LoginManager, current_user
 from ..forms.iniciar_sesion_form import LoginForm
 from ..forms.registrarse_form import RegistrarseForm
-from ..forms.agregar_bolson_form import BolsonForms, FormFilterBolsones
+from ..forms.agregar_bolson_form import BolsonForms, FormFilterBolsones, FormFilterBolson
 from ..forms.modificar_datos_form import ModificarDatosForm
 from main.routes.auth import BearerAuth
 
@@ -14,7 +14,7 @@ cliente = Blueprint('cliente', __name__, url_prefix='/cliente')
 @cliente.route('/bolsones')
 @login_required
 def bolsones_en_venta():
-    filter = FormFilterBolsones(request.args, meta={'csrf': False})
+    filter = FormFilterBolson(request.args, meta={'csrf': False})
     data = {}
     data['page'] = 1
     data['per_page'] = 5
@@ -25,10 +25,14 @@ def bolsones_en_venta():
     headers = {'content-type': 'application/json',
                'authorization': 'Bearer' + auth}
     if filter.submit():
+        if filter.nombre.data is not None:
+            data["nombre"] = filter.nombre.data
         if filter.desde.data is not None:
             data['desde'] = filter.desde.data.strftime('%Y-%m-%d')
         if filter.hasta.data is not None:
             data['hasta'] = filter.hasta.data.strftime('%Y-%m-%d')
+        if filter.ordenamiento.data is not None:
+            data['ordenamiento'] = filter.ordenamiento.data
 
     r = requests.get(
         current_app.config["API_URL"] + '/bolsonesventa',
@@ -39,7 +43,7 @@ def bolsones_en_venta():
     pagination = {}
     pagination["pages"] = json.loads(r.text)["pages"]
     pagination["current_page"] = json.loads(r.text)["page"]
-    return render_template('ver_bolsones_registrado.html', bolsones=bolsones, user=user, pagination=pagination, filter = filter)
+    return render_template('ver_bolsones_registrado.html', bolsones=bolsones, user=user, pagination=pagination, filter=filter)
 
 
 @cliente.route('/bolsones-no-logeado/')

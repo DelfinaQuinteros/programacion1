@@ -15,12 +15,15 @@ class BolsonesPendientes(Resource):
         if request.get_json():
             filtro = request.get_json().items()
             for key, value in filtro:
+                if key == 'desde':
+                    bolsonespendientes = bolsonespendientes.filter(BolsonModels.fecha >= value)
+                if key == 'hasta':
+                    bolsonespendientes = bolsonespendientes.filter(BolsonModels.fecha <= value)
                 if key == "page":
                     page = int(value)
                 if key == "per_page":
                     per_page = int(value)
         bolsones = bolsonespendientes.paginate(page, per_page, True, 30)
-        print("eeeeeeeeeeeeeeeeeeeeee")
         return jsonify({'bolsonespendientes': [bolson.to_json() for bolson in bolsones.items],
                         'total': bolsones.total,
                         'page': bolsones.page,

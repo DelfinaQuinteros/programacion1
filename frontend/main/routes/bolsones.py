@@ -32,4 +32,3 @@ def ver():
     return render_template('bolsones_no_logueado.html', bolsones=bolsones)
 
 
-

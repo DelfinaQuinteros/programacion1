@@ -14,12 +14,19 @@ class BolsonesVenta(Resource):
         if request.get_json():
             filtro = request.get_json().items()
             for key, value in filtro:
+                if key == 'nombre':
+                    bolsones = bolsones.filter(BolsonModels.nombre.like('%'+value+'%'))
                 if key == 'desde':
-                    print(value)
                     bolsones = bolsones.filter(BolsonModels.fecha >= value)
                 if key == 'hasta':
                     bolsones = bolsones.filter(BolsonModels.fecha <= value)
-                    print(value)
+                if key == 'ordenamiento':
+                    if value == 'fecha':
+                        bolsones = bolsones.order_by(BolsonModels.fecha.desc())
+                    if value == 'asc':
+                        bolsones = bolsones.order_by(BolsonModels.precio.asc())
+                    if value == 'desc':
+                        bolsones = bolsones.order_by(BolsonModels.precio.desc())
                 if key == 'page':
                     page = int(value)
                 elif key == 'per_page':

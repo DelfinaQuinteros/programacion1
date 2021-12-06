@@ -17,19 +17,17 @@
                      <a class="nav-link"  href="{{url_for('cliente.panel_cliente')}}" id="usuario">{{current_user.email}}</a>
                 </li>
                 <li class="nav-item">
-                    <img src="{{url_for('static', filename='imagenes/perfil.png')}}" class="img-circle special-img">
+                    <a class="nav-link btn btn-primary py-2 px-4"  href="{{url_for('cliente.panel_cliente')}}" id="paneladministrador">Panel admin</a>
                 </li>
                 </ul>
             </div>
         </div>
     </nav>
-
-  <div class="row">
+      <div class="row">
        <div class="col-md-12 justify-content-center">
-         <form method="GET" action="{{ url_for('cliente.bolsones_en_venta') }}" >
+         <form method="GET" action="{{ url_for('admin.ver_todos') }}" >
            <div class="form-row">
-             <div class="form-group col-md-2">
-                 {{ mostrarcampo(filter.nombre , class='form-control', placeholder='Buscar')}}
+             <div class="form-group col-md-4">
              </div>
              <div class="form-group col-md-2">
                  {{ mostrarcampo(filter.desde , class='form-control', placeholder='Desde')}}
@@ -37,20 +35,23 @@
              <div class="form-group col-md-2">
                  {{ mostrarcampo(filter.hasta , class='form-control', placeholder='Hasta')}}
              </div>
-             <div class="form-group col-md-2">
-                 {{ mostrarcampo(filter.ordenamiento , class='form-control')}}
-             </div>
-             <div class="form-group col-md-4" style="margin-top:15px">
+             <div class="form-group col-md-3" style="margin-top:15px">
                {{ mostrarenvio(filter.submit , class='btn btn-primary')}}
+             </div>
+               <div class="form-group col-md-3">
              </div>
            </div>
          </form>
        </div>
      </div>
 
-
-    {% for bolson in bolsones%}
-        <div class="container">
+    <div class="container">
+        <div class="col-sm-12 col-md-12 text-center">
+            <br><br>
+            <h1>Todos los bolsones</h1>
+            <br>
+        </div>
+        {% for bolson in bolsones %}
             <div class="row">
                 <div class="col-sm-3 col-md-3">
                   <br>
@@ -59,19 +60,13 @@
              <div class="col-sm-6 col-md-6">
                  <br><br><br>
                  <h2>{{ bolson ['nombre'] }}</h2>
-                 <p class="text-mutes">{{ bolson ['descripcion'] }}</p>
-                 <p class="text-mutes">{{ bolson ['fecha'] }}</p>
-                 <p class="text-mutes">Precio: {{ bolson ['precio'] }}</p>
+                 <h4>{{ bolson ['descripcion'] }}</h4>
+                  <h4>Fecha: {{ bolson ['fecha'] }}</h4>
               </div>
-              <div class="col-sm-3 col-md-3">
-                  <br><br>
-                  <div class="datos"><p><br><br><br><a class="boton-secundario" href="#scroll">Agregar al carrito</a></p></div>
-              </div>
-            </div>
-        </div>
-        <br>
-    {% endfor %}
 
+            </div>
+        {% endfor %}
+    </div>
     <footer class="footer">
         <div class="container">
             <div class="col-md-12">
@@ -81,7 +76,7 @@
                    {% if pagination.current_page != 1 %}
                    <li class="page-item">
                      <a class="page-link"
-                      href="{{ url_for('cliente.bolsones_en_venta', page = (pagination.current_page-1)) }}"
+                      href="{{ url_for('admin.ver_todos', page = (pagination.current_page-1)) }}"
                      >Previous</a>
                    </li>
                    {% else %}
@@ -92,7 +87,7 @@
                    {% for n in range(1,pagination.pages+1) %}
                         {% if n != pagination.current_page %}
                              <li class="page-item">
-                               <a class="page-link" href="{{ url_for('cliente.bolsones_en_venta', page = n) }}">{{n}}</a>
+                               <a class="page-link" href="{{ url_for('admin.ver_todos', page = n) }}">{{n}}</a>
                              </li>
                         {% else %}
                             <li class="page-item disabled">
@@ -103,7 +98,7 @@
                    {% if pagination.current_page != pagination.pages %}
                    <li class="page-item">
                      <a class="page-link"
-                      href="{{ url_for('cliente.bolsones_en_venta',page = (pagination.current_page+1)) }}" >Next</a>
+                      href="{{ url_for('admin.ver_todos',page = (pagination.current_page+1)) }}" >Next</a>
                    </li>
                    {% else %}
                    <li class="page-item disabled">
@@ -116,5 +111,4 @@
          </div>
        </div>
     </footer>
-
 {% endblock %}

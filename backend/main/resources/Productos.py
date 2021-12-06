@@ -11,10 +11,22 @@ class Productos(Resource):
     def get(self):
         page = 1
         per_page = 10
-        productos = db.session.query(ProductoModels)
+        iduser = get_jwt_identity
+        user = db.session.query(UsuarioModels).get_or_404(iduser)
+        if user.role == 'admin':
+            productos = db.session.query(ProductoModels)
+        if user.role == 'proveedor':
+            productos = db.session.query(ProductoModels).filter(ProductoModels.proveedorid == iduser)
         if request.get_json():
             filtro = request.get_json().items()
             for key, value in filtro:
+                if key == 'proveedorid':
+                    productos = productos.filter(ProductoModels.proveedorid == value)
+                if key == 'ordenamiento':
+                    if value == 'productos':
+                        productos = productos.order_by(ProductoModels.nombre.asc())
+                    if value == 'proveedor':
+                        productos = productos.join(UsuarioModels, ProductoModels.proveedor).order_by(UsuarioModels.nombre.asc())
                 if key == "page":
                     page = int(value)
                 if key == "per_page":

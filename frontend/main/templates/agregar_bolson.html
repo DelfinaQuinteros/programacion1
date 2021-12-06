@@ -46,6 +46,21 @@
                         {{mostrarcampo(form.descripcion, class="form-control")}}
                     </div>
                     <div class="group">
+                        {{mostrarcampo(form.producto, class="form-control form-select input")}}
+                    </div>
+                    <div class="group hidden" id="producto2">
+                        {{mostrarcampo(form.producto2, class="form-control form-select input", id='select2')}}
+                    </div>
+                    <div class="group hidden" id="producto3">
+                        {{mostrarcampo(form.producto3, class="form-control form-select input", id='select3)}}
+                    </div>
+                    <div class="group hidden" id="producto4">
+                        {{mostrarcampo(form.producto4, class="form-control form-select input", id='select4')}}
+                    </div>
+                    <div class="group hidden" id="producto5">
+                        {{mostrarcampo(form.producto5, class="form-control form-select input", id='select5')}}
+                    </div>
+                    <div class="group">
                         {{mostrarcampo(form.precio, class="form-control")}}
                     </div>
                     <br>{{mostrarenvio(form.submit, class="btn button btn-xl mt-1")}}

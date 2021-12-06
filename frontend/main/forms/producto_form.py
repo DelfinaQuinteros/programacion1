@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, SubmitField, StringField, IntegerField
+from wtforms import DateField, SubmitField, StringField, SelectMultipleField, FloatField, IntegerField, DateTimeField, SelectField
 from wtforms.fields.html5 import EmailField
+from wtforms.validators import InputRequired
 from wtforms import validators
 
 
@@ -31,3 +32,11 @@ class EliminarProductoForms:
                       ])
     submit = SubmitField("Eliminar producto")
 """
+
+
+class FormFilterProducto(FlaskForm):
+    proveedorid = SelectField('', [validators.optional()], coerce=int)
+    ordenamiento = SelectField('',
+                               choices=[('producto', "Producto"), ('proveedor', "Proveedor")],
+                               validators=[InputRequired()], coerce=str, default='producto')
+    submit = SubmitField("Filtrar")
