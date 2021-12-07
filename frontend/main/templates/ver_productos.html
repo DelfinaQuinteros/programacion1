@@ -31,13 +31,10 @@
              <div class="form-group col-md-4">
              </div>
              <div class="form-group col-md-2">
-                 {{ mostrarcampo(filter.proveedorid , class='form-control', placeholder='Proveedor Id')}}
-             </div>
-             <div class="form-group col-md-2">
-                 {{ mostrarcampo(filter.ordenamiento , class='form-control') }}
+                 {{ mostrarcampo(form.proveedor , class='form-control form-select input')}}
              </div>
              <div class="form-group col-md-3" style="margin-top:15px">
-               {{ mostrarenvio(filter.submit , class='btn btn-primary')}}
+               {{ mostrarenvio(form.submit , class='btn btn-primary')}}
              </div>
                <div class="form-group col-md-3">
              </div>
@@ -56,7 +53,7 @@
              <div class="col-sm-6 col-md-6">
                  <br><br><br><br>
                  <h2>Producto:</h2>
-                 <p>{{ producto ['nombre'] }}</p>
+                 <h4>{{ producto ['nombre'] }}</h4>
               </div>
                 <div class="col-sm-3 col-md-3">
                   <br><br><br><br>

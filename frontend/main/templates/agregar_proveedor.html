@@ -21,6 +21,16 @@
         </div>
     </nav>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert alert-{{ messages.0.0}} text-center" role="alert">
+          {% for category, message in messages %}
+            {{ message }}
+          {% endfor %}
+        </div>
+       {% endif %}
+    {% endwith %}
+
         <div class="w3l-login-form d-flex align-items-center flex-column main-section card border-dark mb-3" style="max-width: 26rem;">
             <br><br>
             <h1><strong>Agregar nuevo</strong></h1>

@@ -1,11 +1,11 @@
 import json
 import requests
-from flask import Blueprint, render_template, redirect, url_for, current_app, request
+from flask import Blueprint, render_template, redirect, url_for, current_app, request, flash
 from flask_login import login_required, LoginManager, current_user
 from ..forms.agregar_bolson_form import BolsonForms
 from .auth import admin_required, proveedor_required
 from ..forms.modificar_datos_form import ModificarDatosForm
-from ..forms.agregar_proveedor_form import AgregarProveedorForm
+from ..forms.agregar_proveedor_form import AgregarProveedorForm, FormFilterProveedor
 from ..forms.agregar_bolson_form import BolsonForms, FormFilterBolsones, FormFilterBolson
 from ..forms.registrarse_form import RegistrarseForm
 from ..forms.producto_form import FormFilterProducto
@@ -39,7 +39,27 @@ def consultar_compras():
 @admin.route('/lista-proveedores')
 @login_required
 def lista_proveedores():
-    return render_template('lista_proveedores.html')
+    filter = FormFilterProveedor(request.args, meta={'csrf': False})
+    data = {}
+    data["page"] = 1
+    data["per_page"] = 5
+    if 'page' in request.args:
+        data['page'] = request.args.get('page', '')
+    auth = request.cookies['access_token']
+    headers = {'content-type': "application/json",
+               'authorization': 'Bearer' + auth}
+    if filter.submit():
+        if filter.ordenamiento.data is not None:
+            data['ordenamiento'] = filter.ordenamiento.data
+    r = requests.get(
+        current_app.config["API_URL"] + '/proveedores',
+        headers=headers,
+        data=json.dumps(data))
+    proveedores = json.loads(r.text)["proveedores"]
+    pagination = {}
+    pagination["pages"] = json.loads(r.text)["pages"]
+    pagination["current_page"] = json.loads(r.text)["page"]
+    return render_template('lista_proveedores.html', proveedores=proveedores, pagination=pagination, filter=filter)
 
 
 @admin.route('/agregar-bolson', methods=['POST', 'GET'])
@@ -51,9 +71,9 @@ def agregar_bolson():
     headers = {'content-type': "application/json",
                'authorization': "Bearer " + auth}
     data = {'page': 1}
-    r = requests.get(current_app.config["API_URL"]+'/productos',
-                    headers=headers,
-                    data=json.dumps(data))
+    r = requests.get(current_app.config["API_URL"] + '/productos',
+                     headers=headers,
+                     data=json.dumps(data))
     productos = [(producto['id'], producto['nombre']) for producto in json.loads(r.text)["productos"]]
     productos.insert(0, (0, '--Seleccionar producto'))
     form.producto.choices = productos
@@ -70,7 +90,7 @@ def agregar_bolson():
         data["productos"] = form.productosId.data
         data["aprobado"] = form.aprobado.data
         print(data)
-        r = requests.post(current_app.config["API_URL"]+'/bolsonespendientes',
+        r = requests.post(current_app.config["API_URL"] + '/bolsonespendientes',
                           headers=headers,
                           data=json.dumps(data))
         if r.status_code == 200:
@@ -93,6 +113,10 @@ def agregar_proveedor():
             current_app.config["API_URL"] + '/auth/register',
             headers=headers,
             data=json.dumps(data))
+        if r.status_code == 200:
+            flash('El proveedor fue creado con exito', 'success')
+        if r.status_code == 409:
+            flash('El mail ya fue registrado', 'warning')
     return render_template('agregar_proveedor.html', form=form)
 
 
@@ -107,9 +131,10 @@ def eliminar_proveedor(id):
                         headers=headers)
     if r.status_code == 404:
         flash('El proveedor no existe', 'danger')
-        return redirect('admin.lista_proveedores')
-    flash('El proveedor ha sido eliminado', 'success')
-    return redirect('admin.lista_proveedores')
+        return render_template('lista_proveedores.html')
+    if r.status_code == 204:
+        flash('El proveedor ha sido eliminado', 'success')
+        return render_template('lista_proveedores.html')
 
 
 @admin.route('/editar-perfil/<int:id>', methods=['POST', 'GET'])
@@ -140,7 +165,7 @@ def ver_todos():
     filter = FormFilterBolsones(request.args, meta={'csrf': False})
     auth = request.cookies['access_token']
     headers = {'content-type': 'application/json',
-               'authorization': "Bearer"+auth}
+               'authorization': "Bearer" + auth}
     data = {}
     data['page'] = 1
     data['per_page'] = 5
@@ -151,7 +176,7 @@ def ver_todos():
             data['desde'] = filter.desde.data.strftime('%Y-%m-%d')
         if filter.hasta.data is not None:
             data['hasta'] = filter.hasta.data.strftime('%Y-%m-%d')
-    r = requests.get(current_app.config['API_URL']+'/bolsones',
+    r = requests.get(current_app.config['API_URL'] + '/bolsones',
                      headers=headers,
                      data=json.dumps(data))
     bolsones = json.loads(r.text)["bolsones"]
@@ -163,7 +188,7 @@ def ver_todos():
 
 @admin.route('/ver-productos')
 def ver_productos():
-    filter = FormFilterProducto(request.args, meta={'csrf': False})
+    form = FormFilterProducto(request.args, meta={'csrf': False})
     auth = request.cookies['access_token']
     headers = {'content-type': 'application/json',
                'authorization': "Bearer" + auth}
@@ -172,31 +197,25 @@ def ver_productos():
     data['per_page'] = 5
     if 'page' in request.args:
         data['page'] = request.args.get('page', '')
-    data_prov = {}
-    data_prov['page'] = 1
     r = requests.get(
-        current_app.config['API_URL']+'/proveedores',
+        current_app.config['API_URL'] + '/proveedores',
         headers=headers,
-        data=json.dumps(data_prov))
-    proveedores = [(item['id'], item['nombre']+""+item["apellido"]) for item in json.loads(r.text)["proveedores"]]
-    proveedores.insert(0, (0, "Proveedor"))
-    filter.proveedorid.choices = proveedores
-    if filter.submit():
-        if filter.productos.data is not None and filter.proveedorid != 0:
-            data['proveedorid'] = filter.proveedorid.data
-        if filter.ordenamiento.data != 0:
-            data['ordenamiento'] = filter.ordenamiento.data
-    r = requests.get(
-        f'{current_app.config["API_URL"]}/productos',
-        headers={'content-type': "application/json",
-                 'authorization': "Bearer " + auth},
-        json=data
-    )
-    productos = json.loads(r.text)['productos']
+        data=json.dumps(data))
+    proveedores = json.loads(r.text)["proveedores"]
+    proveedores = [(proveedor['id'], f'{proveedor["nombre"]} {proveedor["apellido"]}') for proveedor in proveedores]
+    proveedores.insert(0, (0, 'Seleccionar proveedor'))
+    form.proveedor.choices = proveedores
+    if form.submit():
+        if form.proveedor.data is not None and form.proveedor.data != 0:
+            data["usuarioId"] = int(form.proveedor.data)
+    r = requests.get(current_app.config['API_URL'] + '/productos',
+                     headers=headers,
+                     data=json.dumps(data))
+    productos = json.loads(r.text)["productos"]
     pagination = {}
     pagination["pages"] = json.loads(r.text)["pages"]
     pagination["current_page"] = json.loads(r.text)["page"]
-    return render_template('ver_productos.html', productos=productos, pagination=pagination, filter=filter)
+    return render_template('ver_productos.html', productos=productos, pagination=pagination, form=form, proveedores=proveedores)
 
 
 @admin.route('/producto-eliminar/<int:id>')
@@ -208,26 +227,21 @@ def eliminar_producto(id):
     return redirect(url_for('admin.ver_productos'))
 
 
-@admin.route('/ver-compras')
-@admin_required
+@admin.route('/compras')
+@login_required
 def ver_compras():
-    data = {'per_page': 3}
-    if 'page' in request.args:
-        data["page"] = request.args.get('page', '')
-    user = current_user
+    data = {}
+    data['page'] = 1
+    data['per_page'] = 5
     auth = request.cookies['access_token']
-    headers = {'content-type': 'application/json',
-               'authorization': 'Bearer' + auth}
-    r = requests.get(
-        current_app.config["API_URL"] + '/compras',
-        headers=headers,
-        json=data
-    )
-    bolsones = json.loads(r.text)["compras"]
-    pagination = {}
-    pagination["pages"] = json.loads(r.text)["pages"]
-    pagination["current_page"] = json.loads(r.text)["page"]
-    return render_template('compras_admin.html', bolsones=bolsones, user=user, pagination=pagination)
+    r = requests.get(current_app.config["API_URL"] + '/compras',
+                     headers={"content-type": "applications/json",
+                              'authorization': "Bearer " + auth},
+                     data=json.dumps(data))
+    compras = json.loads(r.text)["compras"]
+    page = json.loads(r.text)['page']
+    pages = json.loads(r.text)['pages']
+    return render_template('compra_cliente.html', compras=compras, page=page, pages=pages)
 
 
 @admin.route('/bolsones-pendientes')
@@ -255,7 +269,8 @@ def bolsones_pendientes():
     pagination = {}
     pagination["pages"] = json.loads(r.text)["pages"]
     pagination["current_page"] = json.loads(r.text)["page"]
-    return render_template('bolsones_pendientes.html', bolsones=bolsones, user=user, pagination=pagination, filter=filter)
+    return render_template('bolsones_pendientes.html', bolsones=bolsones, user=user, pagination=pagination,
+                           filter=filter)
 
 
 @admin.route('/bolsones-previos')

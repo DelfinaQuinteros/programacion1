@@ -20,6 +20,7 @@ class Compras(Resource):
                 if key == "per_page":
                     per_page = int(value)
         compras = compras.paginate(page, per_page, True, 30)
+        print("aaaaaaaaaaaa", compras)
         return jsonify({'clientes': [compra.to_json() for compra in compras.items],
                         'total': compras.total,
                         'page': compras.page,

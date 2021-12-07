@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, SubmitField, StringField
+from wtforms import DateField, SubmitField, StringField, SelectMultipleField, PasswordField, IntegerField, SelectField
 from wtforms.fields.html5 import EmailField
+from wtforms.validators import InputRequired
 from wtforms import validators
 
 
@@ -40,3 +41,10 @@ class AgregarProveedorForm(FlaskForm):
                             render_kw={"placeholder": "Repita la contraseña"})
 
     submit = SubmitField("Agregar proveedor")
+
+
+class FormFilterProveedor(FlaskForm):
+    ordenamiento = SelectField('',
+                               choices=[('nombre', "Nombre"), ('apellido', "Apellido")],
+                               validators=[InputRequired()], coerce=str, default='nombre')
+    submit = SubmitField("Ordenar")

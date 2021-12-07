@@ -5,8 +5,10 @@ from flask_login import login_required, LoginManager, current_user
 from ..forms.iniciar_sesion_form import LoginForm
 from ..forms.registrarse_form import RegistrarseForm
 from ..forms.agregar_bolson_form import BolsonForms, FormFilterBolsones, FormFilterBolson
+from ..forms.compras_form import FormFilterCompras
 from ..forms.modificar_datos_form import ModificarDatosForm
 from main.routes.auth import BearerAuth
+from .auth import admin_required
 
 cliente = Blueprint('cliente', __name__, url_prefix='/cliente')
 
@@ -132,24 +134,40 @@ def editar_perfil(id):
     return render_template('editar_perfil.html', form=form, id=id)
 
 
-
-@cliente.route('/perfil')
-def perfil():
-    form = ModificarDatosForm()
-    return render_template('editar_perfil.html', form=form)
-
-
 @cliente.route('/compras')
 def ver_compras():
+    data = {}
+    data['page'] = 1
+    data['per_page'] = 5
+    if 'page' in request.args:
+        data['page'] = request.args.get('page', '')
     auth = request.cookies['access_token']
-    data = {
-        "usuarioId": current_user.id
-    }
     r = requests.get(current_app.config["API_URL"] + '/compras',
                      headers={"content-type": "applications/json",
                               'authorization': "Bearer " + auth},
                      data=data)
     compras = json.loads(r.text)["compras"]
-    pagination = {"pages": json.loads(r.text)["pages"], "current_page": json.loads(r.text)["page"]}
+    pagination = {}
+    pagination["pages"] = json.loads(r.text)["pages"]
+    pagination["current_page"] = json.loads(r.text)["page"]
     return render_template('compra_cliente.html', compras=compras, pagination=pagination)
+
+
+@cliente.route('comprar/<int:id>')
+@login_required
+def comprar(id):
+    auth = request.cookies['access_token']
+    headers = {"content-type": "applications/json",
+               'authorization': "Bearer " + auth}
+    data = {}
+    data["bolsonid"] = id
+    r = requests.post(
+        current_app.config["API_URL"] + '/compras',
+        headers=headers,
+        data=json.dumps(data))
+    if r.status_code == 200:
+        flash('Compra realizada con exito', 'success')
+        return redirect(url_for('cliente.panel_cliente'))
+    return render_template('cliente.panel_cliente')
+
 

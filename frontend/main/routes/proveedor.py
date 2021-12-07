@@ -19,23 +19,6 @@ def registrar():
     return render_template('agregar_proveedor.html', form=form)
 
 
-@proveedor.route('/ver_productos')
-def ver_productos():
-    auth = request.cookies['access_token']
-    data = {
-        "per_page": 3
-    }
-    r = requests.get(
-        f'{current_app.config["API_URL"]}/productos',
-        headers={'content-type': "application/json",
-                 'authorization': "Bearer " + auth},
-        json=data
-    )
-    productos = json.loads(r.text)['productos']
-    pagination = {"pages": json.loads(r.text)["pages"], "current_page": json.loads(r.text)["page"]}
-    return render_template('ver_productos.html', productos=productos, pagination=pagination)
-
-
 @proveedor.route('/agregar-producto', methods=['POST', 'GET'])
 def agregar_producto():
     form = AgregarProductoForms()

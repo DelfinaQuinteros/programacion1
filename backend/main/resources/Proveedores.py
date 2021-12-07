@@ -8,26 +8,31 @@ from main.auth.Decorators import admin_or_proveedor_required
 
 
 class Proveedores(Resource):
-    @jwt_required()
+    #@jwt_required()
     def get(self):
         page = 1
         per_page = 10
-        proveedores = db.session.query(UsuarioModels)
+        proveedores = db.session.query(UsuarioModels).filter(UsuarioModels.role == "proveedor")
         if request.get_json():
             filtro = request.get_json().items()
             for key, value in filtro:
+                if key == "ordenamiento":
+                    if value == "nombre":
+                        proveedores = proveedores.order_by(UsuarioModels.nombre.asc())
+                    if value == "apellido":
+                        proveedores = proveedores.order_by(UsuarioModels.apellido.asc())
                 if key == "page":
                     page = int(value)
                 if key == "per_page":
                     per_page = int(value)
         proveedores = proveedores.paginate(page, per_page, True, 30)
-        return jsonify({'productos': [proveedor.to_json() for proveedor in proveedores.items],
+        return jsonify({'proveedores': [proveedor.to_json() for proveedor in proveedores.items],
                         'total': proveedores.total,
                         'page': proveedores.page,
                         'pages': proveedores.pages
                         })
 
-    @admin_required
+    #@admin_required
     def post(self):
         proveedor = UsuarioModels.from_json(request.get_json())
         try:
@@ -39,12 +44,12 @@ class Proveedores(Resource):
 
 
 class Proveedor(Resource):
-    @admin_or_proveedor_required
+    #@admin_or_proveedor_required
     def get(self, id):
         proveedor = db.session.query(UsuarioModels).get_or_404(id)
         return proveedor.to_json()
 
-    @admin_required
+    #@admin_required
     def delete(self, id):
         proveedor = db.session.query(UsuarioModels).get_or_404(id)
         try:
@@ -54,7 +59,7 @@ class Proveedor(Resource):
         except:
             return '', 404
 
-    @admin_required
+    #@admin_required
     def put(self, id):
         proveedor = db.session.query(UsuarioModels).get_or_404(id)
         data = request.get_json().items()

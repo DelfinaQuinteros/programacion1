@@ -35,8 +35,10 @@ class EliminarProductoForms:
 
 
 class FormFilterProducto(FlaskForm):
-    proveedorid = SelectField('', [validators.optional()], coerce=int)
+    """    proveedorid = SelectField('', [validators.optional()], coerce=int)
     ordenamiento = SelectField('',
                                choices=[('producto', "Producto"), ('proveedor', "Proveedor")],
-                               validators=[InputRequired()], coerce=str, default='producto')
+                               validators=[InputRequired()], coerce=str, default='producto')"""
+    proveedor = SelectField('', [validators.Required(message='Campo Requerido')],
+                            coerce=int)
     submit = SubmitField("Filtrar")
