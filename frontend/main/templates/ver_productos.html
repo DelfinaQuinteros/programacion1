@@ -26,7 +26,7 @@
 
     <div class="row">
        <div class="col-md-12 justify-content-center">
-         <form method="GET" action="{{ url_for('admin.bolsones_pendientes') }}" >
+         <form method="GET" action="{{ url_for('admin.ver_productos') }}" >
            <div class="form-row">
              <div class="form-group col-md-4">
              </div>
@@ -57,7 +57,6 @@
               </div>
                 <div class="col-sm-3 col-md-3">
                   <br><br><br><br>
-                  <!--div class="datos"><br><br><br><p><a class="boton-secundario" href="">modificar</a></p-->
                   <p><a class="boton-secundario" href="{{url_for('admin.eliminar_producto', id = producto['id'])}}">ELIMINAR</a></p></div>
             </div>
         {% endfor %}

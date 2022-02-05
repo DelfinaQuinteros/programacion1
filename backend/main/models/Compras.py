@@ -11,7 +11,7 @@ class Compra(db.Model):
     usuario = db.relationship('Usuario', back_populates='compras', uselist=False, single_parent=True)
 
     def __repr__(self):
-        return '<Compra: %r %r %r %r >' % (self.fechacompra, self.retirado, self.usuario_json(), self.bolson.to_json())
+        return '<Compra: %r %r %r %r >' % (self.fechacompra, self.retirado, self.usuario, self.bolson)
 
     def to_json(self):
         compra_json = {

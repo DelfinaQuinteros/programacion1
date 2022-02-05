@@ -153,9 +153,9 @@ def ver_compras():
     return render_template('compra_cliente.html', compras=compras, pagination=pagination)
 
 
-@cliente.route('comprar/<int:id>')
+@cliente.route('/comprar')
 @login_required
-def comprar(id):
+def comprar():
     auth = request.cookies['access_token']
     headers = {"content-type": "applications/json",
                'authorization': "Bearer " + auth}

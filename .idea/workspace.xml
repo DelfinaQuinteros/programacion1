@@ -7,19 +7,9 @@
       <change beforePath="$PROJECT_DIR$/backend/main/models/Compras.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/models/Compras.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/main/resources/Compras.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/resources/Compras.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/main/resources/Productos.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/resources/Productos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main/resources/Proveedores.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/resources/Proveedores.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/forms/agregar_proveedor_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/agregar_proveedor_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/forms/compras_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/compras_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/forms/producto_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/producto_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/routes/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/routes/cliente.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/cliente.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/routes/proveedor.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/proveedor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/static/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/agregar_proveedor.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/agregar_proveedor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/compra_cliente.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/compra_cliente.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/lista_proveedores.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/lista_proveedores.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/templates/modificar_producto_prov.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/modificar_producto_prov.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/main/templates/panel_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/panel_admin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/templates/panel_proveedor.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/panel_proveedor.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/templates/ver_bolsones_registrado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/ver_bolsones_registrado.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/templates/ver_productos.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/ver_productos.html" afterDir="false" />
@@ -61,7 +51,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dudas/programacion-i" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../aa/programacion1" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -135,5 +125,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

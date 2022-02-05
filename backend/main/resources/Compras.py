@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
-from main.models import CompraModels
+from main.models import CompraModels, BolsonModels
 from main.auth.Decorators import admin_required
 from main.auth.Decorators import admin_or_cliente_required
 
@@ -27,15 +27,22 @@ class Compras(Resource):
                         'pages': compras.pages
                         })
 
-    @admin_or_cliente_required
+    # @admin_or_cliente_required
     def post(self):
         compra = CompraModels.from_json(request.get_json())
-        try:
-            db.session.add(compra)
-            db.session.commit()
-            return compra.to_json(), 201
-        except:
-            return '', 404
+        bolson = db.session.query(BolsonModels).get_or_404(compra.bolsonid)
+        usuario = get_jwt_identity()
+        compra.usuarioid = usuario
+        print('[COMPRA]', compra)
+        if bolson.aprobado == 1:
+            try:
+                db.session.add(compra)
+                db.session.commit()
+                return compra.to_json(), 201
+            except:
+                return '', 404
+        else:
+            return '', 400
 
 
 class Compra(Resource):

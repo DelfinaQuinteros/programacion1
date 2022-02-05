@@ -1,6 +1,6 @@
 import json
 import requests
-from flask import Blueprint, render_template, redirect, url_for, current_app, request
+from flask import Blueprint, render_template, redirect, url_for, current_app, request, flash
 from flask_login import login_required, LoginManager, current_user
 from ..forms.modificar_datos_form import ModificarDatosForm
 from ..forms.registrarse_form import RegistrarseForm
@@ -28,12 +28,12 @@ def agregar_producto():
             "nombre": form.nombre.data,
             "usuarioid": form.id.data
         }
-        r = requests.post(current_app.config["API_URL"]+ '/productos',
+        r = requests.post(current_app.config["API_URL"] + '/productos',
                           headers={'content-type': "application/json",
                                    'authorization': "Bearer " + auth},
                           json=producto)
         if r.status_code == 200:
-            return redirect(url_for('proveedor.ver_productos'))
+            flash("Producto creado con exito", "success")
     return render_template('modificar_producto_prov.html', form=form)
 
 
