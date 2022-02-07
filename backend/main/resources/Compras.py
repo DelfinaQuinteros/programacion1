@@ -20,7 +20,6 @@ class Compras(Resource):
                 if key == "per_page":
                     per_page = int(value)
         compras = compras.paginate(page, per_page, True, 30)
-        print("aaaaaaaaaaaa", compras)
         return jsonify({'clientes': [compra.to_json() for compra in compras.items],
                         'total': compras.total,
                         'page': compras.page,
@@ -30,19 +29,12 @@ class Compras(Resource):
     # @admin_or_cliente_required
     def post(self):
         compra = CompraModels.from_json(request.get_json())
-        bolson = db.session.query(BolsonModels).get_or_404(compra.bolsonid)
-        usuario = get_jwt_identity()
-        compra.usuarioid = usuario
-        print('[COMPRA]', compra)
-        if bolson.aprobado == 1:
-            try:
-                db.session.add(compra)
-                db.session.commit()
-                return compra.to_json(), 201
-            except:
+        try:
+            db.session.add(compra)
+            db.session.commit()
+            return compra.to_json(), 201
+        except:
                 return '', 404
-        else:
-            return '', 400
 
 
 class Compra(Resource):

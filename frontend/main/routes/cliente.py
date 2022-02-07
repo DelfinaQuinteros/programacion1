@@ -138,15 +138,14 @@ def editar_perfil(id):
 def ver_compras():
     data = {}
     data['page'] = 1
-    data['per_page'] = 5
-    if 'page' in request.args:
-        data['page'] = request.args.get('page', '')
+    data['per_page'] = 3
     auth = request.cookies['access_token']
-    r = requests.get(current_app.config["API_URL"] + '/compras',
-                     headers={"content-type": "applications/json",
-                              'authorization': "Bearer " + auth},
-                     data=data)
-    compras = json.loads(r.text)["compras"]
+    headers = {"content-type": "applications/json",
+               'authorization': "Bearer " + auth}
+    r = requests.get(current_app.config['API_URL'] + '/compras',
+                     headers=headers,
+                     data=json.dumps(data))
+    compras = json.loads(r.text)["clientes"]
     pagination = {}
     pagination["pages"] = json.loads(r.text)["pages"]
     pagination["current_page"] = json.loads(r.text)["page"]
@@ -165,7 +164,7 @@ def comprar():
         current_app.config["API_URL"] + '/compras',
         headers=headers,
         data=json.dumps(data))
-    if r.status_code == 200:
+    if r.status_code == 201:
         flash('Compra realizada con exito', 'success')
         return redirect(url_for('cliente.panel_cliente'))
     return render_template('cliente.panel_cliente')

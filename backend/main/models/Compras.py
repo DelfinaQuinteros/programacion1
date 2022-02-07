@@ -1,6 +1,7 @@
 from .. import db
 from datetime import datetime
 
+
 class Compra(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fechacompra = db.Column(db.DateTime, nullable=False)
