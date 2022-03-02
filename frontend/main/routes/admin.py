@@ -62,41 +62,61 @@ def lista_proveedores():
     return render_template('lista_proveedores.html', proveedores=proveedores, pagination=pagination, filter=filter)
 
 
+
 @admin.route('/agregar-bolson', methods=['POST', 'GET'])
 @login_required
 @admin_required
 def agregar_bolson():
-    form = BolsonForms()
-    auth = request.cookies['access_token']
-    headers = {'content-type': "application/json",
-               'authorization': "Bearer " + auth}
-    data = {'page': 1}
-    r = requests.get(current_app.config["API_URL"] + '/productos',
-                     headers=headers,
-                     data=json.dumps(data))
-    productos = [(producto['id'], producto['nombre']) for producto in json.loads(r.text)["productos"]]
-    productos.insert(0, (0, '--Seleccionar producto'))
-    form.producto.choices = productos
-    form.producto2.choices = productos
-    form.producto3.choices = productos
-    form.producto4.choices = productos
-    form.producto5.choices = productos
+        form = BolsonForms()
+        data = {
+            'per_page': 10
+        }
+        auth = request.cookies['access_token']
+        headers = {'content-type': 'application/json',
+                   'authorization': "Bearer"+auth}
+        r = requests.get(f'{current_app.config["API_URL"]}/productos', headers={"content-type": "application/json"},
+                         json=data)
+        productos = json.loads(r.text)["productos"]
 
-    if form.validate_on_submit():
-        data = {}
-        data["nombre"] = form.nombre.data
-        data["fecha"] = form.fecha.data
-        data["precio"] = form.precio.data
-        data["productos"] = form.productosId.data
-        data["aprobado"] = form.aprobado.data
-        print(data)
-        r = requests.post(current_app.config["API_URL"] + '/bolsonespendientes',
-                          headers=headers,
-                          data=json.dumps(data))
-        if r.status_code == 200:
-            flash("Bolson creado con exito", "success")
-            return redirect(url_for('admin.panel_admin'))
-    return render_template('agregar_bolson.html', form=form)
+        productos = [(producto['id'], producto['nombre']) for producto in productos]
+        productos.insert(0, (0, '--Seleccionar producto'))
+        form.producto.choices = productos
+        form.producto2.choices = productos
+        form.producto3.choices = productos
+        form.producto4.choices = productos
+        if form.validate_on_submit():
+            print('ENTRA')
+            bolson = {
+                'nombre': form.nombre.data,
+                'aprobado': 1,
+                'descripcion': form.descripcion.data,
+                'precio': form.precio.data
+            }
+            print(bolson)
+            r = requests.post(current_app.config["API_URL"]+'/bolsonespendientes',
+                              headers=headers,
+                              data=json.dumps(bolson))
+
+            bolsonId = json.loads(r.text)['id']
+
+            productos = [form.producto.data, form.producto2.data, form.producto3.data, form.producto4.data]
+            for producto in productos:
+                if producto != 0:
+                    print('it works')
+                    data = {
+                        'productoId': producto,
+                        'bolsonId': int(bolsonId)
+                    }
+                    r = requests.post(current_app.config["API_URL"]+'/productos-bolsones',
+                                      headers=headers,
+                                      data=json.dumps(data))
+                else:
+                    print('it doesnt work')
+            flash('El bolson fue agregado con exito', 'success')
+            return render_template('agregar_bolson.html', form=form)
+        else:
+            print('no entra')
+        return render_template('agregar_bolson.html', form=form)
 
 
 @admin.route('/agregar-proveedor', methods=['POST', 'GET'])
@@ -183,7 +203,7 @@ def ver_todos():
     pagination = {}
     pagination["pages"] = json.loads(r.text)["pages"]
     pagination["current_page"] = json.loads(r.text)["page"]
-    return render_template('ver_todos.html', pagination=pagination, bolsones=bolsones, filter=filter, user=user)
+    return render_template('bolsones_admin.html', pagination=pagination, bolsones=bolsones, filter=filter, user=user)
 
 
 @admin.route('/ver-productos')
@@ -215,7 +235,8 @@ def ver_productos():
     pagination = {}
     pagination["pages"] = json.loads(r.text)["pages"]
     pagination["current_page"] = json.loads(r.text)["page"]
-    return render_template('ver_productos.html', productos=productos, pagination=pagination, form=form, proveedores=proveedores)
+    return render_template('ver_productos.html', productos=productos, pagination=pagination, form=form,
+                           proveedores=proveedores)
 
 
 @admin.route('/producto-eliminar/<int:id>')
@@ -313,3 +334,43 @@ def eliminar(id):
         headers=headers)
     if r.status_code == 204:
         return redirect(url_for('admin.ver_bolsones'))
+
+
+@admin.route('aprobar/<int:id>')
+@login_required
+@admin_required
+def aprobar(id):
+    auth = request.cookies['access_token']
+    headers = {
+            'content-type': 'application/json',
+            'authorization': 'Bearer '+auth}
+    data = {}
+    data["aprobado"] = 1
+    r = requests.put(
+            current_app.config['API_URL']+'/bolsonpendiente/'+str(id),
+            headers=headers,
+            data=json.dumps(data))
+    if r.status_code == 201:
+        flash('Bolsón aprobar', 'success')
+        return redirect(url_for('admin.ver_todos'))
+    return redirect(url_for('admin.ver_todos'))
+
+
+@admin.route('desaprobar/<int:id>')
+@login_required
+@admin_required
+def desaprobar(id):
+    auth = request.cookies['access_token']
+    headers = {
+            'content-type': 'application/json',
+            'authorization': 'Bearer '+auth}
+    data = {}
+    data["aprobado"] = 0
+    r = requests.put(
+            current_app.config['API_URL']+'/bolsonpendiente/'+str(id),
+            headers=headers,
+            data=json.dumps(data))
+    if r.status_code == 201:
+        flash('Bolsón desaprobado', 'warning')
+        return redirect(url_for('admin.ver_todos'))
+    return redirect(url_for('admin.ver_todos'))

@@ -14,7 +14,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                     <a class="nav-link" href="{{url_for('admin.ver_bolsones')}}" id="listabolsones">Ver bolsones</a>
+                     <a class="nav-link" href="{{url_for('admin.ver_todos')}}" id="listabolsones">Ver bolsones</a>
                 </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-nav py-2 px-4" href="{{url_for('admin.panel_admin')}}" id="paneladmin">Panel administrador</a>
@@ -33,24 +33,16 @@
         </div>
        {% endif %}
     {% endwith %}
+
     <div class="w3l-login-form d-flex align-items-center flex-column main-section card border-dark mb-3" style="max-width: 26rem;">
             <br><br>
         <h1><strong>Agregar bolson</strong></h1>
              <br>
-        <form method="POST" action="{{url_for('admin.agregar_bolson')}}" >
+        <form action="{{url_for('admin.agregar_bolson')}}" method="POST" >
             <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
                 <div class="w3l-login-form">
                     <div class="group">
-                        {{mostrarcampo(form.id, class="form-control")}}
-                    </div>
-                    <div class="group">
                         {{mostrarcampo(form.nombre, class="form-control")}}
-                    </div>
-                    <div class="group">
-                        {{mostrarcampo(form.aprobado, class="form-control")}}
-                    </div>
-                    <div class="group">
-                        {{mostrarcampo(form.fecha, class="form-control")}}
                     </div>
                     <div class="group">
                         {{mostrarcampo(form.descripcion, class="form-control")}}
@@ -62,13 +54,10 @@
                         {{mostrarcampo(form.producto2, class="form-control form-select input", id='select2')}}
                     </div>
                     <div class="group hidden" id="producto3">
-                        {{mostrarcampo(form.producto3, class="form-control form-select input", id='select3)}}
+                        {{mostrarcampo(form.producto3, class="form-control form-select input", id='select3')}}
                     </div>
                     <div class="group hidden" id="producto4">
                         {{mostrarcampo(form.producto4, class="form-control form-select input", id='select4')}}
-                    </div>
-                    <div class="group hidden" id="producto5">
-                        {{mostrarcampo(form.producto5, class="form-control form-select input", id='select5')}}
                     </div>
                     <div class="group">
                         {{mostrarcampo(form.precio, class="form-control")}}

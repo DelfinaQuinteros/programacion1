@@ -33,12 +33,9 @@ class BolsonesPendientes(Resource):
     #@admin_or_cliente_required
     def post(self):
         bolsonpendiente = BolsonModels.from_json(request.get_json())
-        try:
-            db.session.add(bolsonpendiente)
-            db.session.commit()
-            return bolsonpendiente.to_json(), 201
-        except:
-            return '', 404
+        db.session.add(bolsonpendiente)
+        db.session.commit()
+        return bolsonpendiente.to_json(), 201
 
 
 class BolsonPendiente(Resource):

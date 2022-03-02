@@ -2,19 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1410dfb-87be-4c6c-a1a8-9d5c5718e032" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main/models/Compras.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/models/Compras.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main/resources/Compras.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/resources/Compras.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main/models/Bolsones.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/models/Bolsones.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main/resources/Bolsonespendientes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main/resources/Bolsonespendientes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/programacion1.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/programacion1.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/forms/agregar_bolson_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/forms/agregar_bolson_form.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/routes/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/routes/cliente.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/routes/cliente.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/agregar_bolson.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/agregar_bolson.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/main/templates/bolsones_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/bolsones_admin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/templates/compra_cliente.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/compra_cliente.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/main/templates/ver_bolsones_registrado.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/main/templates/ver_bolsones_registrado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

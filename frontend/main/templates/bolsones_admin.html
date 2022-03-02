@@ -24,6 +24,16 @@
         </div>
     </nav>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert alert-{{ messages.0.0}} text-center" role="alert">
+          {% for category, message in messages %}
+            {{ message }}
+          {% endfor %}
+        </div>
+       {% endif %}
+    {% endwith %}
+
     <div class="container">
         <div class="col-sm-12 col-md-12 text-center">
             <br><br>
@@ -40,12 +50,26 @@
                  <br><br><br>
                  <h2>{{ bolson ['nombre'] }}</h2>
                  <h4>{{ bolson ['descripcion'] }}</h4>
+                 {% if bolson.productos %}
+                    {% for producto in productos %}
+                        <p class="text-mutes">{{ producto.nombre}}</p>
+                    {% endfor %}
+                 {% endif %}
                   <h4>Precio:{{ bolson ['precio'] }}</h4>
               </div>
-              <div class="col-sm-3 col-md-3">
-                  <br><br>
-                  <div class="datos"><p><br><br><br><a class="boton-secundario" href="#scroll">Retirado</a></p></div>
-              </div>
+              {% if user.is_authenticated and user.role == 'admin' %}
+                {% if bolson.aprobado %}
+                    <div class="col-sm-3 col-md-3">
+                        <br><br>
+                        <div class="datos"><p><br><br><br><a class="boton-secundario text-center btn-block" href="{{url_for('admin.desaprobar', id=bolson.id)}}">Desaprobar</a></p></div>
+                    </div>
+                {% else %}
+                    <div class="col-sm-3 col-md-3">
+                        <br><br>
+                        <div class="datos"><p><br><br><br><a class="boton-secundario text-center btn-block"  href="{{url_for('admin.desaprobar', id=bolson.id)}}">Aprobar</a></p></div>
+                    </div>
+                {% endif %}
+              {% endif %}
             </div>
         {% endfor %}
     </div>

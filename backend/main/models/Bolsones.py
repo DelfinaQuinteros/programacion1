@@ -1,12 +1,12 @@
 from .. import db
-from datetime import datetime
+import datetime as dt
 
 
 class Bolson(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     aprobado = db.Column(db.Boolean, default=False, nullable=False)
-    fecha = db.Column(db.DateTime, nullable=False)
+    fecha = db.Column(db.DateTime, default= dt.datetime.now(), nullable=False)
     descripcion = db.Column(db.String(200), nullable=False)
     precio = db.Column(db.Float, nullable=False)
     compras = db.relationship('Compra', back_populates='bolson', cascade="all, delete-orphan")
@@ -20,8 +20,7 @@ class Bolson(db.Model):
             'id': self.id,
             'nombre': str(self.nombre),
             'aprobado': self.aprobado,
-            'fecha': self.fecha.strftime('%Y-%m-%d'),
-            #'producto': self.productosbolsones,
+            'fecha': str(self.fecha),
             'descripcion': self.descripcion,
             'precio': self.precio
         }
@@ -31,7 +30,7 @@ class Bolson(db.Model):
     def from_json(bolson_json):
         id = bolson_json.get('id')
         nombre = bolson_json.get('nombre')
-        fecha = datetime.strptime(bolson_json.get('fecha'), '%Y-%m-%d')
+        fecha = bolson_json.get('fecha')
         aprobado = bolson_json.get('aprobado')
         descripcion = bolson_json.get('descripcion')
         precio = bolson_json.get('precio')

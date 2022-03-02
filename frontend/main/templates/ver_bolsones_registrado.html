@@ -72,6 +72,11 @@
                  <br><br><br>
                  <h2>{{ bolson ['nombre'] }}</h2>
                  <p class="text-mutes">{{ bolson ['descripcion'] }}</p>
+                 {% if bolson.productos %}
+                    {% for producto in productos %}
+                        <p class="text-mutes">{{ producto.nombre}}</p>
+                    {% endfor %}
+                 {% endif %}
                  <p class="text-mutes">{{ bolson ['fecha'] }}</p>
                  <p class="text-mutes">Precio: {{ bolson ['precio'] }}</p>
               </div>

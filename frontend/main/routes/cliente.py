@@ -154,7 +154,6 @@ def ver_compras():
 
 
 @cliente.route('/comprar/<int:id>', methods=['POST', 'GET'])
-# @login_required
 def comprar(id):
     auth = request.cookies['access_token']
     headers = {

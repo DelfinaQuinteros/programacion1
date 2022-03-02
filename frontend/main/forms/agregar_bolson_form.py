@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import DateField, SubmitField, StringField, SelectMultipleField, FloatField, IntegerField, DateTimeField, SelectField
+from wtforms import DateField, BooleanField,SubmitField, StringField, SelectMultipleField, FloatField, IntegerField, DateTimeField, SelectField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import InputRequired
 from wtforms import validators
@@ -12,18 +12,9 @@ class BolsonForms(FlaskForm):
                          ],
                          render_kw={"placeholder": "Nombre del bolson"}
                          )
-    aprobado = IntegerField('Aprobar:',
-                            [
-                                validators.Required(message="Es obligatorio aprobar el bolson"),
-                            ],
-                            render_kw={"placeholder": "Ingrese '1'"}
-                            )
-    fecha = StringField("Fecha:",
-                        [
-                            validators.Required(message="La fecha es obligatoria")
-                        ],
-                        render_kw={"placeholder": "%Y-%m-%d"}
-                        )
+    aprobado = BooleanField('Aprobar:',
+                            default=False)
+
     descripcion = StringField("Descripcion",
                               [
                                   validators.Required(message="La descripcion es obligatoria")
@@ -46,10 +37,6 @@ class BolsonForms(FlaskForm):
     producto4 = SelectField(
         'Seleccionar producto #4', coerce=int,
         render_kw={"placeholder": "Producto #4"}
-    )
-    producto5 = SelectField(
-        'Seleccionar producto #5', coerce=int,
-        render_kw={"placeholder": "Producto #5"}
     )
 
     precio = FloatField("Precio:",
