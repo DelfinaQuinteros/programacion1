@@ -228,20 +228,21 @@ def eliminar_producto(id):
 
 
 @admin.route('/compras')
-@login_required
 def ver_compras():
     data = {}
     data['page'] = 1
-    data['per_page'] = 5
+    data['per_page'] = 3
     auth = request.cookies['access_token']
-    r = requests.get(current_app.config["API_URL"] + '/compras',
-                     headers={"content-type": "applications/json",
-                              'authorization': "Bearer " + auth},
-                     data=json.dumps(data))
-    compras = json.loads(r.text)["compras"]
-    page = json.loads(r.text)['page']
-    pages = json.loads(r.text)['pages']
-    return render_template('compra_cliente.html', compras=compras, page=page, pages=pages)
+    headers = {"content-type": "applications/json",
+               'authorization': "Bearer " + auth}
+    r = requests.get(current_app.config['API_URL'] + '/compras',
+                     headers=headers,
+                     json=data)
+    compras = json.loads(r.text)["clientes"]
+    pagination = {}
+    pagination["pages"] = json.loads(r.text)["pages"]
+    pagination["current_page"] = json.loads(r.text)["page"]
+    return render_template('compra_cliente.html', compras=compras, pagination=pagination)
 
 
 @admin.route('/bolsones-pendientes')

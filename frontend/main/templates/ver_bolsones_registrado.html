@@ -75,10 +75,12 @@
                  <p class="text-mutes">{{ bolson ['fecha'] }}</p>
                  <p class="text-mutes">Precio: {{ bolson ['precio'] }}</p>
               </div>
+              {% if current_user.role == 'cliente' %}
               <div class="col-sm-3 col-md-3">
                   <br><br>
-                  <div class="datos"><p><br><br><br><a class="boton-secundario" href="{{ url_for('cliente.comprar') }}">Agregar al carrito</a></p></div>
+                  <div class="datos"><p><br><br><br><a class="boton-secundario" href="{{ url_for('cliente.comprar', id=current_user['id']) }}">Agregar al carrito</a></p></div>
               </div>
+              {% endif %}
             </div>
         </div>
         <br>

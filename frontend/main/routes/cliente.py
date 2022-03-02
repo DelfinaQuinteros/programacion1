@@ -3,6 +3,7 @@ import requests
 from flask import Blueprint, render_template, redirect, url_for, current_app, request, make_response, flash
 from flask_login import login_required, LoginManager, current_user
 from ..forms.iniciar_sesion_form import LoginForm
+from datetime import datetime
 from ..forms.registrarse_form import RegistrarseForm
 from ..forms.agregar_bolson_form import BolsonForms, FormFilterBolsones, FormFilterBolson
 from ..forms.compras_form import FormFilterCompras
@@ -144,7 +145,7 @@ def ver_compras():
                'authorization': "Bearer " + auth}
     r = requests.get(current_app.config['API_URL'] + '/compras',
                      headers=headers,
-                     data=json.dumps(data))
+                     json=data)
     compras = json.loads(r.text)["clientes"]
     pagination = {}
     pagination["pages"] = json.loads(r.text)["pages"]
@@ -152,21 +153,41 @@ def ver_compras():
     return render_template('compra_cliente.html', compras=compras, pagination=pagination)
 
 
-@cliente.route('/comprar')
-@login_required
-def comprar():
+@cliente.route('/comprar/<int:id>', methods=['POST', 'GET'])
+# @login_required
+def comprar(id):
     auth = request.cookies['access_token']
-    headers = {"content-type": "applications/json",
-               'authorization': "Bearer " + auth}
+    headers = {
+            'content-type': 'application/json',
+            'authorization': 'Bearer '+auth}
     data = {}
     data["bolsonid"] = id
+    data["usuarioid"] = current_user.id
+    data["retirado"] = 1
     r = requests.post(
-        current_app.config["API_URL"] + '/compras',
-        headers=headers,
-        data=json.dumps(data))
+            current_app.config['API_URL']+'/compras',
+            headers=headers,
+            data=json.dumps(data, default=lambda o: o.__dict__))
+
+    print('DATA', data)
     if r.status_code == 201:
         flash('Compra realizada con exito', 'success')
-        return redirect(url_for('cliente.panel_cliente'))
-    return render_template('cliente.panel_cliente')
+        return redirect(url_for('cliente.bolsones_en_venta'))
+    if r.status_code == 500:
+        flash('Casi', 'danger')
+    return redirect(url_for('cliente.bolsones_en_venta'))
 
 
+@cliente.route('/eliminar-compra/<int:id>')
+@login_required
+def eliminar_compra(id):
+    auth = request.cookies['access_token']
+    r = requests.delete(f'{current_app.config["API_URL"]}/compra/{id}',
+                        headers={'content-type': "application/json",
+                                 'authorization': "Bearer " + auth})
+    if r.status_code == 404:
+        flash('La compra no existe', 'danger')
+        return render_template('compra_cliente.html')
+    if r.status_code == 204:
+        flash('La compra ha sido eliminada', 'success')
+        return render_template('compra_cliente.html')

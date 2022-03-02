@@ -2,12 +2,13 @@ from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
 from main.models import CompraModels, BolsonModels
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from main.auth.Decorators import admin_required
 from main.auth.Decorators import admin_or_cliente_required
 
 
 class Compras(Resource):
-    @admin_required
+    # @admin_required
     def get(self):
         page = 1
         per_page = 10
@@ -26,15 +27,17 @@ class Compras(Resource):
                         'pages': compras.pages
                         })
 
-    # @admin_or_cliente_required
+    @admin_or_cliente_required
     def post(self):
         compra = CompraModels.from_json(request.get_json())
+        current_user = get_jwt_identity()
+        compra.usuarioId = current_user
         try:
             db.session.add(compra)
             db.session.commit()
-            return compra.to_json(), 201
-        except:
-                return '', 404
+        except Exception:
+            return 'Formato no correcto', 400
+        return compra.to_json(), 201
 
 
 class Compra(Resource):
@@ -43,7 +46,7 @@ class Compra(Resource):
         compra = db.session.query(CompraModels).get_or_404(id)
         return compra.to_json()
 
-    @admin_required
+    @admin_or_cliente_required
     def delete(self, id):
         compra = db.session.query(CompraModels).get_or_404(id)
         try:

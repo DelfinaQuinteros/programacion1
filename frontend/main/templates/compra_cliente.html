@@ -24,6 +24,16 @@
         </div>
     </nav>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert alert-{{ messages.0.0}} text-center" role="alert">
+          {% for category, message in messages %}
+            {{ message }}
+          {% endfor %}
+        </div>
+       {% endif %}
+    {% endwith %}
+
     <div class="container">
         {% for compra in compras %}
         <div class="row">
@@ -35,15 +45,16 @@
              <br><br><br>
              <h2>{{ compra['bolson']['nombre']}}</h2>
              <h4>{{ compra['bolson']['descripcion'] }}</h4>
+             <h4>{{ compra['bolson']['fecha'] }}</h4>
           </div>
           <div class="col-sm-3 col-md-3">
-              <br>
-              <div class="datos"><br><br><br><p><a class="boton-secundario" href="#scroll">modificar</a></p><p><a class="boton-secundario" href="#scroll">ELIMINAR</a></p></div>
+              <br><br><br>
+              <p><a class="boton-secundario" href="{{url_for('cliente.eliminar_compra', id = compra['id'])}}">ELIMINAR</a></p></div>
           </div>
         {% endfor %}
-        </div>
+    </div>
 
-       <footer class="footer">
+<footer class="footer">
             <div class="container"></div>
        </footer>
 

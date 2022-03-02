@@ -1,10 +1,10 @@
 from .. import db
-from datetime import datetime
+import datetime as dt
 
 
 class Compra(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    fechacompra = db.Column(db.DateTime, nullable=False)
+    fechacompra = db.Column(db.DateTime, default=dt.datetime.now(), nullable=False)
     retirado = db.Column(db.Boolean, nullable=False)
     bolsonid = db.Column(db.Integer, db.ForeignKey('bolson.id'), nullable=False)
     usuarioid = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
@@ -17,7 +17,7 @@ class Compra(db.Model):
     def to_json(self):
         compra_json = {
             'id': self.id,
-            'fechacompra': self.fechacompra.strftime('%Y-%m-%d'),
+            'fechacompra': str(self.fechacompra),
             'retirado': str(self.retirado),
             'bolson': self.bolson.to_json(),
             'usuario': self.usuario.to_json(),
@@ -27,7 +27,7 @@ class Compra(db.Model):
     @staticmethod
     def from_json(compra_json):
         id = compra_json.get('id')
-        fechacompra = datetime.strptime(compra_json.get('fechacompra'), '%Y-%m-%d')
+        fechacompra = compra_json.get('fechacompra')
         retirado = compra_json.get('retirado')
         bolsonid = compra_json.get('bolsonid')
         usuarioid = compra_json.get('usuarioid')
