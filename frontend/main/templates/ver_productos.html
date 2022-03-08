@@ -24,25 +24,6 @@
         </div>
     </nav>
 
-    <div class="row">
-       <div class="col-md-12 justify-content-center">
-         <form method="GET" action="{{ url_for('admin.ver_productos') }}" >
-           <div class="form-row">
-             <div class="form-group col-md-4">
-             </div>
-             <div class="form-group col-md-2">
-                 {{ mostrarcampo(form.proveedor , class='form-control form-select input')}}
-             </div>
-             <div class="form-group col-md-3" style="margin-top:15px">
-               {{ mostrarenvio(form.submit , class='btn btn-primary')}}
-             </div>
-               <div class="form-group col-md-3">
-             </div>
-           </div>
-         </form>
-       </div>
-    </div>
-
     <div class="container">
         {% for producto in productos %}
             <div class="row">

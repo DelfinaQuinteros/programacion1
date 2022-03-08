@@ -26,13 +26,13 @@ def agregar_producto():
     if form.validate_on_submit():
         producto = {
             "nombre": form.nombre.data,
-            "usuarioid": form.id.data
+            "usuarioid": current_user.id
         }
         r = requests.post(current_app.config["API_URL"] + '/productos',
                           headers={'content-type': "application/json",
                                    'authorization': "Bearer " + auth},
                           json=producto)
-        if r.status_code == 200:
+        if r.status_code == 201:
             flash("Producto creado con exito", "success")
     return render_template('modificar_producto_prov.html', form=form)
 

@@ -147,10 +147,15 @@ def ver_compras():
                      headers=headers,
                      json=data)
     compras = json.loads(r.text)["clientes"]
+    data = {"bolsonId": 1}
+    r = requests.get(current_app.config['API_URL'] + '/productos-bolsones',
+                     headers=headers,
+                     json=data)
+    productos = json.loads(r.text)["productosbolsones"]
     pagination = {}
     pagination["pages"] = json.loads(r.text)["pages"]
     pagination["current_page"] = json.loads(r.text)["page"]
-    return render_template('compra_cliente.html', compras=compras, pagination=pagination)
+    return render_template('compra_cliente.html', compras=compras, pagination=pagination, productos=productos)
 
 
 @cliente.route('/comprar/<int:id>', methods=['POST', 'GET'])
@@ -167,7 +172,6 @@ def comprar(id):
             current_app.config['API_URL']+'/compras',
             headers=headers,
             data=json.dumps(data, default=lambda o: o.__dict__))
-
     print('DATA', data)
     if r.status_code == 201:
         flash('Compra realizada con exito', 'success')
@@ -189,4 +193,4 @@ def eliminar_compra(id):
         return render_template('compra_cliente.html')
     if r.status_code == 204:
         flash('La compra ha sido eliminada', 'success')
-        return render_template('compra_cliente.html')
+        return redirect(url_for('cliente.ver_compras'))

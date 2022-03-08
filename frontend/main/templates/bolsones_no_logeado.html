@@ -39,8 +39,8 @@
 				</div>
 			</div>
                 <form method="GET" action="{{url_for('cliente.bolsones_en_venta')}}">
+                    <div class="row">
                         {% for bolson in bolsones %}
-                            <div class="row">
                                 <div class="col-sm-4 col-md-4 card border-dark mb-3" style="max-width: 25rem;">
                                     <br>
                                     <div class="team-member text-center">
@@ -51,8 +51,8 @@
                                         <br><br>
                                     </div>
                                 </div>
-                            </div>
                         {% endfor %}
+                    </div>
                     </form>
             </div>
         </div>
