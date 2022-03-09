@@ -1,28 +1,36 @@
 from .. import db
 import datetime as dt
+from . import Producto_bolson
 
 
 class Bolson(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     aprobado = db.Column(db.Boolean, default=False, nullable=False)
-    fecha = db.Column(db.DateTime, default= dt.datetime.now(), nullable=False)
+    fecha = db.Column(db.DateTime, default=dt.datetime.now(), nullable=False)
     descripcion = db.Column(db.String(200), nullable=False)
     precio = db.Column(db.Float, nullable=False)
     compras = db.relationship('Compra', back_populates='bolson', cascade="all, delete-orphan")
     productosbolsones = db.relationship("ProductoBolson", back_populates="bolson", cascade="all, delete-orphan")
 
     def _repr_(self):
-        return '<Bolson: %r %r %r %r %r >' % (self.nombre, self.aprobado, self.fecha, self.descripcion, self.precio)
+        return '<Bolson: %r %r %r %r %r %r >' % (self.nombre, self.aprobado, self.fecha, self.descripcion, self.precio, self.productosbolsones)
 
     def to_json(self):
+        productosbolsones = []
+        print('NO ENTRA', self.productosbolsones)
+        if self.productosbolsones:
+            print('entra', self.productosbolsones)
+            for producto in self.productosbolsones:
+                productosbolsones.append(producto.to_json())
         bolson_json = {
             'id': self.id,
             'nombre': str(self.nombre),
             'aprobado': self.aprobado,
             'fecha': str(self.fecha),
             'descripcion': self.descripcion,
-            'precio': self.precio
+            'precio': self.precio,
+            'productosbolsones': productosbolsones,
         }
         return bolson_json
 
@@ -41,7 +49,8 @@ class Bolson(db.Model):
                         descripcion=descripcion,
                         precio=precio
                         )
-        if 'producto' in bolson_json:
-            for productoId in bolson_json.get('producto'):
-                bolson.productosbolsones.append(ProductoBolsonModels(productoId=productoId))
+        if 'productosbolsones' in bolson_json:
+            for productoId in bolson_json.get('productosbolsones'):
+                bolson.productosbolsones.append(Producto_bolson.ProductoBolson(productoId=productoId))
+        print(bolson)
         return bolson

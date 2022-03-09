@@ -41,7 +41,6 @@ def admin_required(fn):
             flash('Acceso restringido a administradores.', 'warning')
             return redirect(url_for('main.index'))
         return fn(*args, **kws)
-
     return wrapper
 
 

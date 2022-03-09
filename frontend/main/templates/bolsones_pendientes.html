@@ -62,7 +62,12 @@
                  <br><br><br>
                  <h2>{{ bolson ['nombre'] }}</h2>
                  <h4>{{ bolson ['descripcion'] }}</h4>
+                 <h4>Productos:</h4>
+                 {% for producto in bolson['productosbolsones'] %}
+                    <h4>{{ producto ['producto']['nombre']}}</h4>
+                 {% endfor %}
               </div>
+
               <div class="col-sm-3 col-md-3">
                   <br><br>
                   <div class="datos"><p><br><a class="boton-secundario" >Fecha:{{ bolson ['fecha'] }}</a></p></div>

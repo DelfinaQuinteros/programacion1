@@ -10,9 +10,10 @@ class ProductoBolson(db.Model):
     # cantidad = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return '<Producto Bolsones: %r %r >' % (self.id, self.producto.to_json())
+        return '<Producto Bolsones: %r %r >' % (self.id, self.productoId)
 
     def to_json(self):
+        print(self)
         productobolson_json = {
             'id': self.id,
             'producto': self.producto.to_json(),
